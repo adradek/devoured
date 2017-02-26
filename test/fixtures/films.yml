@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_rus: MyString
+  name_eng: MyString
+  seria: 
+  imdb: 1
+  tomatoes: MyString
+
+two:
+  name_rus: MyString
+  name_eng: MyString
+  seria: 
+  imdb: 1
+  tomatoes: MyString
