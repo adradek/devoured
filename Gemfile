@@ -29,6 +29,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'sorcery'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 group :development, :test do
   gem 'byebug', platform: :mri
 end
