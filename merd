@@ -1,0 +1,4 @@
+bundle exec rake diagram:all
+erd --filename 'doc/uml'
+clear
+bundle exec rake stats
