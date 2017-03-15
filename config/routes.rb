@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   delete 'logout', to: "sessions#destroy",   as: 'logout'
   get    'signup', to: "users#new",          as: 'signup'
 
-  resources :users
+  resources :users do
+    resources :watchings
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

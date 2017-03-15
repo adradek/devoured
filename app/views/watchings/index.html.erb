@@ -1,0 +1,23 @@
+<h1>Фильмы юзера <%= @user.email %></h1>
+
+<h3>Посмотреть:</h3>
+<ul>
+  <% if @to_watch.empty? %>
+    <li>список пуст</li>
+  <% else %>
+    <% @to_watch.each do |film| %>
+      <li><%= film.name %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<h3>Просмотрено:</h3>
+<ul>
+  <% if @watched.empty? %>
+    <li>список пуст</li>
+  <% else %>
+    <% @watched.each do |film| %>
+      <li><%= film.name %></li>
+    <% end %>
+  <% end %>
+</ul>
