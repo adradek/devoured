@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  film: one
+  start: 2017-03-15
+  finish: 2017-03-15
+  rate: MyString
+
+two:
+  user: two
+  film: two
+  start: 2017-03-15
+  finish: 2017-03-15
+  rate: MyString

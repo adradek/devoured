@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314221947) do
+ActiveRecord::Schema.define(version: 20170315124804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 20170314221947) do
     t.index ["user_id"], name: "index_intents_on_user_id", using: :btree
   end
 
+  create_table "readings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.date     "start"
+    t.date     "finish"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_readings_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_readings_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",            null: false
     t.string   "crypted_password"
@@ -53,5 +64,21 @@ ActiveRecord::Schema.define(version: 20170314221947) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
 
+  create_table "watchings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "film_id"
+    t.date     "start"
+    t.date     "finish"
+    t.string   "rate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["film_id"], name: "index_watchings_on_film_id", using: :btree
+    t.index ["user_id"], name: "index_watchings_on_user_id", using: :btree
+  end
+
   add_foreign_key "intents", "users"
+  add_foreign_key "readings", "books"
+  add_foreign_key "readings", "users"
+  add_foreign_key "watchings", "films"
+  add_foreign_key "watchings", "users"
 end
