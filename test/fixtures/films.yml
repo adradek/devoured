@@ -3,13 +3,13 @@
 one:
   name_rus: MyString
   name_eng: MyString
-  seria: 
+  seria: false
   imdb: 1
   tomatoes: MyString
 
 two:
   name_rus: MyString
   name_eng: MyString
-  seria: 
+  seria: false
   imdb: 1
   tomatoes: MyString
