@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   get    'signup', to: "users#new",          as: 'signup'
 
   resources :users do
-    resources :watchings
+    get 'dashboard', on: :collection
+    resources :films, module: :users
+    resources :books, module: :users
   end
 
   resources :sessions, only: [:new, :create, :destroy]

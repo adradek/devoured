@@ -1,0 +1,23 @@
+<h1>Hello in watchings index</h1>
+
+<%= render partial: 'form', locals: { film: @film, type: :consumed } %>
+
+<div>
+  <h3>Watched films</h3>
+  <ul>
+    <% @films_consumed.each do |film| %>
+      <li><%= film.name %></li>
+    <% end %>
+  </ul>
+</div>
+
+<%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
+
+<div>
+  <h3>Films to watch</h3>
+  <ul>
+    <% @films_to_watch.each do |film| %>
+      <li><%= film.name %></li>
+    <% end %>
+  </ul>
+</div>

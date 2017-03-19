@@ -1,0 +1,15 @@
+<%= form_for film, url: user_films_path do |f| %>
+  <%= hidden_field_tag :film_type, type %>
+  <%= f.text_field :name_rus, placeholder: 'Name rus' %>
+  <%= f.text_field :name_eng, placeholder: 'Name eng' %>
+  <%= f.text_field :tomatoes, placeholder: 'Tomatoes' %>
+  <%= f.text_field :imdb, placeholder: 'IMDB' %>
+
+  <% if type == :consumed %>
+    <%= text_field_tag :rate, '', placeholder: 'My rate' %>
+    <%= date_field_tag :start %>
+    <%= date_field_tag :finish %>
+  <% end %>
+
+  <%= f.submit %>
+<% end %>

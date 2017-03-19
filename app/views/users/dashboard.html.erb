@@ -1,0 +1,9 @@
+<p>
+  Current user: <%= @user %>
+</p>
+<p>
+  Films: <%= link_to 'Films', user_films_path(@user) %>
+</p>
+<p>
+  Books: <%= link_to 'Books', user_books_path(@user) %>
+</p>

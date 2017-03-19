@@ -1,0 +1,27 @@
+<h1>Hello in readings index</h1>
+
+<div>
+  <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
+</div>
+
+<div>
+  <h3>Read books</h3>
+  <ul>
+    <% @books_consumed.each do |book| %>
+      <li><%= book.title %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div>
+  <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
+</div>
+
+<div>
+  <h3>Books to read</h3>
+  <ul>
+    <% @books_to_read.each do |book| %>
+      <li><%= book.title %></li>
+    <% end %>
+  </ul>
+</div>

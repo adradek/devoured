@@ -29,6 +29,10 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'sorcery'
 
+# Trailblazer
+# gem 'reform', '~> 2.2.4'
+# gem 'reform-rails'
+
 group :production do
   gem 'rails_12factor'
 end
