@@ -1,24 +1,8 @@
-# README
+# Watched films and read books
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Code Climate](https://codeclimate.com/github/AlexKochurov/devoured/badges/gpa.svg)](https://codeclimate.com/github/AlexKochurov/devoured)
+[![Build Status](https://travis-ci.org/AlexKochurov/devoured.svg?branch=master)](https://travis-ci.org/AlexKochurov/devoured)
 
-Things you may want to cover:
+## Information
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This should help me (and others) to keep track of watched films and read books
