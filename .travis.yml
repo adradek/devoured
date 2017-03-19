@@ -1,4 +1,9 @@
+addons:
+  code_climate:
+    repo_token: 5ed6d27bb5f2c8bbdbd976084ca0bdb4e9c4eb56c92ac3441504e98d1066b181
 language: ruby
 rvm:
   - 2.4.0
 # script: bundle exec rspec spec
+after_success:
+  - bundle exec codeclimate-test-reporter
