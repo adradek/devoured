@@ -2,6 +2,7 @@
   <%= hidden_field_tag :book_type, type %>
   <%= f.text_field :title, placeholder: 'Title' %>
   <%= f.text_field :author, placeholder: 'Author' %>
+  <%= f.check_box :short %>
   <% if type == :consumed %>
     <%= date_field_tag :start %>
     <%= date_field_tag :finish %>

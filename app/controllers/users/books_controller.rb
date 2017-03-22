@@ -1,9 +1,8 @@
 class Users::BooksController < ApplicationController
-  before_action :set_user
+  before_action :set_user, only: [:create]
 
   def index
-    @books_consumed = @user.read
-    @books_to_read  = @user.intended_books
+    @user = User.includes(readings: :book).find(params[:user_id])
     @book = Book.new
   end
 
@@ -19,6 +18,12 @@ class Users::BooksController < ApplicationController
     redirect_to user_books_url(@user)
   end
 
+  def destroy_intents
+    Intent.where(user_id: params[:user_id], intended_type: 'Book', intended_id: params[:id])
+          .destroy_all
+    redirect_to user_books_url(params[:user_id])
+  end
+
   private
 
     def set_user
@@ -26,6 +31,6 @@ class Users::BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author)
+      params.require(:book).permit(:title, :author, :short)
     end
 end

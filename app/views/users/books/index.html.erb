@@ -7,10 +7,37 @@
 <div>
   <h3>Read books</h3>
   <ul>
-    <% @books_consumed.each do |book| %>
-      <li><%= book.title %></li>
+    <% @user.readings.each do |reading| %>
+      <li><%= reading.book.title %></li>
     <% end %>
   </ul>
+
+
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>short</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @user.readings.each do |reading| %>
+        <tr>
+          <td><%= reading.book.title %></td>
+          <td><%= reading.book.author %></td>
+          <td><%= reading.start %></td>
+          <td><%= reading.finish %></td>
+          <td><%= reading.book.short %></td>
+          <td>
+            <%= link_to 'X', '#' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
 
 <div>
@@ -19,9 +46,24 @@
 
 <div>
   <h3>Books to read</h3>
-  <ul>
-    <% @books_to_read.each do |book| %>
-      <li><%= book.title %></li>
-    <% end %>
-  </ul>
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Author</th>
+      <th>short</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <% @user.intended_books.each do |book| %>
+        <tr>
+          <td><%= book.title %></td>
+          <td><%= book.author %></td>
+          <td><%= book.short %></td>
+          <td>
+            <%= link_to 'delete', destroy_intents_user_book_path(id: book.id), method: :delete %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
