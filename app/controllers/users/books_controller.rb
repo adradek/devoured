@@ -9,10 +9,9 @@ class Users::BooksController < ApplicationController
   def create
     book = Book.find_by(book_params.slice(:title, :author)) || Book.create!(book_params)
 
-    if params[:book_type] == "consumed"
-      @user.readings.create!(book_id: book.id)
-    elsif params[:book_type] == "to_read"
-      @user.intents.create!(intended: book)
+    case params[:book_type]
+    when "consumed" then @user.readings.create!(reading_params(book.id))
+    when "to_read"  then @user.intents.create!(intended: book)
     end
 
     redirect_to user_books_url(@user)
@@ -32,5 +31,9 @@ class Users::BooksController < ApplicationController
 
     def book_params
       params.require(:book).permit(:title, :author, :short)
+    end
+
+    def reading_params(book_id)
+      params.to_hash.slice("start", "finish", "professional").merge("book_id" => book_id)
     end
 end

@@ -2,10 +2,14 @@
   <%= hidden_field_tag :book_type, type %>
   <%= f.text_field :title, placeholder: 'Title' %>
   <%= f.text_field :author, placeholder: 'Author' %>
-  <%= f.check_box :short %>
+  <%= f.check_box :short %> Short
+
   <% if type == :consumed %>
     <%= date_field_tag :start %>
-    <%= date_field_tag :finish %>
+    <%= button_tag '<->', id: 'swap' %>
+    <%= date_field_tag :finish, Time.zone.today %>
+    <%= check_box_tag :professional %> Professional
   <% end %>
+
   <%= f.submit %>
 <% end %>

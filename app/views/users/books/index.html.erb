@@ -1,17 +1,8 @@
 <h1>Hello in readings index</h1>
 
 <div>
-  <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
-</div>
-
-<div>
   <h3>Read books</h3>
-  <ul>
-    <% @user.readings.each do |reading| %>
-      <li><%= reading.book.title %></li>
-    <% end %>
-  </ul>
-
+  <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
 
   <table>
     <thead>
@@ -20,6 +11,7 @@
       <th>Start</th>
       <th>Finish</th>
       <th>short</th>
+      <th>profy</th>
       <th></th>
     </thead>
     <tbody>
@@ -30,6 +22,7 @@
           <td><%= reading.start %></td>
           <td><%= reading.finish %></td>
           <td><%= reading.book.short %></td>
+          <td><%= reading.professional %></td>
           <td>
             <%= link_to 'X', '#' %>
           </td>
@@ -41,11 +34,9 @@
 </div>
 
 <div>
-  <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
-</div>
-
-<div>
   <h3>Books to read</h3>
+  <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
+
   <table>
     <thead>
       <th>Title</th>
