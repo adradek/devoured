@@ -1,0 +1,14 @@
+<h1>Edit your reading</h1>
+
+<%= form_for @reading.book, url: user_book_path, method: :put do |f| %>
+  <%= f.text_field :title, disabled: true %>
+  <%= f.text_field :author, disabled: true %>
+
+  <%= date_field_tag :start, @reading.start %>
+  <%= button_tag '<->', id: 'swap' %>
+  <%= date_field_tag :finish, @reading.finish %>
+  <%= hidden_field_tag :professional, "0" %>
+  <%= check_box_tag :professional, "1", @reading.professional %> Professional
+
+  <%= f.submit %>
+<% end %>

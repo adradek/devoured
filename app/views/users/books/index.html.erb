@@ -24,7 +24,8 @@
           <td><%= reading.book.short %></td>
           <td><%= reading.professional %></td>
           <td>
-            <%= link_to 'X', '#' %>
+            <%= link_to 'X', '#' %> |
+            <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
           </td>
         </tr>
       <% end %>
