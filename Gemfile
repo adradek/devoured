@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'sorcery'
+gem 'bootstrap-sass', '~> 3.3.7'
 
 # Trailblazer
 # gem 'reform', '~> 2.2.4'

@@ -1,61 +1,63 @@
 <h1>Hello in readings index</h1>
 
-<div>
-  <h3>Read books</h3>
-  <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
+<div class="row">
+  <div class="col-lg-7">
+    <h3>Read books</h3>
+    <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
 
-  <table>
-    <thead>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Start</th>
-      <th>Finish</th>
-      <th>short</th>
-      <th>profy</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <% @user.readings.each do |reading| %>
-        <tr>
-          <td><%= reading.book.title %></td>
-          <td><%= reading.book.author %></td>
-          <td><%= reading.start %></td>
-          <td><%= reading.finish %></td>
-          <td><%= reading.book.short %></td>
-          <td><%= reading.professional %></td>
-          <td>
-            <%= link_to 'X', '#' %> |
-            <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <table class="table">
+      <thead>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Start</th>
+        <th>Finish</th>
+        <th>short</th>
+        <th>profy</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @user.readings.each do |reading| %>
+          <tr>
+            <td><%= reading.book.title %></td>
+            <td><%= reading.book.author %></td>
+            <td><%= reading.start %></td>
+            <td><%= reading.finish %></td>
+            <td><%= reading.book.short %></td>
+            <td><%= reading.professional %></td>
+            <td>
+              <%= link_to 'X', '#' %> |
+              <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-</div>
+  </div>
 
-<div>
-  <h3>Books to read</h3>
-  <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
+  <div class="col-lg-5">
+    <h3>Books to read</h3>
+    <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
 
-  <table>
-    <thead>
-      <th>Title</th>
-      <th>Author</th>
-      <th>short</th>
-      <th></th>
-    </thead>
-    <tbody>
-      <% @user.intended_books.each do |book| %>
-        <tr>
-          <td><%= book.title %></td>
-          <td><%= book.author %></td>
-          <td><%= book.short %></td>
-          <td>
-            <%= link_to 'delete', destroy_intents_user_book_path(id: book.id), method: :delete %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <table class="table">
+      <thead>
+        <th>Title</th>
+        <th>Author</th>
+        <th>short</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @user.intended_books.each do |book| %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td><%= book.short %></td>
+            <td>
+              <%= link_to 'delete', destroy_intents_user_book_path(id: book.id), method: :delete %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
