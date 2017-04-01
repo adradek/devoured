@@ -1,7 +1,7 @@
 <h1>Hello in readings index</h1>
 
 <div class="row">
-  <div class="col-lg-7">
+  <div class="col-lg-8">
     <h3>Read books</h3>
     <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
 
@@ -10,18 +10,14 @@
         <th>Book</th>
         <th>Start</th>
         <th>Finish</th>
-        <th>short</th>
-        <th>profy</th>
         <th></th>
       </thead>
       <tbody>
         <% @user.readings.each do |reading| %>
-          <tr>
+          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %>">
             <td><%= reading.book.caption %></td>
             <td><%= reading.start %></td>
             <td><%= reading.finish %></td>
-            <td><%= reading.book.short %></td>
-            <td><%= reading.professional %></td>
             <td>
               <%= link_to 'X', '#' %> |
               <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
@@ -33,23 +29,21 @@
 
   </div>
 
-  <div class="col-lg-5">
+  <div class="col-lg-4">
     <h3>Books to read</h3>
     <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
 
     <table class="table">
       <thead>
         <th>Book</th>
-        <th>short</th>
         <th></th>
       </thead>
       <tbody>
         <% @user.intended_books.each do |book| %>
-          <tr>
+          <tr class="<%= "short" if book.short %>">
             <td><%= book.caption %></td>
-            <td><%= book.short %></td>
             <td>
-              <%= link_to 'delete', destroy_intents_user_book_path(id: book.id), method: :delete %>
+              <%= link_to 'X', destroy_intents_user_book_path(id: book.id), method: :delete %>
             </td>
           </tr>
         <% end %>
