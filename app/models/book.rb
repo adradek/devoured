@@ -3,4 +3,8 @@ class Book < ApplicationRecord
 
   validates :title, uniqueness: { scope: :author }
   validates :title, presence: true
+
+  def caption
+    [%W("#{title}"), author].compact.join(", ")
+  end
 end
