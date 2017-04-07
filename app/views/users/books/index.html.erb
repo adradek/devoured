@@ -16,8 +16,8 @@
         <% @user.readings.each do |reading| %>
           <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %>">
             <td><%= reading.book.caption %></td>
-            <td><%= reading.start %></td>
-            <td><%= reading.finish %></td>
+            <td class="start_date"><%= reading.start&.strftime('%d.%m.%Y') %></td>
+            <td><%= reading.finish&.strftime('%d.%m.%Y') %></td>
             <td>
               <%= link_to 'X', '#' %> |
               <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
