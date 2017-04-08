@@ -1,23 +1,21 @@
-<h1>Hello in readings index</h1>
-
 <div class="row">
-  <div class="col-lg-8">
-    <h3>Read books</h3>
+  <div class="col-lg-7">
+    <h2>Прочитано</h2>
     <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
 
     <table class="table">
       <thead>
         <th>Book</th>
-        <th>Start</th>
         <th>Finish</th>
         <th></th>
       </thead>
       <tbody>
         <% @user.readings.each do |reading| %>
-          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %>">
+          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %>"
+              title="<%= reading.hint if reading.start %>"
+            >
             <td><%= reading.book.caption %></td>
-            <td class="start_date"><%= reading.start&.strftime('%d.%m.%Y') %></td>
-            <td><%= reading.finish&.strftime('%d.%m.%Y') %></td>
+            <td><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>
               <%= link_to 'X', '#' %> |
               <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
@@ -26,11 +24,10 @@
         <% end %>
       </tbody>
     </table>
-
   </div>
 
-  <div class="col-lg-4">
-    <h3>Books to read</h3>
+  <div class="col-lg-4 col-lg-offset-1">
+    <h2>Прочитать</h2>
     <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
 
     <table class="table">
