@@ -1,5 +1,5 @@
 class Users::BooksController < ApplicationController
-  before_action :set_user, only: [:create, :edit, :update]
+  before_action :set_user, only: [:create, :edit, :update, :destroy]
 
   def index
     @user = User.includes(readings: :book).find(params[:user_id])
@@ -31,6 +31,14 @@ class Users::BooksController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    reading = Reading.find(params[:id])
+    book    = reading.book
+    reading.destroy
+    book.destroy if book.readings.empty? && book.intents.empty?
+    redirect_to user_books_url params[:user_id]
   end
 
   def destroy_intents

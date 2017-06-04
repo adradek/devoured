@@ -17,7 +17,8 @@
             <td class="data"><%= reading.book.caption %></td>
             <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>
-              <%= link_to 'X', '#' %> |
+              <%= link_to 'X', user_book_path(id: reading.id), method: :delete,
+                                                               data: { confirm: "You sure?" } %> |
               <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
             </td>
           </tr>
@@ -40,7 +41,8 @@
           <tr class="<%= "short" if book.short %>">
             <td><%= book.caption %></td>
             <td>
-              <%= link_to 'X', destroy_intents_user_book_path(id: book.id), method: :delete %>
+              <%= link_to 'X', destroy_intents_user_book_path(id: book.id), method: :delete,
+                                 data: { confirm: "You sure?" } %>
             </td>
           </tr>
         <% end %>
