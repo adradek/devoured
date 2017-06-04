@@ -11,11 +11,11 @@
       </thead>
       <tbody>
         <% @user.readings.each do |reading| %>
-          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %>"
+          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %> <%= 'significant' if reading.significant %>"
               title="<%= reading.hint if reading.start %>"
             >
-            <td><%= reading.book.caption %></td>
-            <td><%= reading.finish&.strftime('%d.%m.%y') %></td>
+            <td class="data"><%= reading.book.caption %></td>
+            <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>
               <%= link_to 'X', '#' %> |
               <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>

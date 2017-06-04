@@ -50,6 +50,6 @@ class Users::BooksController < ApplicationController
     end
 
     def reading_params
-      params.permit(:start, :finish, :professional)
+      params.permit(:start, :finish, :professional, :significant)
     end
 end

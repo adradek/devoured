@@ -3,14 +3,21 @@ form.snuffy {
 }
 
 tr.short {
-  td {
+  td.data {
     color: #189e27;
   }
 }
 
 tr.profy {
-  td {
+  td.data {
     color: #9e188f;
+  }
+}
+
+tr.significant {
+  td.data {
+    color: red;
+    font-weight: 700;
   }
 }
 

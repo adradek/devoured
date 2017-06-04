@@ -9,6 +9,8 @@
   <%= date_field_tag :finish, @reading.finish %>
   <%= hidden_field_tag :professional, "0" %>
   <%= check_box_tag :professional, "1", @reading.professional %> Professional
+  <%= hidden_field_tag :significant, "0" %>
+  <%= check_box_tag :significant, "1", @reading.significant %> Significant
 
   <%= f.submit %>
 <% end %>
