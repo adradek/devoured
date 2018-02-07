@@ -50,6 +50,7 @@ group :development do
   gem "rails-erd"
   gem 'railroady'
   gem 'pry'
+  gem 'annotate'
 end
 
 group :test do
