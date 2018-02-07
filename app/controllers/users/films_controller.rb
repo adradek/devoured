@@ -2,18 +2,24 @@ class Users::FilmsController < ApplicationController
   before_action :set_user
 
   def index
-    @films_consumed = @user.watched
-    @films_to_watch  = @user.intended_films
+    @watchings = @user.watchings
+    @intentions = @user.intents.where(intended_type: "Film")
     @film = Film.new
   end
 
   def create
-    # TODO: find by some global param, maybe IMDB id or Kinopoisk id
+    # # TODO: find by some global param, maybe IMDB id or Kinopoisk id
     film = Film.create!(film_params)
 
     case params[:film_type]
-    when "consumed" then @user.watchings.create!(film_id: film.id)
-    when "to_watch" then @user.intents.create!(intended: film)
+    when "consumed"
+      watching = @user.watchings.build(film_id: film.id)
+      watching.start = params[:start]
+      watching.finish = params[:finish]
+      watching.rate = params[:rate]
+      watching.save!
+    when "to_watch"
+      @user.intents.create!(intended: film)
     end
 
     redirect_to user_films_url(@user)

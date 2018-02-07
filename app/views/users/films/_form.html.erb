@@ -8,7 +8,7 @@
   <% if type == :consumed %>
     <%= text_field_tag :rate, '', placeholder: 'My rate' %>
     <%= date_field_tag :start %>
-    <%= date_field_tag :finish %>
+    <%= date_field_tag :finish, Time.zone.today %>
   <% end %>
 
   <%= f.submit %>

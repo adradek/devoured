@@ -1,23 +1,42 @@
-<h1>Hello in watchings index</h1>
+<div class="row">
+  <div class="col-lg-7">
+    <h2>Посмотрел</h2>
+    <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
 
-<%= render partial: 'form', locals: { film: @film, type: :consumed } %>
-
-<div>
-  <h3>Watched films</h3>
-  <ul>
-    <% @films_consumed.each do |film| %>
-      <li><%= film.name %></li>
-    <% end %>
-  </ul>
-</div>
-
-<%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
-
-<div>
-  <h3>Films to watch</h3>
-  <ul>
-    <% @films_to_watch.each do |film| %>
-      <li><%= film.name %></li>
-    <% end %>
-  </ul>
+    <table class="table">
+      <thead>
+        <th>Film</th>
+        <th>Finish</th>
+        <th>User Rate</th>
+      </thead>
+      <tbody>
+        <% @watchings.each do |watch| %>
+          <% Rails.logger.info watch %>
+          <tr>
+            <td><%= watch.film.name %></td>
+            <td><%= watch.finish %></td>
+            <td><%= watch.rate %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-4 col-lg-offset-1">
+    <h2>Посмотреть</h2>
+    <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
+      <table class="table">
+        <thead>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @intentions.each do |intent| %>
+            <tr>
+              <td><%= intent.intended.name %></td>
+              <td><%= intent.created_at.strftime('%d.%m.%y %H:%M') %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
 </div>
