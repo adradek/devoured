@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :users do
     get 'dashboard', on: :collection
-    resources :films, module: :users
+    resources :films, module: :users do
+      delete 'destroy_intents', on: :member
+    end
     resources :books, module: :users do
       delete 'destroy_intents', on: :member
     end

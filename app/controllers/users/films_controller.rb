@@ -25,6 +25,19 @@ class Users::FilmsController < ApplicationController
     redirect_to user_films_url(@user)
   end
 
+  def destroy
+    watching = Watching.find(params[:id])
+    film = watching.film
+    watching.destroy
+    film.destroy if film.watchings.empty? && film.intents.empty?
+    redirect_to user_films_url(params[:user_id])
+  end
+
+  def destroy_intents
+    Intent.where(user_id: params[:user_id], intended_type: 'Film', intended_id: params[:id]).destroy_all
+    redirect_to user_films_url(params[:user_id])
+  end
+
   private
 
     def set_user

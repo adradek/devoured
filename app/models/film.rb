@@ -14,6 +14,7 @@
 
 class Film < ApplicationRecord
   has_many :intents, as: :intended, dependent: :destroy
+  has_many :watchings
 
   def name
     name_rus.present? ? name_rus : name_eng

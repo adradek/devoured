@@ -8,6 +8,7 @@
         <th>Film</th>
         <th>Finish</th>
         <th>User Rate</th>
+        <th></th>
       </thead>
       <tbody>
         <% @watchings.each do |watch| %>
@@ -16,6 +17,10 @@
             <td><%= watch.film.name %></td>
             <td><%= watch.finish %></td>
             <td><%= watch.rate %></td>
+            <td>
+              <%= link_to "X", user_film_path(id: watch.id),
+                    method: :delete, data: { confirm: "You sure?" }%>
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -28,12 +33,17 @@
         <thead>
           <th></th>
           <th></th>
+          <th></th>
         </thead>
         <tbody>
           <% @intentions.each do |intent| %>
             <tr>
               <td><%= intent.intended.name %></td>
               <td><%= intent.created_at.strftime('%d.%m.%y %H:%M') %></td>
+              <td>
+                <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), method: :delete,
+                              data: { confirm: "You sure?" } %>
+              </td>
             </tr>
           <% end %>
         </tbody>
