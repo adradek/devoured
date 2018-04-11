@@ -17,6 +17,7 @@ class Film < ApplicationRecord
   has_many :watchings
 
   def name
-    name_rus.present? ? name_rus : name_eng
+    n = name_rus.present? ? name_rus : name_eng
+    seria ? "< #{n} >" : n
   end
 end

@@ -20,7 +20,7 @@ class User < ApplicationRecord
               source_type: 'Film'
 
   has_many :readings,  -> { order(finish: :desc, id: :desc) }, dependent: :destroy
-  has_many :watchings, dependent: :destroy
+  has_many :watchings, -> { order(finish: :desc, id: :desc) }, dependent: :destroy
   has_many :watched, through: :watchings,  source: :film
 
   validates :password, length: { minimum: 6 },       if: -> { new_record? || changes[:crypted_password] }

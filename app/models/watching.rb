@@ -13,24 +13,21 @@
 #
 
 class Watching < ApplicationRecord
+  include DatesHelper
+
   belongs_to :user
   belongs_to :film
 
   def dates
-    return finish unless film.seria
+    return smart_date(finish) unless film.seria
     return "< .. >" unless start || finish
-    return "<#{start || " .."} - #{finish || ".. "}>" unless start && finish
-    if film.seria
-      "< - >"
-    end
+    return "<#{smart_date(start)} - #{smart_date(finish)}>" unless start && finish
+    "<#{short_date(start)} - #{smart_date(finish)}>"
   end
 
   private
 
     def single_month?
-
-      start.month == finish
-      # если один - вернуть отточия
-      # eсли
+      start.month == finish.month && start.year == finish.year
     end
 end
