@@ -1,0 +1,19 @@
+<h1>Edit your watching</h1>
+
+<%= form_for @watching.film, url: user_film_path, method: :put do |f| %>
+  <div>
+    <%= f.text_field :name_rus, disabled: true %>
+    <%= f.text_field :name_eng, disabled: true %>
+    <%= f.text_field :tomatoes, placeholder: 'Tomatoes' %>
+    <%= f.text_field :imdb, placeholder: 'IMDB' %>
+    <%= f.check_box :seria %> Seria
+  </div>
+  <div>
+    <%= text_field_tag :rate, @watching.rate, placeholder: 'My rate' %>
+    <%= date_field_tag :start, @watching.start %>
+    <%= button_tag '<->', id: 'swap' %>
+    <%= date_field_tag :finish, @watching.finish %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

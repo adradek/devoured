@@ -4,6 +4,7 @@
   <%= f.text_field :name_eng, placeholder: 'Name eng' %>
   <%= f.text_field :tomatoes, placeholder: 'Tomatoes' %>
   <%= f.text_field :imdb, placeholder: 'IMDB' %>
+  <%= f.check_box :seria %> Seria
 
   <% if type == :consumed %>
     <%= text_field_tag :rate, '', placeholder: 'My rate' %>

@@ -1,5 +1,5 @@
 class Users::BooksController < ApplicationController
-  before_action :set_user, only: [:create, :edit, :update, :destroy]
+  before_action :set_user
 
   def index
     @user = User.includes(readings: :book).find(params[:user_id])

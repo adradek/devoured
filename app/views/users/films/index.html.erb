@@ -6,7 +6,7 @@
     <table class="table">
       <thead>
         <th>Film</th>
-        <th>Finish</th>
+        <th></th>
         <th>User Rate</th>
         <th></th>
       </thead>
@@ -15,11 +15,14 @@
           <% Rails.logger.info watch %>
           <tr>
             <td><%= watch.film.name %></td>
-            <td><%= watch.finish %></td>
+            <td>
+              <%= watch.dates %>
+            </td>
             <td><%= watch.rate %></td>
             <td>
               <%= link_to "X", user_film_path(id: watch.id),
-                    method: :delete, data: { confirm: "You sure?" }%>
+                    method: :delete, data: { confirm: "You sure?" }%> |
+              <%= link_to 'Edit', edit_user_film_path(id: watch.id) %>
             </td>
           </tr>
         <% end %>

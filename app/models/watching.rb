@@ -15,4 +15,22 @@
 class Watching < ApplicationRecord
   belongs_to :user
   belongs_to :film
+
+  def dates
+    return finish unless film.seria
+    return "< .. >" unless start || finish
+    return "<#{start || " .."} - #{finish || ".. "}>" unless start && finish
+    if film.seria
+      "< - >"
+    end
+  end
+
+  private
+
+    def single_month?
+
+      start.month == finish
+      # если один - вернуть отточия
+      # eсли
+    end
 end

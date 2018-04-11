@@ -25,6 +25,20 @@ class Users::FilmsController < ApplicationController
     redirect_to user_films_url(@user)
   end
 
+  def edit
+    @watching = @user.watchings.includes(:film).find(params[:id])
+  end
+
+  def update
+    @watching = @user.watchings.find(params[:id])
+    film = @watching.film
+    if @watching.update(watching_params) && film.update(film_params)
+      redirect_to user_films_url
+    else
+      render :edit
+    end
+  end
+
   def destroy
     watching = Watching.find(params[:id])
     film = watching.film
@@ -46,5 +60,9 @@ class Users::FilmsController < ApplicationController
 
     def film_params
       params.require(:film).permit(:name_eng, :name_rus, :seria, :imdb, :tomatoes)
+    end
+
+    def watching_params
+      params.permit(:rate, :start, :finish)
     end
 end
