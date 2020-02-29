@@ -3,6 +3,7 @@ class Users::BooksController < ApplicationController
 
   def index
     @user = User.includes(readings: :book).find(params[:user_id])
+    @readings = ReaderDecorator.new(@user).readings
     @book = Book.new
   end
 
