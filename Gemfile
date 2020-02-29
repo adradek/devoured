@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'sorcery'
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'font-awesome-rails', '~> 4.7.0'
 
 # Trailblazer
 # gem 'reform', '~> 2.2.4'
@@ -40,6 +41,10 @@ end
 
 group :development, :test do
   gem 'byebug', platform: :mri
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-remote'
 end
 
 group :development do
@@ -49,7 +54,6 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "rails-erd"
   gem 'railroady'
-  gem 'pry'
   gem 'annotate'
 end
 
