@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <% @readings.each do |reading| %>
-          <tr class="<%= reading.labels.join(" ") %>">
+          <tr class="<%= reading.labels.join(" ") %>" title="<%= reading.hint %>">
             <td class="data"><%= reading.book.caption %></td>
             <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>
@@ -75,7 +75,7 @@
           </div>
           <div class="form-group">
             <%= f.label :id, "Выберите сборник" %>
-            <%= f.select :id, options_for_select(Reading.where(compilation: true).map { |r| [r.book.caption, r.id, {}] }), { include_blank: "[ Сборник не выбран ]" }, class: 'form-control', style: 'margin-bottom: 0;' %>
+            <%= f.select :id, options_for_select(Reading.where(compilation: true).order(id: :desc).map { |r| [r.book.caption, r.id, {}] }), { include_blank: "[ Сборник не выбран ]" }, class: 'form-control', style: 'margin-bottom: 0;' %>
           </div>
         </div>
         <div class="modal-footer">
