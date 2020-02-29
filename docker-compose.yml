@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - .envdir/development/database
+      - .envdir/development/web
+    depends_on:
+      - database
+
+  database:
+    image: postgres:12.2
+    env_file:
+      - .envdir/development/database
