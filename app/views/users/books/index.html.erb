@@ -11,9 +11,7 @@
       </thead>
       <tbody>
         <% @readings.each do |reading| %>
-          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %> <%= 'significant' if reading.significant %> <%= 'compilation' if reading.compilation %>"
-              title="<%= reading.hint if reading.start %>"
-            >
+          <tr class="<%= reading.labels.join(" ") %>">
             <td class="data"><%= reading.book.caption %></td>
             <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>

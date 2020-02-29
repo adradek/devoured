@@ -28,6 +28,14 @@ tr.compilation {
   }
 }
 
+tr.component {
+  @extend .active;
+}
+
+// tr.unfinished {
+//   @extend .active;
+// }
+
 td.start_date {
   font-size: 13px;
 }

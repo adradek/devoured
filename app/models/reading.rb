@@ -30,4 +30,15 @@ class Reading < ApplicationRecord
   def hint
     "#{reading_days} дней (с #{start.strftime('%d.%m.%y')})" if start
   end
+
+  def labels
+    result = []
+    result << "short" if book.short
+    result << "profy" if professional
+    result << 'significant' if significant
+    result << 'compilation' if compilation
+    result << 'component' if compilation_reading_id
+    result << 'unfinished' if finish.nil?
+    result
+  end
 end
