@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170604201523) do
+ActiveRecord::Schema.define(version: 20200229094212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.string   "title",                      null: false
+    t.string   "title",                       null: false
     t.string   "author"
-    t.boolean  "short",      default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "short",       default: false, null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "compilation", default: false
     t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true, using: :btree
   end
 
@@ -49,11 +50,14 @@ ActiveRecord::Schema.define(version: 20170604201523) do
     t.integer  "book_id"
     t.date     "start"
     t.date     "finish"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.boolean  "professional", default: false, null: false
-    t.boolean  "significant",  default: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.boolean  "professional",           default: false, null: false
+    t.boolean  "significant",            default: false
+    t.boolean  "compilation",            default: false
+    t.integer  "compilation_reading_id"
     t.index ["book_id"], name: "index_readings_on_book_id", using: :btree
+    t.index ["compilation_reading_id"], name: "index_readings_on_compilation_reading_id", using: :btree
     t.index ["user_id"], name: "index_readings_on_user_id", using: :btree
   end
 

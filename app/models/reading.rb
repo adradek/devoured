@@ -2,18 +2,22 @@
 #
 # Table name: readings
 #
-#  id           :integer          not null, primary key
-#  user_id      :integer
-#  book_id      :integer
-#  start        :date
-#  finish       :date
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  professional :boolean          default(FALSE), not null
-#  significant  :boolean          default(FALSE)
+#  id                     :integer          not null, primary key
+#  user_id                :integer
+#  book_id                :integer
+#  start                  :date
+#  finish                 :date
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  professional           :boolean          default(FALSE), not null
+#  significant            :boolean          default(FALSE)
+#  compilation            :boolean          default(FALSE)
+#  compilation_reading_id :integer
 #
 
 class Reading < ApplicationRecord
+  has_many :components, class_name: 'Reading', foreign_key: 'compilation_reading_id'
+  belongs_to :compilation_reading, class_name: 'Reading', optional: true
   belongs_to :user
   belongs_to :book
 
