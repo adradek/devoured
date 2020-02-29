@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-7">
+  <div class="col-lg-8">
     <h2>Прочитано</h2>
     <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
 
@@ -11,15 +11,24 @@
       </thead>
       <tbody>
         <% @user.readings.each do |reading| %>
-          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %> <%= 'significant' if reading.significant %>"
+          <tr class="<%= "short" if reading.book.short %> <%= "profy" if reading.professional %> <%= 'significant' if reading.significant %> <%= 'compilation' if reading.compilation %>"
               title="<%= reading.hint if reading.start %>"
             >
             <td class="data"><%= reading.book.caption %></td>
             <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>
-              <%= link_to 'X', user_book_path(id: reading.id), method: :delete,
-                                                               data: { confirm: "You sure?" } %> |
-              <%= link_to 'Edit', edit_user_book_path(id: reading.id) %>
+              <%= link_to user_book_path(id: reading.id), method: :delete, title: 'Удалить',
+                    class: 'btn btn-xs btn-danger pull-right',data: { confirm: "You sure?" } do %>
+                <i class="fa fa-trash-o"></i>
+              <% end %>
+              <%= link_to edit_user_book_path(id: reading.id), title: 'Изменить', class: 'btn btn-xs btn-default pull-right' do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+              <% unless reading.compilation %>
+                <%= link_to '#add_to_compilation_form_modal', class: 'btn btn-xs btn-default pull-right', title: 'oo' do %>
+                  <i class="fa fa-truck"></i>
+                <% end %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -27,7 +36,7 @@
     </table>
   </div>
 
-  <div class="col-lg-4 col-lg-offset-1">
+  <div class="col-lg-4">
     <h2>Прочитать</h2>
     <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
 

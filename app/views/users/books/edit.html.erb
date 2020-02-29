@@ -11,6 +11,8 @@
   <%= check_box_tag :professional, "1", @reading.professional %> Professional
   <%= hidden_field_tag :significant, "0" %>
   <%= check_box_tag :significant, "1", @reading.significant %> Significant
+  <%= hidden_field_tag :compilation, "0" %>
+  <%= check_box_tag :compilation, "1", @reading.compilation %> Compilation
 
   <%= f.submit %>
 <% end %>

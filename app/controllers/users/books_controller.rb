@@ -7,7 +7,9 @@ class Users::BooksController < ApplicationController
   end
 
   def create
-    book = Book.find_by(book_params.slice(:title, :author)) || Book.create!(book_params)
+    binding.pry
+    book = Book.find_by(book_params.slice(:title, :author)) \
+          || Book.create!(book_params.merge(compilation: params[:compilation]))
 
     case params[:book_type]
     when "consumed" then @user.readings.create!(reading_params.merge("book_id" => book.id))
@@ -54,10 +56,10 @@ class Users::BooksController < ApplicationController
     end
 
     def book_params
-      params.require(:book).permit(:title, :author, :short)
+      params.require(:book).permit(:title, :author, :short, :compilation)
     end
 
     def reading_params
-      params.permit(:start, :finish, :professional, :significant)
+      params.permit(:start, :finish, :professional, :significant, :compilation)
     end
 end

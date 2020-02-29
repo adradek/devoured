@@ -19,6 +19,7 @@ class Book < ApplicationRecord
   validates :title, presence: true
 
   def caption
-    [%W("#{title}"), author].compact.join(", ")
+    return title if compilation && author.blank?
+    [%W("#{title}"), author].reject(&:blank?).join(", ")
   end
 end
