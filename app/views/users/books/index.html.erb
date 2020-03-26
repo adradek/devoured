@@ -11,7 +11,7 @@
       </thead>
       <tbody>
         <% @readings.each do |reading| %>
-          <tr class="<%= reading.labels.join(" ") %>" title="<%= reading.hint %>">
+          <tr class="<%= reading.labels.join(" ") %>" title="<%= reading.hint %>" data-part-of="<%= reading.compilation_reading_id %>" data-compilation-id="<%= reading.id if reading.compilation %>">
             <td class="data"><%= reading.book.caption %></td>
             <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>

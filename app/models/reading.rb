@@ -37,7 +37,7 @@ class Reading < ApplicationRecord
     result << "profy" if professional
     result << 'significant' if significant
     result << 'compilation' if compilation
-    result << 'component' if compilation_reading_id
+    result << 'component collapse out' if compilation_reading_id
     result << 'unfinished' if finish.nil?
     result
   end
