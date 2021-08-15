@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200229094212) do
+ActiveRecord::Schema.define(version: 20210815172827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,11 +28,13 @@ ActiveRecord::Schema.define(version: 20200229094212) do
   create_table "films", force: :cascade do |t|
     t.string   "name_rus"
     t.string   "name_eng"
-    t.boolean  "seria",      default: false, null: false
+    t.boolean  "seria",        default: false, null: false
     t.integer  "imdb"
     t.string   "tomatoes"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "tomatoes_top"
+    t.integer  "tomatoes_all"
   end
 
   create_table "intents", force: :cascade do |t|
