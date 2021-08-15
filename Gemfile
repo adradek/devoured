@@ -35,6 +35,8 @@ gem 'font-awesome-rails', '~> 4.7.0'
 # gem 'reform', '~> 2.2.4'
 # gem 'reform-rails'
 
+gem 'websocket-extensions', '~> 0.1.5'
+
 group :production do
   gem 'rails_12factor'
 end
