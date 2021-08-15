@@ -39,7 +39,7 @@
               <span class='<%= 'film-dates' if watch.finish %>'><%= watch.dates %></span>
             </td>
             <td><%= critics(watch.film) %></td>
-            <td><%= watch.rate %></td>
+            <td><%= user_rate(watch.rate) %></td>
             <td>
               <%= link_to "X", user_film_path(id: watch.id),
                     method: :delete, data: { confirm: "You sure?" }%> |

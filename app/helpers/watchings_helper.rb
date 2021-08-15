@@ -24,4 +24,18 @@ module WatchingsHelper
   def tomatoclass(rate)
     rate > 60 ? 'fresh-tomato' : 'rotten-tomato'
   end
+
+  def user_rate(rate)
+    first_symbol = rate.match(/[JQKA.]/).to_s
+    second_symbol =
+      case rate.match(/[HDPS]/).to_s
+      when 'H' then content_tag(:span, '♥', class: 'red-card')
+      when 'D' then content_tag(:span, '♦', class: 'red-card')
+      when 'P' then content_tag(:span, '♠', class: 'black-card')
+      when 'S' then content_tag(:span, '★', class: 'gold-star')
+      else ''
+      end
+
+    "#{first_symbol}#{second_symbol}".html_safe
+  end
 end
