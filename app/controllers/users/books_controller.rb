@@ -2,7 +2,7 @@ class Users::BooksController < ApplicationController
   before_action :set_user
 
   def index
-    @user = User.includes(readings: :book).find(params[:user_id])
+    @user = User.find(params[:user_id])
     @readings = ReaderDecorator.new(@user).readings
     @book = Book.new
   end

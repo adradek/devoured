@@ -2,8 +2,8 @@ class Users::FilmsController < ApplicationController
   before_action :set_user
 
   def index
-    @watchings = @user.watchings
-    @intentions = @user.intents.where(intended_type: "Film")
+    @watchings = @user.watchings.includes(:film)
+    @intentions = @user.intents.includes(:intended).where(intended_type: "Film")
     @film = Film.new
   end
 

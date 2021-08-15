@@ -6,10 +6,15 @@ class ReaderDecorator
   def readings
     @readings ||= begin
       result = []
-      @user.readings.where(compilation_reading_id: nil).order(finish: :desc, start: :desc).in_reverse.each do |reading|
+
+      @user.readings.includes(:book).where(compilation_reading_id: nil).order(finish: :desc, start: :desc).in_reverse.each do |reading|
         result << reading
-        result.concat(reading.components.in_reverse) if reading.compilation?
+
+        if reading.compilation?
+          result.concat(reading.components.includes(:book, :compilation_reading).in_reverse)
+        end
       end
+
       result
     end
   end
