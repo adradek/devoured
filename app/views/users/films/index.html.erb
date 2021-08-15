@@ -10,7 +10,7 @@
       <tbody>
         <% @intentions.each do |intent| %>
           <tr>
-            <td><%= intent.intended.name %></td>
+            <td title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>"><%= intent.intended.name %></td>
             <td>
               <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), method: :delete, data: { confirm: "You sure?" } %>
             </td>
