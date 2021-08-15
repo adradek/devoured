@@ -1,5 +1,25 @@
 <div class="row">
-  <div class="col-lg-7">
+  <div class="col-lg-2 col-lg-offset-1">
+    <h2>Посмотреть</h2>
+    <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
+    <table class="table">
+      <thead>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <% @intentions.each do |intent| %>
+          <tr>
+            <td><%= intent.intended.name %></td>
+            <td>
+              <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), method: :delete, data: { confirm: "You sure?" } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-lg-6 col-lg-offset-1">
     <h2>Посмотрел</h2>
     <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
 
@@ -7,17 +27,18 @@
       <thead>
         <th>Film</th>
         <th></th>
+        <th>Critics</th>
         <th>User Rate</th>
         <th></th>
       </thead>
       <tbody>
         <% @watchings.each do |watch| %>
-          <% Rails.logger.info watch %>
           <tr>
             <td><%= watch.film.name %></td>
             <td>
-              <%= watch.dates %>
+              <span class='<%= 'film-dates' if watch.finish %>'><%= watch.dates %></span>
             </td>
+            <td><%= critics(watch.film) %></td>
             <td><%= watch.rate %></td>
             <td>
               <%= link_to "X", user_film_path(id: watch.id),
@@ -28,28 +49,5 @@
         <% end %>
       </tbody>
     </table>
-  </div>
-  <div class="col-lg-4 col-lg-offset-1">
-    <h2>Посмотреть</h2>
-    <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
-      <table class="table">
-        <thead>
-          <th></th>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <% @intentions.each do |intent| %>
-            <tr>
-              <td><%= intent.intended.name %></td>
-              <td><%= intent.created_at.strftime('%d.%m.%y %H:%M') %></td>
-              <td>
-                <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), method: :delete,
-                              data: { confirm: "You sure?" } %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
   </div>
 </div>

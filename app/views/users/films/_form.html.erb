@@ -1,9 +1,13 @@
 <%= form_for film, url: user_films_path do |f| %>
   <%= hidden_field_tag :film_type, type %>
-  <%= f.text_field :name_rus, placeholder: 'Name rus' %>
-  <%= f.text_field :name_eng, placeholder: 'Name eng' %>
-  <%= f.text_field :tomatoes, placeholder: 'Tomatoes' %>
-  <%= f.text_field :imdb, placeholder: 'IMDB' %>
+  <%= f.text_field :name_rus, placeholder: 'Название' %>
+
+  <% if type == :consumed %>
+    <%= f.text_field :name_eng, placeholder: 'Title' %>
+    <%= f.text_field :tomatoes, placeholder: 'Tomatoes' %>
+    <%= f.text_field :imdb, placeholder: 'IMDB' %>
+  <% end %>
+
   <%= f.check_box :seria %> Seria
 
   <% if type == :consumed %>
