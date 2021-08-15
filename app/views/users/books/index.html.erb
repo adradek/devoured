@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-8">
+  <div class="col-lg-5 col-lg-offset-2">
     <h2>Прочитано</h2>
     <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
 
@@ -34,7 +34,7 @@
     </table>
   </div>
 
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <h2>Прочитать</h2>
     <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
 
