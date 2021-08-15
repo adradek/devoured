@@ -45,6 +45,10 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-remote'
+  gem 'rack-mini-profiler'
+  # gem 'flamegraph'
+  # gem 'stackprof'
+  gem 'memory_profiler'
 end
 
 group :development do

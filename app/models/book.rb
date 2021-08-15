@@ -20,6 +20,6 @@ class Book < ApplicationRecord
 
   def caption
     return title if compilation && author.blank?
-    [%W("#{title}"), author].reject(&:blank?).join(", ")
+    %("#{title}", #{author})
   end
 end
