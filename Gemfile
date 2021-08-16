@@ -51,6 +51,10 @@ group :development, :test do
   # gem 'flamegraph'
   # gem 'stackprof'
   gem 'memory_profiler'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'bullet'
 end
 
 group :development do
@@ -61,7 +65,6 @@ group :development do
   gem "rails-erd"
   gem 'railroady'
   gem 'annotate'
-  gem 'bullet'
 end
 
 group :test do
