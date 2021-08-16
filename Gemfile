@@ -30,10 +30,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'sorcery'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'font-awesome-rails', '~> 4.7.0'
-
-# Trailblazer
-# gem 'reform', '~> 2.2.4'
-# gem 'reform-rails'
+gem 'pundit'
 
 gem 'websocket-extensions', '~> 0.1.5'
 

@@ -154,6 +154,8 @@ GEM
       slop (~> 3.0)
     puma (4.3.8)
       nio4r (~> 2.0)
+    pundit (2.1.1)
+      activesupport (>= 3.0.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-mini-profiler (2.2.0)
@@ -295,6 +297,7 @@ DEPENDENCIES
   pry-rails
   pry-remote
   puma (~> 4.3)
+  pundit
   rack-mini-profiler
   railroady
   rails (~> 5.1.0)

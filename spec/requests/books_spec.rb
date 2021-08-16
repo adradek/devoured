@@ -21,6 +21,7 @@ RSpec.describe '/books', type: :request do
     end
 
     it_behaves_like 'authentication needed action'
+    it_behaves_like 'authorization protected action'
   end
 
   # update book

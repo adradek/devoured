@@ -8,7 +8,7 @@ class Users::BooksController < ApplicationController
   end
 
   def create
-    # binding.pry
+    authorize @user, :update?
     book = Book.find_by(book_params.slice(:title, :author)) \
           || Book.create!(book_params.merge(compilation: params[:compilation]))
 
