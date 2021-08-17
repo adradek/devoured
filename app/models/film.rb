@@ -18,10 +18,20 @@ class Film < ApplicationRecord
   has_many :intents, as: :intended, dependent: :destroy
   has_many :watchings
 
-  # before_validation :update
+  before_validation :update_tomatoes_fields
 
   def name
     n = name_rus.present? ? name_rus : name_eng
     seria ? "< #{n} >" : n
+  end
+
+  private
+
+  def update_tomatoes_fields
+    return if tomatoes.blank?
+    rates = tomatoes.match(/(\d{2,3})-?(\d{2,3})?/)
+    return if rates.nil?
+    self.tomatoes_all = rates[1]
+    self.tomatoes_top = rates[2]
   end
 end
