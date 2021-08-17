@@ -24,10 +24,12 @@ class Users::BooksController < ApplicationController
   # params[:id] - id of reading, not book
   #
   def edit
+    authorize @user, :update?
     @reading = @user.readings.includes(:book).find(params[:id])
   end
 
   def update
+    authorize @user, :update?
     @reading = @user.readings.find(params[:id])
     if @reading.update(reading_params)
       redirect_to user_books_url
@@ -37,6 +39,7 @@ class Users::BooksController < ApplicationController
   end
 
   def destroy
+    authorize @user, :update?
     reading = Reading.find(params[:id])
     book    = reading.book
     reading.destroy
@@ -45,6 +48,7 @@ class Users::BooksController < ApplicationController
   end
 
   def destroy_intents
+    authorize @user, :update?
     Intent.where(user_id: params[:user_id], intended_type: 'Book', intended_id: params[:id])
           .destroy_all
     redirect_to user_books_url(params[:user_id])

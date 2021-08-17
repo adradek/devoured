@@ -9,9 +9,9 @@ module WatchingsHelper
 
   def tomatoes(film)
     output = ["("]
-    return '' if film.tomatoes.blank?
 
     all = film.tomatoes_all
+    return '' if all.nil?
     output << content_tag(:span, all, class: tomatoclass(all))
 
     top = film.tomatoes_top

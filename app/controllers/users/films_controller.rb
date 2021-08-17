@@ -8,6 +8,7 @@ class Users::FilmsController < ApplicationController
   end
 
   def create
+    authorize @user, :update?
     # # TODO: find by some global param, maybe IMDB id or Kinopoisk id
     film = Film.create!(film_params)
 
@@ -26,10 +27,12 @@ class Users::FilmsController < ApplicationController
   end
 
   def edit
+    authorize @user, :update?
     @watching = @user.watchings.includes(:film).find(params[:id])
   end
 
   def update
+    authorize @user, :update?
     @watching = @user.watchings.find(params[:id])
     film = @watching.film
     if @watching.update(watching_params) && film.update(film_params)
@@ -40,6 +43,7 @@ class Users::FilmsController < ApplicationController
   end
 
   def destroy
+    authorize @user, :update?
     watching = Watching.find(params[:id])
     film = watching.film
     watching.destroy
@@ -48,6 +52,7 @@ class Users::FilmsController < ApplicationController
   end
 
   def destroy_intents
+    authorize @user, :update?
     Intent.where(user_id: params[:user_id], intended_type: 'Film', intended_id: params[:id]).destroy_all
     redirect_to user_films_url(params[:user_id])
   end

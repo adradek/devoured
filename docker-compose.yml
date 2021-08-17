@@ -14,8 +14,6 @@ services:
       - .envdir/development/web
     depends_on:
       - database
-
-    # for binding.pry tty + stdin_open
     tty: true
     stdin_open: true
 
