@@ -1,4 +1,5 @@
-<div class="row">
+<%= render 'shared/navbar' %>
+<div class="row under-navbar">
   <div class="col-lg-2 col-lg-offset-1">
     <h2>Посмотреть</h2>
     <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
