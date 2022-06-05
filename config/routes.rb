@@ -2,7 +2,7 @@ require_relative 'route_constraints'
 
 Rails.application.routes.draw do
   root to: 'users#dashboard', constraints: RouteConstraints::UserRequiredConstraint.new
-  root to: 'welcome#welcome'
+  root to: 'welcome#welcome', as: nil
 
   get    'login',  to: "sessions#new",       as: 'login'
   delete 'logout', to: "sessions#destroy",   as: 'logout'

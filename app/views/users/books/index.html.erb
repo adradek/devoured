@@ -18,7 +18,7 @@
             <td>
               <%= link_to user_book_path(id: reading.id), method: :delete, title: 'Удалить',
                     class: 'btn btn-xs btn-danger pull-right',data: { confirm: "You sure?" } do %>
-                <i class="fa fa-trash-o"></i>
+                <i class="fa fa-trash"></i>
               <% end %>
               <%= link_to edit_user_book_path(id: reading.id), title: 'Изменить', class: 'btn btn-xs btn-default pull-right' do %>
                 <i class="fa fa-edit"></i>

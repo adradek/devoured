@@ -1,0 +1,14 @@
+@import "bootstrap/scss/bootstrap.scss";
+
+// $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+// @import "@fortawesome/fontawesome-free/css/all";
+
+@import "common";
+@import "books";
+// @import "modals";
+@import 'watchings';
+
+
+.under-navbar {
+  margin-top: 80px;
+}

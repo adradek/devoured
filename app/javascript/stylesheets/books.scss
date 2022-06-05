@@ -28,7 +28,7 @@ tr.compilation {
 }
 
 tr.component {
-  @extend .active;
+  @extend .active !optional;
 }
 
 // tr.unfinished {
