@@ -1,3 +1,23 @@
+body {
+ font-size: 14px;
+}
+
 .nav-item.active {
-  color: #3e3e3e;
+  color: #1e1e1e;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+  // padding: .25rem .4rem;
+  // font-size: .875rem;
+  // line-height: .5;
+  // border-radius: .2rem;
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+.btn-iconic {
+  @extend .btn-xs;
+  margin: 0 1px;
 }

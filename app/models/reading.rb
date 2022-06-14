@@ -39,7 +39,7 @@ class Reading < ApplicationRecord
     result << 'compilation' if compilation
     if compilation_reading_id
       result << 'component collapse'
-      result << (compilation_reading.finish ? 'out' : 'in')
+      result << 'show' unless compilation_reading.finish
     end
     result << 'unfinished' if finish.nil?
     result

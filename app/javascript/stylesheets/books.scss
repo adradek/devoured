@@ -28,7 +28,8 @@ tr.compilation {
 }
 
 tr.component {
-  @extend .active !optional;
+  // @extend .table-warning !optional;
+  background-color: #f5f5f5;
 }
 
 // tr.unfinished {

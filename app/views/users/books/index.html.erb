@@ -1,6 +1,6 @@
 <%= render 'shared/navbar' %>
 <div class="row under-navbar">
-  <div class="col-lg-5 col-lg-offset-2">
+  <div class="col-lg-5 offset-lg-2">
     <h2>Прочитано</h2>
     <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
 
@@ -17,14 +17,14 @@
             <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
             <td>
               <%= link_to user_book_path(id: reading.id), method: :delete, title: 'Удалить',
-                    class: 'btn btn-xs btn-danger pull-right',data: { confirm: "You sure?" } do %>
+                    class: 'btn btn-iconic btn-danger float-right',data: { confirm: "You sure?" } do %>
                 <i class="fa fa-trash"></i>
               <% end %>
-              <%= link_to edit_user_book_path(id: reading.id), title: 'Изменить', class: 'btn btn-xs btn-default pull-right' do %>
+              <%= link_to edit_user_book_path(id: reading.id), title: 'Изменить', class: 'btn btn-iconic btn-outline-dark float-right' do %>
                 <i class="fa fa-edit"></i>
               <% end %>
               <% unless reading.compilation %>
-                <%= link_to '#add_to_compilation_form_modal', class: 'btn btn-xs btn-default pull-right add-to-compilation-modal-launcher', title: 'oo', data: { toggle: "modal", reading_id: "#{reading.id}", title: "#{reading.book.caption}" } do %>
+                <%= link_to '#add_to_compilation_form_modal', class: 'btn btn-iconic btn-outline-dark float-right add-to-compilation-modal-launcher', title: 'oo', data: { toggle: "modal", reading_id: "#{reading.id}", title: "#{reading.book.caption}" } do %>
                   <i class="fa fa-truck"></i>
                 <% end %>
               <% end %>
@@ -35,7 +35,7 @@
     </table>
   </div>
 
-  <div class="col-lg-3">
+  <div class="col-3">
     <h2>Прочитать</h2>
     <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
 
