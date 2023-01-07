@@ -28,7 +28,7 @@
 /public/assets
 .byebug_history
 
-/config/database.yml
+# /config/database.yml
 /coverage/
 .ruby-version
 
