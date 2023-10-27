@@ -28,10 +28,11 @@ module WatchingsHelper
   def user_rate(rate)
     first_symbol = rate.match(/[JQKA.]/).to_s
     second_symbol =
-      case rate.match(/[HDPS]/).to_s
+      case rate.match(/[HDPCS]/).to_s
       when 'H' then content_tag(:span, '♥', class: 'red-card')
       when 'D' then content_tag(:span, '♦', class: 'red-card')
       when 'P' then content_tag(:span, '♠', class: 'black-card')
+      when 'C' then content_tag(:span, '♣', class: 'blue-card')
       when 'S' then content_tag(:span, '★', class: 'gold-star')
       else ''
       end

@@ -22,7 +22,12 @@ services:
     env_file:
       - .envdir/development/database
     volumes:
-      - ./tmp/postgres:/var/lib/postgresql/data
+      - db_june_backup:/var/lib/postgresql/data
+      # - ./tmp/postgres:/var/lib/postgresql/data
+      - .:/tmptmptmp
+    ports:
+      - 5432:5432
 
 volumes:
   gem_cache:
+  db_june_backup:
