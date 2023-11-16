@@ -65,6 +65,5 @@ test:
 #
 production:
   <<: *default
-  database: devoured_production_2
-  username: devoured
-  password: <%= ENV['DEVOURED_DATABASE_PASSWORD'] %>
+  database: devoured
+  username: app
