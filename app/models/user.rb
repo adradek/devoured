@@ -11,6 +11,8 @@
 #
 
 class User < ApplicationRecord
+  before_validation :set_secret_id
+
   authenticates_with_sorcery!
 
   has_many :intents, dependent: :destroy
@@ -28,4 +30,18 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true,  if: -> { new_record? || changes[:crypted_password] }
 
   validates :email, uniqueness: true
+
+
+  def set_secret_id
+    return if self.secret_id
+
+    loop do
+      candidate = [*'0'..'9', *'a'..'h'].sample(16).join
+
+      unless User.where(secret_id: candidate).exists?
+        self.secret_id = candidate
+        break
+      end
+    end
+  end
 end
