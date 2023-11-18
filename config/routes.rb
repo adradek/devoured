@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete 'logout', to: "sessions#destroy",   as: 'logout'
   get    'signup', to: "users#new",          as: 'signup'
 
-  resources :users do
+  resources :users, param: :secret_id do
     get 'dashboard', on: :collection
     resources :films, module: :users do
       delete 'destroy_intents', on: :member

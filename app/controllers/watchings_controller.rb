@@ -1,6 +1,6 @@
 class WatchingsController < ApplicationController
   def index
-    @user     = User.find(params[:user_id])
+    @user     = User.find_by(secret_id: params[:user_secret_id])
     @watched  = @user.watched
     @to_watch = @user.intended_films
   end

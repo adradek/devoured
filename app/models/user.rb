@@ -31,6 +31,9 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true
 
+  def to_param
+    secret_id.parameterize
+  end
 
   def set_secret_id
     return if self.secret_id

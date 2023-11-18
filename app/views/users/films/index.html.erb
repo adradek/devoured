@@ -2,7 +2,9 @@
 <div class="row under-navbar">
   <div class="col-lg-2 col-lg-offset-1">
     <h2>Посмотреть</h2>
-    <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
+    <% if policy(@user).update? %>
+      <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
+    <% end %>
     <table class="table">
       <thead>
         <th></th>
@@ -13,7 +15,9 @@
           <tr>
             <td title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>"><%= intent.intended.name %></td>
             <td>
-              <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), method: :delete, data: { confirm: "You sure?" } %>
+              <% if policy(@user).update? %>
+                <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), method: :delete, data: { confirm: "  You sure?" } %>
+              <% end %>
             </td>
           </tr>
         <% end %>
@@ -22,7 +26,9 @@
   </div>
   <div class="col-lg-6 col-lg-offset-1">
     <h2>Посмотрел</h2>
-    <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
+    <% if policy(@user).update? %>
+      <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
+    <% end %>
 
     <table class="table">
       <thead>
@@ -42,9 +48,11 @@
             <td><%= critics(watch.film) %></td>
             <td><%= user_rate(watch.rate) %></td>
             <td>
-              <%= link_to "X", user_film_path(id: watch.id),
-                    method: :delete, data: { confirm: "You sure?" }%> |
-              <%= link_to 'Edit', edit_user_film_path(id: watch.id) %>
+              <% if policy(@user).update? %>
+                <%= link_to "X", user_film_path(id: watch.id),
+                      method: :delete, data: { confirm: "You sure?" }%> |
+                <%= link_to 'Edit', edit_user_film_path(id: watch.id) %>
+              <% end %>
             </td>
           </tr>
         <% end %>

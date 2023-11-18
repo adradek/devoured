@@ -2,7 +2,7 @@ class Users::BooksController < ApplicationController
   before_action :set_user
 
   def index
-    @user = User.find(params[:user_id])
+    @user = User.find_by(secret_id: params[:user_secret_id])
     @readings = ReaderDecorator.new(@user).readings
     @book = Book.new
   end
@@ -44,20 +44,20 @@ class Users::BooksController < ApplicationController
     book    = reading.book
     reading.destroy
     book.destroy if book.readings.empty? && book.intents.empty?
-    redirect_to user_books_url params[:user_id]
+    redirect_to user_books_url params[:user_secret_id]
   end
 
   def destroy_intents
     authorize @user, :update?
-    Intent.where(user_id: params[:user_id], intended_type: 'Book', intended_id: params[:id])
+    Intent.where(user_id: params[:user_secret_id], intended_type: 'Book', intended_id: params[:id])
           .destroy_all
-    redirect_to user_books_url(params[:user_id])
+    redirect_to user_books_url(params[:user_secret_id])
   end
 
   private
 
     def set_user
-      @user = User.find(params[:user_id])
+      @user = User.find_by(secret_id: params[:user_secret_id])
     end
 
     def book_params
