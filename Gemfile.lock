@@ -142,6 +142,8 @@ GEM
       timeout
     net-smtp (0.4.0)
       net-protocol
+    newrelic_rpm (9.6.0)
+      base64
     nio4r (2.5.9)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
@@ -333,6 +335,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   listen (~> 3.2)
   memory_profiler
+  newrelic_rpm
   pg (~> 0.18)
   pry
   pry-byebug

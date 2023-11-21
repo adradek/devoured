@@ -30,6 +30,8 @@ gem 'pundit'
 
 gem 'websocket-extensions', '~> 0.1.5'
 
+gem 'newrelic_rpm'
+
 group :production do
   gem 'rails_12factor'
 end
