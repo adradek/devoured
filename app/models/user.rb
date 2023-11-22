@@ -11,6 +11,8 @@
 #
 
 class User < ApplicationRecord
+  ADMINS = ENV['DEVOURED_ADMINS']&.split(",")
+
   before_validation :set_secret_id
 
   authenticates_with_sorcery!
@@ -33,6 +35,10 @@ class User < ApplicationRecord
 
   def to_param
     secret_id.parameterize
+  end
+
+  def is_admin?
+    ADMINS.present? && ADMINS.include?(email)
   end
 
   def set_secret_id

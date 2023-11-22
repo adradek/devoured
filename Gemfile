@@ -32,6 +32,10 @@ gem 'websocket-extensions', '~> 0.1.5'
 
 gem 'newrelic_rpm'
 
+gem 'rack-mini-profiler'
+# gem 'flamegraph'
+gem 'stackprof'
+
 group :production do
   gem 'rails_12factor'
 end
@@ -42,9 +46,6 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-remote'
-  gem 'rack-mini-profiler'
-  # gem 'flamegraph'
-  # gem 'stackprof'
   gem 'memory_profiler'
   gem 'rspec-rails'
   gem 'factory_bot_rails'
