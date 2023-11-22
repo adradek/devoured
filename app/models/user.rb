@@ -11,7 +11,7 @@
 #
 
 class User < ApplicationRecord
-  ADMINS = ENV['DEVOURED_ADMINS']&.split(",")
+  ADMINS = Rails.application.credentials[:admins]&.split(",")
 
   before_validation :set_secret_id
 

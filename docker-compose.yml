@@ -12,7 +12,6 @@ services:
     env_file:
       - .envdir/development/database
       - .envdir/development/web
-      - .envdir/development/newrelic
     depends_on:
       - database
     tty: true
