@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include Pundit
+  include Pundit::Authorization
 
   rescue_from Pundit::NotAuthorizedError, with: :permission_denied
 
