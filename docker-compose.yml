@@ -16,6 +16,7 @@ services:
       - database
     tty: true
     stdin_open: true
+    # command: /bin/bash -c 'bundle exec puma -C config/puma.rb'
 
   database:
     image: postgres:12.2

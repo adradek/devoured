@@ -15,10 +15,18 @@ bind 'tcp://127.0.0.1:3000'
 
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+rails_env = ENV.fetch("RAILS_ENV") { "development" }
+environment(rails_env)
 
 # Specifies the `pidfile` that Puma will use.
 pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+
+# Enable request logging
+log_requests
+
+if rails_env == 'production'
+  stdout_redirect "log/puma.stdout.log", "log/puma.stderr.log", true
+end
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
