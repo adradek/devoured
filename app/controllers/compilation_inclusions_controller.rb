@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CompilationInclusionsController < ApplicationController
   def create
     compilation = Reading.find(inclusion_params[:id])

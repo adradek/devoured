@@ -1,17 +1,27 @@
+# frozen_string_literal: true
+
 module DatesHelper
   def smart_date(date)
-    format =
-      date.year == Date.current.year ? '%d.%m' : '%d.%m.%y'
-    date.strftime(format)
-  rescue
-    ' .. '
+    run_carefully do
+      format =
+        date.year == Date.current.year ? '%d.%m' : '%d.%m.%y'
+      date.strftime(format)
+    end
   end
 
   def short_date(date)
-    date.strftime('%d.%m') rescue ' .. '
+    run_carefully { date.strftime('%d.%m') }
   end
 
   def full_date(date)
-    date.strftime('%d.%m.%Y') rescue ' .. '
+    run_carefully { date.strftime('%d.%m.%Y') }
+  end
+
+  private
+
+  def run_carefully
+    yield
+  rescue NoMethodError
+    ' .. '
   end
 end

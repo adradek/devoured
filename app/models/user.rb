@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -42,7 +44,7 @@ class User < ApplicationRecord
   end
 
   def set_secret_id
-    return if self.secret_id
+    return if secret_id
 
     loop do
       candidate = [*'0'..'9', *'a'..'h'].sample(16).join

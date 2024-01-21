@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WatchingsHelper
   def critics(film)
     output = []

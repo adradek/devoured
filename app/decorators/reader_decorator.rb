@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReaderDecorator
   def initialize(user)
     @user = user
@@ -7,12 +9,10 @@ class ReaderDecorator
     @readings ||= begin
       result = []
 
-      @user.readings.includes(:book).where(compilation_reading_id: nil).order(finish: :desc, start: :desc).in_reverse.each do |reading|
+      @user.readings.includes(:book)
+           .where(compilation_reading_id: nil).order(finish: :desc, start: :desc).in_reverse.each do |reading|
         result << reading
-
-        if reading.compilation?
-          result.concat(reading.components.includes(:book, :compilation_reading).in_reverse)
-        end
+        result.concat(reading.components.includes(:book, :compilation_reading).in_reverse) if reading.compilation?
       end
 
       result

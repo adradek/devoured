@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Users::FilmsController < ApplicationController
   before_action :set_user
 

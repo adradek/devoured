@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 task parse_tomatoes: :environment do
   puts "Hello"
   Film.all.each do |film|

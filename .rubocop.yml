@@ -1,0 +1,11 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  NewCops: disable
+
+Style/StringLiterals:
+  Enabled: false
+
+Style/WordArray:
+  Exclude:
+    - db/schema.rb
