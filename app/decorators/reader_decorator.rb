@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# I don't remember what for it is
 class ReaderDecorator
   def initialize(user)
     @user = user

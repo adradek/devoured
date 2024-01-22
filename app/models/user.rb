@@ -39,7 +39,7 @@ class User < ApplicationRecord
     secret_id.parameterize
   end
 
-  def is_admin?
+  def admin?
     ADMINS.present? && ADMINS.include?(email)
   end
 
