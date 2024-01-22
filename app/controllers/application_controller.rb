@@ -15,6 +15,6 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    head 403
+    head :forbidden
   end
 end

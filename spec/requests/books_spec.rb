@@ -13,9 +13,9 @@ RSpec.describe '/books', type: :request do
 
     let(:book_params) do
       {
-        title:  'Green Book',
-        author: 'Alexander Green',
+        title: 'Green Book',
         short: 'false',
+        author: 'Alexander Green',
         compilation: 'false'
       }
     end

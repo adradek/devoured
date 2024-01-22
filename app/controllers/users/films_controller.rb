@@ -49,16 +49,16 @@ module Users
 
     private
 
-      def set_user
-        @user = User.find_by(secret_id: params[:user_secret_id])
-      end
+    def set_user
+      @user = User.find_by(secret_id: params[:user_secret_id])
+    end
 
-      def film_params
-        params.require(:film).permit(:name_eng, :name_rus, :seria, :imdb, :tomatoes)
-      end
+    def film_params
+      params.require(:film).permit(:name_eng, :name_rus, :seria, :imdb, :tomatoes)
+    end
 
-      def watching_params
-        params.permit(:rate, :start, :finish)
-      end
+    def watching_params
+      params.permit(:rate, :start, :finish)
+    end
   end
 end

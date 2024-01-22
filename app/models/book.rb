@@ -15,7 +15,7 @@
 
 class Book < ApplicationRecord
   has_many :intents, as: :intended, dependent: :destroy
-  has_many :readings
+  has_many :readings, dependent: :destroy
 
   validates :title, uniqueness: { scope: :author }
   validates :title, presence: true

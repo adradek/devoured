@@ -29,7 +29,7 @@ class Watching < ApplicationRecord
 
   private
 
-    def single_month?
-      start.month == finish.month && start.year == finish.year
-    end
+  def single_month?
+    start.month == finish.month && start.year == finish.year
+  end
 end

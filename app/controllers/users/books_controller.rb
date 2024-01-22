@@ -54,16 +54,16 @@ module Users
 
     private
 
-      def set_user
-        @user = User.find_by(secret_id: params[:user_secret_id])
-      end
+    def set_user
+      @user = User.find_by(secret_id: params[:user_secret_id])
+    end
 
-      def book_params
-        params.require(:book).permit(:title, :author, :short, :compilation)
-      end
+    def book_params
+      params.require(:book).permit(:title, :author, :short, :compilation)
+    end
 
-      def reading_params
-        params.permit(:start, :finish, :professional, :significant)
-      end
+    def reading_params
+      params.permit(:start, :finish, :professional, :significant)
+    end
   end
 end

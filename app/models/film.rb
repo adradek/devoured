@@ -18,12 +18,12 @@
 
 class Film < ApplicationRecord
   has_many :intents, as: :intended, dependent: :destroy
-  has_many :watchings
+  has_many :watchings, dependent: :destroy
 
   before_validation :update_tomatoes_fields
 
   def name
-    n = name_rus.present? ? name_rus : name_eng
+    n = name_rus.presence || name_eng
     seria ? "< #{n} >" : n
   end
 
