@@ -112,14 +112,8 @@ Style/BlockComments:
 # Configuration parameters: AllowedConstants.
 Style/Documentation:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/compilation_inclusions_controller.rb'
-    - 'app/controllers/sessions_controller.rb'
-    - 'app/controllers/users/books_controller.rb'
-    - 'app/controllers/users/films_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/controllers/watchings_controller.rb'
-    - 'app/controllers/welcome_controller.rb'
+    - 'app/controllers/*'
+    - 'app/controllers/**/*'
     - 'app/helpers/application_helper.rb'
     - 'app/helpers/dates_helper.rb'
     - 'app/helpers/sessions_helper.rb'
@@ -152,6 +146,8 @@ Style/Documentation:
     - 'db/migrate/20231118175507_add_secret_id_to_user.rb'
     - 'db/migrate/20231118211846_add_uniq_index_to_secret_id.rb'
     - 'db/migrate/20240122010300_remove_compilation_column_from_reading.rb'
+    - 'test/**/*'
+    - 'spec/**/*'
 
 # Offense count: 53
 # This cop supports unsafe autocorrection (--autocorrect-all).
