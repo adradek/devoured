@@ -62,6 +62,7 @@ group :development do
   gem "rails-erd"
   gem 'railroady'
   gem 'annotate'
+  gem 'reek', '~> 6.1.0', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
