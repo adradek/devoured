@@ -42,7 +42,7 @@ module Users
       book    = reading.book
       reading.destroy
       book.destroy if book.readings.empty? && book.intents.empty?
-      redirect_to user_books_url params[:user_secret_id]
+      redirect_to user_books_url(params[:user_secret_id])
     end
 
     def destroy_intents
