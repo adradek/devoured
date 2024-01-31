@@ -8,7 +8,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'rails', '~> 6.0.5'
 gem 'activerecord', '~> 6.0.5.1'
 gem 'pg', '~> 0.18'
-gem 'puma', '>= 5.6.7'
+gem 'puma', '~> 6.4.0'
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 4.0'
@@ -69,6 +69,7 @@ group :development do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   gem 'brakeman'
+  gem 'bundler-audit'
 end
 
 group :test do
