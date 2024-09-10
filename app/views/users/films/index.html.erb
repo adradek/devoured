@@ -39,19 +39,21 @@
         <th></th>
       </thead>
       <tbody>
-        <% @watchings.each do |watch| %>
-          <tr>
-            <td><%= watch.film.name %></td>
-            <td>
-              <span class='<%= 'film-dates' if watch.finish %>'><%= watch.dates %></span>
+        <% @watchings.each do |presenter| %>
+          <tr title="<%= presenter.hint %>">
+            <td class='<%= 'watched' if presenter.finish %>'>
+              <%= presenter.film.name %>
             </td>
-            <td><%= critics(watch.film) %></td>
-            <td><%= user_rate(watch.rate) %></td>
+            <td class='<%= 'watched' if presenter.finish %>'>
+              <%= presenter.dates %>
+            </td>
+            <td><%= critics(presenter.film) %></td>
+            <td><%= user_rate(presenter.rate) %></td>
             <td>
               <% if policy(@user).update? %>
-                <%= link_to "X", user_film_path(id: watch.id),
+                <%= link_to "X", user_film_path(id: presenter.id),
                       method: :delete, data: { confirm: "You sure?" }%> |
-                <%= link_to 'Edit', edit_user_film_path(id: watch.id) %>
+                <%= link_to 'Edit', edit_user_film_path(id: presenter.id) %>
               <% end %>
             </td>
           </tr>

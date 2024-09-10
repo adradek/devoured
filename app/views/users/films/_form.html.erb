@@ -13,6 +13,7 @@
   <% if type == :consumed %>
     <%= text_field_tag :rate, '', placeholder: 'My rate' %>
     <%= date_field_tag :start %>
+    <%= button_tag '<->', id: 'swap' %>
     <%= date_field_tag :finish, Time.zone.today %>
   <% end %>
 

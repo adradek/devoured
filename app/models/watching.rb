@@ -15,16 +15,11 @@
 #
 
 class Watching < ApplicationRecord
-  include DatesHelper
-
   belongs_to :user
   belongs_to :film
 
-  def dates
-    return full_date(finish) unless film.seria
-    return "< .. >" unless start || finish
-    return "<#{smart_date(start)} - #{smart_date(finish)}>" unless start && finish
-    "<#{short_date(start)} - #{smart_date(finish)}>"
+  def days
+    ((finish || Time.zone.today) - start).to_i if start
   end
 
   private

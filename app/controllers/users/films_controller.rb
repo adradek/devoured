@@ -5,7 +5,7 @@ module Users
     before_action :set_user
 
     def index
-      @watchings = @user.watchings.includes(:film)
+      @watchings = @user.watchings.includes(:film).map { |w| WatchingPresenter.new(w) }
       @intentions = @user.intents.includes(:intended).where(intended_type: "Film")
       @film = Film.new
     end

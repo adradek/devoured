@@ -14,7 +14,7 @@ module DatesHelper
   end
 
   def full_date(date)
-    run_carefully { date.strftime('%d.%m.%Y') }
+    run_carefully { date.strftime('%d.%m.%y') }
   end
 
   private
