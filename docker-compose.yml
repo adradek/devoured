@@ -29,6 +29,19 @@ services:
     ports:
       - 5432:5432
 
+  redis:
+    image: redis:5.0-alpine
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
 volumes:
   gem_cache:
   db_june_backup:
+  redis:
