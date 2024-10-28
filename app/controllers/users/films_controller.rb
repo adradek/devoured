@@ -5,8 +5,14 @@ module Users
     before_action :set_user
 
     def index
-      @watchings = @user.watchings.includes(:film).map { |w| WatchingPresenter.new(w) }
-      @intentions = @user.intents.includes(:intended).where(intended_type: "Film")
+      @watchings = Rails.cache.fetch("#{@user.my_cache_key}--film_watchings", expires_in: 1.hour) do
+        @user.watchings.includes(:film).map { |w| WatchingPresenter.new(w) }
+      end
+
+      @intentions = Rails.cache.fetch("#{@user.my_cache_key}--film_intents", expires_in: 1.hour) do
+        @user.intents.includes(:intended).where(intended_type: "Film").to_a
+      end
+
       @film = Film.new
     end
 
@@ -43,7 +49,8 @@ module Users
 
     def destroy_intents
       authorize @user, :update?
-      Intent.where(user_id: params[:user_secret_id], intended_type: 'Film', intended_id: params[:id]).destroy_all
+
+      @user.intents.where(intended_type: 'Film', intended_id: params[:id]).destroy_all
       redirect_to user_films_url(params[:user_secret_id])
     end
 

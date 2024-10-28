@@ -53,4 +53,8 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def my_cache_key
+    "#{id}--#{updated_at.to_i}"
+  end
 end

@@ -13,6 +13,10 @@
 #
 
 class Intent < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, touch: true
   belongs_to :intended, polymorphic: true
+
+  def touch_user
+    user.touch
+  end
 end

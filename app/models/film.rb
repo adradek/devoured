@@ -31,7 +31,7 @@ class Film < ApplicationRecord
 
   def update_tomatoes_fields
     return if tomatoes.blank?
-    rates = tomatoes.match(/(\d{2,3})-?(\d{2,3})?/)
+    rates = tomatoes.match(/(\d{1,3})-?(\d{1,3})?/)
     return if rates.nil?
     self.tomatoes_all = rates[1]
     self.tomatoes_top = rates[2]

@@ -1,10 +1,11 @@
 <%= render 'shared/navbar' %>
 <div class="row under-navbar">
-  <div class="col-lg-2 col-lg-offset-1">
+  <div class="col-lg-2 col-lg-offset-1 offset-lg-2">
     <h2>Посмотреть</h2>
     <% if policy(@user).update? %>
       <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
     <% end %>
+
     <table class="table">
       <thead>
         <th></th>
@@ -30,6 +31,7 @@
       <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
     <% end %>
 
+    <% cache @user do %>
     <table class="table">
       <thead>
         <th>Film</th>
@@ -60,5 +62,6 @@
         <% end %>
       </tbody>
     </table>
+    <% end %>
   </div>
 </div>

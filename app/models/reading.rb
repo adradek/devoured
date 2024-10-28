@@ -23,7 +23,7 @@ class Reading < ApplicationRecord
 
   has_many :components, class_name: 'Reading', foreign_key: 'compilation_reading_id', dependent: :nullify
   belongs_to :compilation_reading, class_name: 'Reading', optional: true
-  belongs_to :user
+  belongs_to :user, touch: true
   belongs_to :book
 
   delegate :compilation, :compilation?, to: :book

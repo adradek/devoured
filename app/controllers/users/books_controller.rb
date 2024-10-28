@@ -4,6 +4,11 @@ module Users
   class BooksController < ApplicationController
     before_action :set_user
 
+    caches_action :index, expires_in: 3.days, cache_path: -> do
+      lrt = Reading.where(user_id: current_user.id).order(updated_at: :desc).first.updated_at.to_i
+      user_books_url(current_user, lrt: lrt)
+    end
+
     def index
       @user = User.find_by(secret_id: params[:user_secret_id])
       @readings = ReadingDecorator.collection(ReaderDecorator.new(@user).readings)

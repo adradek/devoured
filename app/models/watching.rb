@@ -15,7 +15,7 @@
 #
 
 class Watching < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, touch: true
   belongs_to :film
 
   def days
