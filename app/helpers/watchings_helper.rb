@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
 module WatchingsHelper
+  _tagger = Object.new.extend(::ActionView::Helpers::TagHelper)
+
+  SPECIAL_RATES ||= {
+      'H' => _tagger.content_tag(:span, '♥', class: 'red-card'),
+      'D' => _tagger.content_tag(:span, '♦', class: 'red-card'),
+      'P' => _tagger.content_tag(:span, '♠', class: 'black-card'),
+      'C' => _tagger.content_tag(:span, '♣', class: 'blue-card'),
+      'S' => _tagger.content_tag(:span, '★', class: 'gold-star')
+  }.freeze
+
   def critics(film)
     output = []
     imdb = film.imdb? ? "#{film.imdb / 10.0} " : ''
@@ -29,18 +39,8 @@ module WatchingsHelper
 
   def user_rate(rate)
     first_symbol  = rate.match(/[JQKA.]/).to_s
-    second_symbol = special_rates[rate.match(/[HDPCS]/).to_s]
+    other_symbols = rate.match(/[HDPCS]+/).to_s.split("").map { |c| SPECIAL_RATES[c] }
 
-    "#{first_symbol}#{second_symbol}".html_safe
-  end
-
-  def special_rates
-    @special_rates ||= {
-      'H' => content_tag(:span, '♥', class: 'red-card'),
-      'D' => content_tag(:span, '♦', class: 'red-card'),
-      'P' => content_tag(:span, '♠', class: 'black-card'),
-      'C' => content_tag(:span, '♣', class: 'blue-card'),
-      'S' => content_tag(:span, '★', class: 'gold-star')
-    }.freeze
+    "#{first_symbol}#{other_symbols.join}".html_safe
   end
 end
