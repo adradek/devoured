@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   root to: 'users#dashboard', constraints: RouteConstraints::UserRequiredConstraint.new
   root to: 'sessions#new', as: nil
 
-  get    'login',  to: "sessions#new",       as: 'login'
-  delete 'logout', to: "sessions#destroy",   as: 'logout'
-  get    'signup', to: "users#new",          as: 'signup'
+  get    'login',  to: 'sessions#new',       as: 'login'
+  delete 'logout', to: 'sessions#destroy',   as: 'logout'
+  get    'signup', to: 'users#new',          as: 'signup'
 
   resources :users, param: :secret_id do
     get 'dashboard', on: :collection

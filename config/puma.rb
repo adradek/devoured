@@ -4,8 +4,8 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum, this matches the default thread size of Active Record.
 #
-max_threads_count = ENV.fetch("RAILS_MAX_THREADS", 5)
-min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
+max_threads_count = ENV.fetch('RAILS_MAX_THREADS', 5)
+min_threads_count = ENV.fetch('RAILS_MIN_THREADS') { max_threads_count }
 threads min_threads_count, max_threads_count
 
 # Specifies the `port` that Puma will listen on to receive requests, default is 3000.
@@ -15,16 +15,16 @@ bind 'tcp://127.0.0.1:3000'
 
 # Specifies the `environment` that Puma will run in.
 #
-rails_env = ENV.fetch("RAILS_ENV") { "development" }
+rails_env = ENV.fetch('RAILS_ENV') { 'development' }
 environment(rails_env)
 
 # Specifies the `pidfile` that Puma will use.
-pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
+pidfile ENV.fetch('PIDFILE') { 'tmp/pids/server.pid' }
 
 # Enable request logging
 log_requests
 
-stdout_redirect("log/puma.stdout.log", "log/puma.stderr.log", true) if rails_env == 'production'
+stdout_redirect('log/puma.stdout.log', 'log/puma.stderr.log', true) if rails_env == 'production'
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together

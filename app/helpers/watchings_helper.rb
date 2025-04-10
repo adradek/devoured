@@ -20,7 +20,7 @@ module WatchingsHelper
   end
 
   def tomatoes(film)
-    output = ["("]
+    output = ['(']
 
     all = film.tomatoes_all
     return '' if all.nil?
@@ -28,7 +28,7 @@ module WatchingsHelper
 
     top = film.tomatoes_top
     output << content_tag(:span, "-#{top}", class: tomatoclass(top)) if top
-    output << ")"
+    output << ')'
 
     output.join
   end
@@ -39,7 +39,7 @@ module WatchingsHelper
 
   def user_rate(rate)
     first_symbol  = rate.match(/[JQKA.]/).to_s
-    other_symbols = rate.match(/[HDPCS]+/).to_s.split("").map { |c| SPECIAL_RATES[c] }
+    other_symbols = rate.match(/[HDPCS]+/).to_s.split('').map { |c| SPECIAL_RATES[c] }
 
     "#{first_symbol}#{other_symbols.join}".html_safe
   end

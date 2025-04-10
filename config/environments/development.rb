@@ -34,7 +34,7 @@ end
     # :redis_cache_store, { url: "redis://redis:6379" }
     # :mem_cache_store, "memcached"
 
-    config.cache_store = :redis_cache_store, { url: "redis://redis:6379" }
+    config.cache_store = :redis_cache_store, { url: 'redis://redis:6379' }
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }

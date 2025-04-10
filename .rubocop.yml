@@ -1,4 +1,9 @@
-inherit_from: .rubocop_todo.yml
+inherit_mode:
+  merge:
+    - Exclude
+
+inherit_from:
+  - .rubocop_todo.yml
 
 require:
   - rubocop-performance
@@ -7,9 +12,6 @@ require:
 
 AllCops:
   NewCops: disable
-
-Style/StringLiterals:
-  Enabled: false
 
 Style/WordArray:
   Exclude:

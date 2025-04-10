@@ -18,8 +18,8 @@ class ReadingDecorator
 
   def labels
     result = []
-    result << "short" if reading.book.short
-    result << "profy" if reading.professional
+    result << 'short' if reading.book.short
+    result << 'profy' if reading.professional
     result << 'significant' if reading.significant
     result << 'unfinished' unless reading.finish
     add_compilation_labels(result)

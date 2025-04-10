@@ -10,7 +10,7 @@ module Users
       end
 
       @intentions = Rails.cache.fetch("#{@user.my_cache_key}--film_intents", expires_in: 1.hour) do
-        @user.intents.includes(:intended).where(intended_type: "Film").to_a
+        @user.intents.includes(:intended).where(intended_type: 'Film').to_a
       end
 
       @film = Film.new
