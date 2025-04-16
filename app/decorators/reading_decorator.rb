@@ -18,10 +18,10 @@ class ReadingDecorator
 
   def labels
     result = []
-    result << 'short' if reading.book.short
-    result << 'profy' if reading.professional
-    result << 'significant' if reading.significant
-    result << 'unfinished' unless reading.finish
+    result << "short" if reading.book.short
+    result << "profy" if reading.professional
+    result << "significant" if reading.significant
+    result << "unfinished" unless reading.finish
     add_compilation_labels(result)
     result
   end
@@ -30,10 +30,10 @@ class ReadingDecorator
 
   def add_compilation_labels(result)
     if reading.compilation
-      result << 'compilation'
+      result << "compilation"
     elsif reading.compilation_reading_id
-      result << 'component collapse'
-      result << 'show' unless reading.compilation_reading.finish
+      result << "component collapse"
+      result << "show" unless reading.compilation_reading.finish
     end
   end
 

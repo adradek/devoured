@@ -21,8 +21,8 @@ class Reading < ApplicationRecord
   scope :in_reverse, -> { order(finish: :desc, id: :desc) }
   scope :compilations, Readings::CompilationsQuery.new
 
-  has_many :components, class_name: 'Reading', foreign_key: 'compilation_reading_id', dependent: :nullify
-  belongs_to :compilation_reading, class_name: 'Reading', optional: true
+  has_many :components, class_name: "Reading", foreign_key: "compilation_reading_id", dependent: :nullify
+  belongs_to :compilation_reading, class_name: "Reading", optional: true
   belongs_to :user, touch: true
   belongs_to :book
 

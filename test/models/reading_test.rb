@@ -15,7 +15,7 @@
 #  compilation_reading_id :integer
 #
 
-require 'test_helper'
+require "test_helper"
 
 class ReadingTest < ActiveSupport::TestCase
   # test "the truth" do

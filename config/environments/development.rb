@@ -25,7 +25,7 @@ end
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+  if Rails.root.join("tmp", "caching-dev.txt").exist?
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
@@ -34,9 +34,9 @@ end
     # :redis_cache_store, { url: "redis://redis:6379" }
     # :mem_cache_store, "memcached"
 
-    config.cache_store = :redis_cache_store, { url: 'redis://redis:6379' }
+    config.cache_store = :redis_cache_store, { url: "redis://redis:6379" }
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }
   else
     config.action_controller.perform_caching = false

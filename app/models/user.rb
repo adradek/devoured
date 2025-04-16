@@ -13,15 +13,15 @@
 #
 
 class User < ApplicationRecord
-  ADMINS = Rails.application.credentials[:admins]&.split(',')
+  ADMINS = Rails.application.credentials[:admins]&.split(",")
 
   before_validation :set_secret_id
 
   authenticates_with_sorcery!
 
   has_many :intents, dependent: :destroy
-  has_many :intended_books, -> { order('intents.id ASC') }, through: :intents, source: :intended, source_type: 'Book'
-  has_many :intended_films, -> { order('intents.id ASC') }, through: :intents, source: :intended, source_type: 'Film'
+  has_many :intended_books, -> { order("intents.id ASC") }, through: :intents, source: :intended, source_type: "Book"
+  has_many :intended_films, -> { order("intents.id ASC") }, through: :intents, source: :intended, source_type: "Film"
 
   has_many :readings, dependent: :destroy
   has_many :watchings, -> { order(finish: :desc, id: :desc) }, dependent: :destroy
@@ -45,7 +45,7 @@ class User < ApplicationRecord
     return if secret_id
 
     loop do
-      candidate = [*'0'..'9', *'a'..'h'].sample(16).join
+      candidate = [*"0".."9", *"a".."h"].sample(16).join
 
       unless User.where(secret_id: candidate).exists?
         self.secret_id = candidate

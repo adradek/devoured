@@ -15,7 +15,7 @@ class WatchingPresenter
 
   def dates
     return full_date(finish) unless film.seria
-    return '< .. >' unless start || finish
+    return "< .. >" unless start || finish
     return "<#{smart_date(start)} - #{smart_date(finish)}>" unless start && finish
     "<#{short_date(start)} - #{smart_date(finish)}>"
   end

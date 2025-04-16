@@ -11,7 +11,7 @@
 #  compilation :boolean          default(FALSE)
 #
 
-require 'test_helper'
+require "test_helper"
 
 class BookTest < ActiveSupport::TestCase
   # test "the truth" do

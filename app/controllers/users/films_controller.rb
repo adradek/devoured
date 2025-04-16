@@ -10,7 +10,7 @@ module Users
       end
 
       @intentions = Rails.cache.fetch("#{@user.my_cache_key}--film_intents", expires_in: 1.hour) do
-        @user.intents.includes(:intended).where(intended_type: 'Film').to_a
+        @user.intents.includes(:intended).where(intended_type: "Film").to_a
       end
 
       @film = Film.new
@@ -50,7 +50,7 @@ module Users
     def destroy_intents
       authorize @user, :update?
 
-      @user.intents.where(intended_type: 'Film', intended_id: params[:id]).destroy_all
+      @user.intents.where(intended_type: "Film", intended_id: params[:id]).destroy_all
       redirect_to user_films_url(params[:user_secret_id])
     end
 

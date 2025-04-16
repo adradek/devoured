@@ -7,11 +7,11 @@ class FilmCreation
     film = Film.create!(film_params)
 
     case type
-    when 'consumed'
+    when "consumed"
       watching = user.watchings.build(film_id: film.id)
       watching.assign_attributes(watching_params)
       watching.save!
-    when 'to_watch'
+    when "to_watch"
       user.intents.create!(intended: film)
     end
   end

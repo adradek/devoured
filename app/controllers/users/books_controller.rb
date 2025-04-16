@@ -52,7 +52,7 @@ module Users
 
     def destroy_intents
       authorize @user, :update?
-      Intent.where(user_id: params[:user_secret_id], intended_type: 'Book', intended_id: params[:id])
+      Intent.where(user_id: params[:user_secret_id], intended_type: "Book", intended_id: params[:id])
             .destroy_all
       redirect_to user_books_url(params[:user_secret_id])
     end
