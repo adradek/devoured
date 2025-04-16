@@ -8,13 +8,11 @@ require:
   - standard-custom
   - standard-performance
   - rubocop-rails
-  - standard-rails
   - rubocop-performance
   - rubocop-rspec
 
 inherit_gem:
-  # or maybe e.g. config/ruby-3.0.yml
-  standard: config/base.yml
+  standard: config/base.yml # might be: config/ruby-3.0.yml
   standard-performance: config/base.yml
   standard-custom: config/base.yml
   standard-rails: config/base.yml

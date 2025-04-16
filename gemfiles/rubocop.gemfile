@@ -1,0 +1,8 @@
+source "https://rubygems.org" do
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rspec"
+  gem "standard", "~> 1.33"
+  gem "standard-rails"
+  gem "standard-performance"
+end

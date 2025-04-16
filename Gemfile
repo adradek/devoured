@@ -55,12 +55,6 @@ group :development, :test do
   gem "factory_bot_rails"
   gem "faker"
   gem "bullet"
-  gem "rubocop", require: false
-  gem "rubocop-performance", require: false
-  gem "rubocop-rspec", require: false
-  gem "standard", "~> 1.33.0", require: false
-  gem "standard-rails", require: false
-  gem "standard-performance", require: false
 end
 
 group :development do

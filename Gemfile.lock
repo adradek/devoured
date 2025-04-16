@@ -127,8 +127,6 @@ GEM
     json (2.10.2)
     jwt (2.7.1)
     kwalify (0.7.2)
-    language_server-protocol (3.17.0.4)
-    lint_roller (1.1.0)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -177,7 +175,6 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0)
       version_gem (~> 1.1)
-    parallel (1.27.0)
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
@@ -275,32 +272,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.12.1)
-    rubocop (1.59.0)
-      json (~> 2.3)
-      language_server-protocol (>= 3.17.0)
-      parallel (~> 1.10)
-      parser (>= 3.2.2.4)
-      rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
-      rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.30.0, < 2.0)
-      ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 2.4.0, < 3.0)
-    rubocop-ast (1.30.0)
-      parser (>= 3.2.1.0)
-    rubocop-performance (1.20.2)
-      rubocop (>= 1.48.1, < 2.0)
-      rubocop-ast (>= 1.30.0, < 2.0)
-    rubocop-rails (2.23.1)
-      activesupport (>= 4.2.0)
-      rack (>= 1.1)
-      rubocop (>= 1.33.0, < 2.0)
-      rubocop-ast (>= 1.30.0, < 2.0)
-    rubocop-rspec (3.0.0)
-      rubocop (~> 1.40)
     ruby-graphviz (1.2.5)
       rexml
-    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     ruby_parser (3.21.0)
       racc (~> 1.5)
@@ -346,28 +319,12 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     stackprof (0.2.25)
-    standard (1.33.0)
-      language_server-protocol (~> 3.17.0.2)
-      lint_roller (~> 1.0)
-      rubocop (~> 1.59.0)
-      standard-custom (~> 1.0.0)
-      standard-performance (~> 1.3)
-    standard-custom (1.0.2)
-      lint_roller (~> 1.0)
-      rubocop (~> 1.50)
-    standard-performance (1.3.1)
-      lint_roller (~> 1.1)
-      rubocop-performance (~> 1.20.2)
-    standard-rails (1.0.2)
-      lint_roller (~> 1.0)
-      rubocop-rails (~> 2.23.1)
     thor (1.3.0)
     thread_safe (0.3.6)
     tilt (2.3.0)
     timeout (0.4.0)
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
-    unicode-display_width (2.6.0)
     uniform_notifier (1.16.0)
     version_gem (1.1.3)
     web-console (4.2.1)
@@ -428,9 +385,6 @@ DEPENDENCIES
   redis (~> 4.0.0)
   reek (~> 6.1.0)
   rspec-rails
-  rubocop
-  rubocop-performance
-  rubocop-rspec
   sass-rails (>= 6)
   selenium-webdriver
   simplecov
@@ -438,9 +392,6 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   stackprof
-  standard
-  standard-performance
-  standard-rails
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
