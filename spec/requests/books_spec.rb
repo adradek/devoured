@@ -11,6 +11,7 @@ RSpec.describe "/books", type: :request do
   describe "POST /create" do
     subject(:send_request) { post user_books_path(user), params: { book: book_params } }
 
+    let(:unknown_value) { false }
     let(:book_params) do
       {
         title: "Green Book",
@@ -22,8 +23,9 @@ RSpec.describe "/books", type: :request do
 
     it_behaves_like "authentication needed action"
     it_behaves_like "authorization protected action"
-  end
 
-  # update book
-  # delete book
+    it "never passes" do
+      expect(unknown_value).to be true
+    end
+  end
 end
