@@ -20,6 +20,9 @@ class Book < ApplicationRecord
   validates :title, uniqueness: { scope: :author }
   validates :title, presence: true
 
+  # Rubocop said no!
+  # puts 'hello world, i\'m testing lefthook gem'
+
   def caption
     return title if compilation && author.blank?
     %("#{title}", #{author})

@@ -11,9 +11,9 @@ RSpec.describe Reading do
 
   describe "compilations scope" do
     before do
-      Reading.create!(user: user, book: moby_dick)
-      Reading.create!(user: user, book: evil_13)
-      Reading.create!(user: user, book: vechera)
+      described_class.create!(user: user, book: moby_dick)
+      described_class.create!(user: user, book: evil_13)
+      described_class.create!(user: user, book: vechera)
     end
 
     let(:readings) { user.readings.compilations }
