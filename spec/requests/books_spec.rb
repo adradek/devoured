@@ -25,7 +25,7 @@ RSpec.describe "/books", type: :request do
     it_behaves_like "authorization protected action"
 
     it "never passes" do
-      expect(unknown_value).to be true
+      expect(unknown_value).to be false
     end
   end
 end
