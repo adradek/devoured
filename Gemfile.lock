@@ -127,6 +127,7 @@ GEM
     json (2.10.2)
     jwt (2.7.1)
     kwalify (0.7.2)
+    lefthook (1.11.10)
     listen (3.8.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -367,6 +368,7 @@ DEPENDENCIES
   faker
   flay
   jbuilder (~> 2.7)
+  lefthook
   listen (~> 3.2)
   memory_profiler
   newrelic_rpm

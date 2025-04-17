@@ -70,6 +70,7 @@ group :development do
   gem "reek", "~> 6.1.0", require: false
   gem "brakeman"
   gem "bundler-audit"
+  gem "lefthook"
 end
 
 group :test do
