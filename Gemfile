@@ -65,12 +65,13 @@ group :development do
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "rails-erd"
   gem "railroady"
-  gem "annotate"
+  gem "annotate", require: false
   gem "flay", require: false
   gem "reek", "~> 6.1.0", require: false
-  gem "brakeman"
-  gem "bundler-audit"
-  gem "lefthook"
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
+  gem "lefthook", require: false
+  gem "database_consistency", require: false
 end
 
 group :test do
