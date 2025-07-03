@@ -5,12 +5,16 @@
 # Table name: books
 #
 #  id          :integer          not null, primary key
-#  title       :string           not null
 #  author      :string
+#  compilation :boolean          default(FALSE)
 #  short       :boolean          default(FALSE), not null
+#  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  compilation :boolean          default(FALSE)
+#
+# Indexes
+#
+#  index_books_on_title_and_author  (title,author) UNIQUE
 #
 
 class Book < ApplicationRecord

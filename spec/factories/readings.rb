@@ -26,19 +26,7 @@
 #  fk_rails_...  (book_id => books.id)
 #  fk_rails_...  (user_id => users.id)
 #
-
-class Reading < ApplicationRecord
-  scope :in_reverse, -> { order(finish: :desc, id: :desc) }
-  scope :compilations, Readings::CompilationsQuery.new
-
-  has_many :components, class_name: "Reading", foreign_key: "compilation_reading_id", dependent: :nullify
-  belongs_to :compilation_reading, class_name: "Reading", optional: true
-  belongs_to :user, touch: true
-  belongs_to :book
-
-  delegate :compilation, :compilation?, to: :book
-
-  def reading_days
-    ((finish || Time.zone.today) - start).to_i if start
+FactoryBot.define do
+  factory :reading do
   end
 end
