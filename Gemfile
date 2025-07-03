@@ -4,12 +4,11 @@ ruby "2.7.8"
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem "concurrent-ruby", "1.3.4"
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 6.0.5"
-
+gem "rails", "~> 6.0.6"
 gem "actionpack-action_caching"
-
-gem "activerecord", "~> 6.0.5.1"
 gem "pg", "~> 0.18"
 gem "puma", "~> 6.4.0"
 gem "sass-rails", ">= 6"

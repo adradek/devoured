@@ -11,7 +11,8 @@ module Users
 
     def index
       @user = User.find_by(secret_id: params[:user_secret_id])
-      @readings = ReadingDecorator.collection(ReaderDecorator.new(@user).readings)
+      @readings = ReadingDecorator
+        .collection(UserReadingHistoryDecorator.new(@user).readings)
       @book = Book.new
     end
 
