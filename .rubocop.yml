@@ -30,3 +30,11 @@ inherit_from:
 # AllCops:
 #   SuggestExtensions: false
 #   TargetRubyVersion: 3.2
+
+# My personal preferences
+Layout/HashAlignment:
+  Exclude:
+    - 'lib/tasks/auto_annotate_models.rake'
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 8
