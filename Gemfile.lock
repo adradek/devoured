@@ -359,7 +359,6 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-action_caching
-  activerecord (~> 6.0.6)
   annotate
   bootsnap (>= 1.4.2)
   brakeman
@@ -388,7 +387,7 @@ DEPENDENCIES
   pundit
   rack-mini-profiler
   railroady
-  rails (~> 6.0.5)
+  rails (~> 6.0.6)
   rails-erd
   rails_12factor
   redis (~> 4.0.0)
