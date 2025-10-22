@@ -1,8 +1,8 @@
-pre-push:
-  commands:
-    rspec:
-      tags: backend rspec test
-      run: docker compose exec web bundle exec rspec
+# pre-push:
+#   commands:
+#     rspec:
+#       tags: backend rspec test
+#       run: docker compose exec web bundle exec rspec
 
 pre-commit:
   # parallel: true

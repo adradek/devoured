@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :permission_denied
 
   before_action :require_login
-  before_action { Rack::MiniProfiler.authorize_request if current_user&.admin? }
+  # before_action { Rack::MiniProfiler.authorize_request if current_user&.admin? }
 
   private
 
