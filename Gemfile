@@ -1,15 +1,20 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
 source "https://rubygems.org"
 
-ruby "2.7.8"
+ruby "3.1.7"
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "concurrent-ruby", "1.3.4"
+gem "psych", "~> 3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 6.0.6"
+gem "rails", "~> 6.1.7"
+gem "pg", "~> 1.1.0"
+
 gem "actionpack-action_caching"
-gem "pg", "~> 0.18"
 gem "puma", "~> 6.4.0"
 gem "sass-rails", ">= 6"
 gem "webpacker", "~> 4.0"
@@ -47,6 +52,7 @@ group :development, :test do
   # gem "factory_bot_rails"
   # gem "faker"
   # gem "bullet" + in development.rb
+  gem "next_rails"
 end
 
 group :development do
@@ -60,7 +66,7 @@ group :development do
   # gem "flay", require: false
   # gem "reek", "~> 6.1.0", require: false
   # gem "brakeman", require: false
-  # gem "bundler-audit", require: false
+  gem "bundler-audit", require: false
   # gem "lefthook", require: false
   # gem "database_consistency", require: false
 end
