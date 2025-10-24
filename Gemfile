@@ -17,14 +17,14 @@ gem "pg", "~> 1.1.0"
 gem "actionpack-action_caching"
 gem "puma", "~> 6.4.0"
 gem "sass-rails", ">= 6"
-gem "webpacker", "~> 4.0"
+gem "webpacker", "~> 5.0"
 
 gem "jbuilder", "~> 2.7"
 gem "redis", "~> 4.0.0"
 gem "dalli"
 
 # TODO: Uncomment after Ruby and Rails updates + in boot.rb
-# gem "bootsnap", ">= 1.4.2", require: false
+# gem "bootsnap", ">= 1.4.4", require: false
 
 gem "sorcery"
 gem "pundit"
@@ -56,10 +56,9 @@ group :development, :test do
 end
 
 group :development do
-  # gem "web-console", ">= 3.3.0"
+  # gem "web-console", ">= 4.1.0"
   gem "listen", "~> 3.2"
   # gem "spring"
-  # gem "spring-watcher-listen", "~> 2.0.0"
   # gem "rails-erd"
   # gem "railroady"
   # gem "annotate", require: false
@@ -74,8 +73,8 @@ end
 group :test do
   # gem "simplecov"
   # gem "codeclimate-test-reporter", "~> 1.0.0"
-  # gem "capybara", ">= 2.15"
-  # gem "selenium-webdriver"
+  # gem "capybara", ">= 3.26"
+  # gem "selenium-webdriver", ">= 4.0.0.rc1"
   # # Easy installation and use of web drivers to run system tests with browsers
   # gem "webdrivers"
 end

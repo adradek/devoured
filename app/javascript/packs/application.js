@@ -1,7 +1,7 @@
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
-require("channels")
+import Rails from "@rails/ujs"
+import Turbolinks from "turbolinks"
+import * as ActiveStorage from "@rails/activestorage"
+import "channels"
 
 import "@fortawesome/fontawesome-free/css/all";
 
@@ -15,4 +15,6 @@ import "./compilation_collapse"
 
 import '../stylesheets/application'
 
-
+Rails.start()
+Turbolinks.start()
+ActiveStorage.start()
