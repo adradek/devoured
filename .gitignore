@@ -23,10 +23,12 @@
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
 
 # Ignore Byebug command history file.
 /public/assets
-.byebug_history
 
 # /config/database.yml
 /coverage/

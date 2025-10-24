@@ -2,16 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_22_010300) do
-
+ActiveRecord::Schema[7.0].define(version: 2025_10_24_204458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,8 +18,8 @@ ActiveRecord::Schema.define(version: 2024_01_22_010300) do
     t.string "title", null: false
     t.string "author"
     t.boolean "short", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "compilation", default: false
     t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true
   end
@@ -31,8 +30,8 @@ ActiveRecord::Schema.define(version: 2024_01_22_010300) do
     t.boolean "seria", default: false, null: false
     t.integer "imdb"
     t.string "tomatoes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "tomatoes_top"
     t.integer "tomatoes_all"
   end
@@ -41,8 +40,8 @@ ActiveRecord::Schema.define(version: 2024_01_22_010300) do
     t.integer "user_id"
     t.string "intended_type"
     t.integer "intended_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["intended_type", "intended_id"], name: "index_intents_on_intended_type_and_intended_id"
     t.index ["user_id"], name: "index_intents_on_user_id"
   end
@@ -52,8 +51,8 @@ ActiveRecord::Schema.define(version: 2024_01_22_010300) do
     t.integer "book_id"
     t.date "start"
     t.date "finish"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "professional", default: false, null: false
     t.boolean "significant", default: false
     t.integer "compilation_reading_id"
@@ -66,8 +65,8 @@ ActiveRecord::Schema.define(version: 2024_01_22_010300) do
     t.string "email", null: false
     t.string "crypted_password"
     t.string "salt"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "secret_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["secret_id"], name: "index_users_on_secret_id", unique: true
@@ -79,8 +78,8 @@ ActiveRecord::Schema.define(version: 2024_01_22_010300) do
     t.date "start"
     t.date "finish"
     t.string "rate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["film_id"], name: "index_watchings_on_film_id"
     t.index ["user_id"], name: "index_watchings_on_user_id"
   end

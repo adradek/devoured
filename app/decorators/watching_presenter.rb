@@ -22,8 +22,8 @@ class WatchingPresenter
 
   private
 
-  def method_missing(name, *args, &block)
-    return watching.public_send(name, *args, &block) if respond_to_missing?(name)
+  def method_missing(name, ...)
+    return watching.public_send(name, ...) if respond_to_missing?(name)
     super
   end
 

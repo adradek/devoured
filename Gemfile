@@ -11,20 +11,36 @@ gem "concurrent-ruby", "1.3.4"
 gem "psych", "~> 3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 6.1.7"
+gem "rails", "~> 7.0.0"
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails"
 gem "pg", "~> 1.1.0"
 
 gem "actionpack-action_caching"
 gem "puma", "~> 6.4.0"
-gem "sass-rails", ">= 6"
-gem "webpacker", "~> 5.0"
 
-gem "jbuilder", "~> 2.7"
-gem "redis", "~> 4.0.0"
+# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
+gem "importmap-rails"
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
+
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
+
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"
+
+gem "redis", "~> 4.0"
+
+# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# gem "kredis"
+
 gem "dalli"
 
 # TODO: Uncomment after Ruby and Rails updates + in boot.rb
-# gem "bootsnap", ">= 1.4.4", require: false
+# gem "bootsnap", require: false
 
 gem "sorcery"
 gem "pundit"
@@ -37,12 +53,27 @@ gem "pundit"
 # gem 'flamegraph'
 gem "stackprof"
 
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+# Use Sass to process CSS
+gem "sassc-rails"
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+gem "image_processing", "~> 1.2"
+
+gem "webpacker", "~> 5.0"
+
 group :production do
   gem "rails_12factor"
 end
 
 group :development, :test do
-  # gem "byebug", platform: :mri
+  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem "debug", platforms: %i[mri mingw x64_mingw]
   # gem "pry"
   # gem "pry-byebug"
   # gem "pry-rails"
@@ -56,12 +87,15 @@ group :development, :test do
 end
 
 group :development do
-  # gem "web-console", ">= 4.1.0"
+  # gem "web-console"
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  # gem "rack-mini-profiler"
   gem "listen", "~> 3.2"
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   # gem "rails-erd"
   # gem "railroady"
-  # gem "annotate", require: false
+  # gem "annotate", require: false + => lib/tasks/auto_annotate...
   # gem "flay", require: false
   # gem "reek", "~> 6.1.0", require: false
   # gem "brakeman", require: false
@@ -73,11 +107,9 @@ end
 group :test do
   # gem "simplecov"
   # gem "codeclimate-test-reporter", "~> 1.0.0"
-  # gem "capybara", ">= 3.26"
-  # gem "selenium-webdriver", ">= 4.0.0.rc1"
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  # gem "capybara"
+  # gem "selenium-webdriver"
   # # Easy installation and use of web drivers to run system tests with browsers
   # gem "webdrivers"
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
