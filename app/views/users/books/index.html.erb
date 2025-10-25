@@ -51,12 +51,12 @@
         <th></th>
       </thead>
       <tbody>
-        <% @user.intended_books.each do |book| %>
-          <tr class="<%= "short" if book.short %>">
-            <td><%= book.caption %></td>
+        <% @user.intents.includes(:intended).where(intended_type: "Book").each do |reading_goal| %>
+          <tr class="<%= "short" if reading_goal.intended.short %>">
+            <td><%= reading_goal.intended.caption %></td>
             <td>
               <% if policy(@user).update? %>
-                <%= link_to 'X', destroy_intents_user_book_path(id: book.id), method: :delete,
+                <%= link_to 'X', destroy_intents_user_book_path(id: reading_goal.id), method: :delete,
                                  data: { confirm: "You sure?" } %>
               <% end %>
             </td>
