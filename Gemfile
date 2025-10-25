@@ -1,17 +1,14 @@
 def next?
   File.basename(__FILE__) == "Gemfile.next"
 end
+
 source "https://rubygems.org"
-
-ruby "3.1.7"
-
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem "concurrent-ruby", "1.3.4"
 gem "psych", "~> 3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 7.1.0"
+gem "rails", "~> 7.2.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -19,19 +16,14 @@ gem "pg", "~> 1.1.0"
 
 gem "actionpack-action_caching"
 gem "puma", "~> 6.4.0"
-
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
-
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
-
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
-
 gem "redis", ">= 4.0.1"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -73,7 +65,9 @@ end
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[mri mswin]
+  gem "debug", platforms: %i[mri mswin], require: "debug/prelude"
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
   # gem "pry"
   # gem "pry-byebug"
   # gem "pry-rails"
@@ -89,10 +83,8 @@ end
 group :development do
   # gem "web-console"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
   gem "listen", "~> 3.2"
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
   # gem "rails-erd"
   # gem "railroady"
   # gem "annotate", require: false + => lib/tasks/auto_annotate...
