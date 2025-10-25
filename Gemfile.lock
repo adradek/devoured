@@ -176,7 +176,7 @@ GEM
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0, >= 2.0.3)
       version_gem (~> 1.1, >= 1.1.9)
-    pg (1.1.4)
+    pg (1.6.2)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -307,7 +307,7 @@ DEPENDENCIES
   jbuilder
   listen (~> 3.2)
   next_rails
-  pg (~> 1.1.0)
+  pg (~> 1.5)
   psych (~> 3.3)
   puma (~> 6.4.0)
   pundit
@@ -324,4 +324,4 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 BUNDLED WITH
-   2.1.4
+   2.6.9

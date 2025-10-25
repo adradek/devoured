@@ -12,7 +12,7 @@ gem "rails", "~> 7.2.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-gem "pg", "~> 1.1.0"
+gem "pg", "~> 1.5"
 
 gem "actionpack-action_caching"
 gem "puma", "~> 6.4.0"
