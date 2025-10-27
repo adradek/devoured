@@ -79,7 +79,8 @@ GEM
     bcrypt_pbkdf (1.1.1)
     benchmark (0.5.0)
     bigdecimal (3.3.1)
-    brakeman (5.4.1)
+    brakeman (7.1.0)
+      racc
     builder (3.3.0)
     bundler-audit (0.9.2)
       bundler (>= 1.2.0, < 3)
