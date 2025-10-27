@@ -8,7 +8,7 @@ gem "concurrent-ruby", "1.3.4"
 gem "psych", "~> 3.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem "rails", "~> 8.0.3"
+gem "rails", "~> 8.1.0"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 
