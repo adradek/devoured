@@ -5,13 +5,13 @@ module Users
     before_action :set_user
 
     def index
-      @watchings = Rails.cache.fetch("#{@user.my_cache_key}--film_watchings", expires_in: 1.hour) do
+      @watchings = # Rails.cache.fetch("#{@user.my_cache_key}--film_watchings", expires_in: 1.hour) do
         @user.watchings.includes(:film).map { |w| WatchingPresenter.new(w) }
-      end
+      # end
 
-      @intentions = Rails.cache.fetch("#{@user.my_cache_key}--film_intents", expires_in: 1.hour) do
+      @intentions = # Rails.cache.fetch("#{@user.my_cache_key}--film_intents", expires_in: 1.hour) do
         @user.intents.includes(:intended).where(intended_type: "Film").to_a
-      end
+      # end
 
       @film = Film.new
     end
