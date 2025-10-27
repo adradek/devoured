@@ -17,7 +17,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.5"
 
 gem "actionpack-action_caching"
-gem "puma", "~> 6.4.0"
+gem "puma", "~> 7.1.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
