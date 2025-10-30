@@ -1,8 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env ruby
+ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../gemfiles/rubocop.gemfile", __dir__)
 
-cd $(dirname $0)/..
+require "rubygems"
+require "bundler/setup"
 
-export BUNDLE_GEMFILE=./gemfiles/rubocop.gemfile
-bundle check > /dev/null || bundle install
+# Explicit RuboCop config increases performance slightly while avoiding config confusion.
+ARGV.unshift("--config", File.expand_path("../.rubocop.yml", __dir__))
 
-bundle exec rubocop $@
+load Gem.bin_path("rubocop", "rubocop")
