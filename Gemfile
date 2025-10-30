@@ -5,7 +5,7 @@ end
 source "https://rubygems.org"
 
 gem "concurrent-ruby", "~> 1.3.4"
-gem "psych", "~> 3.3"
+gem "psych", "~> 5.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 8.1.0"
