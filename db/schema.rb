@@ -10,76 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_10_24_204458) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_24_204458) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "books", id: :serial, force: :cascade do |t|
-    t.string "title", null: false
     t.string "author"
-    t.boolean "short", default: false, null: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
     t.boolean "compilation", default: false
+    t.datetime "created_at", precision: nil, null: false
+    t.boolean "short", default: false, null: false
+    t.string "title", null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["title", "author"], name: "index_books_on_title_and_author", unique: true
   end
 
   create_table "films", id: :serial, force: :cascade do |t|
-    t.string "name_rus"
-    t.string "name_eng"
-    t.boolean "seria", default: false, null: false
-    t.integer "imdb"
-    t.string "tomatoes"
     t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.integer "tomatoes_top"
+    t.integer "imdb"
+    t.string "name_eng"
+    t.string "name_rus"
+    t.boolean "seria", default: false, null: false
+    t.string "tomatoes"
     t.integer "tomatoes_all"
+    t.integer "tomatoes_top"
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "intents", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
-    t.string "intended_type"
-    t.integer "intended_id"
     t.datetime "created_at", precision: nil, null: false
+    t.integer "intended_id"
+    t.string "intended_type"
     t.datetime "updated_at", precision: nil, null: false
+    t.integer "user_id"
     t.index ["intended_type", "intended_id"], name: "index_intents_on_intended_type_and_intended_id"
     t.index ["user_id"], name: "index_intents_on_user_id"
   end
 
   create_table "readings", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
     t.integer "book_id"
-    t.date "start"
-    t.date "finish"
+    t.integer "compilation_reading_id"
     t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.date "finish"
     t.boolean "professional", default: false, null: false
     t.boolean "significant", default: false
-    t.integer "compilation_reading_id"
+    t.date "start"
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "user_id"
     t.index ["book_id"], name: "index_readings_on_book_id"
     t.index ["compilation_reading_id"], name: "index_readings_on_compilation_reading_id"
     t.index ["user_id"], name: "index_readings_on_user_id"
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
-    t.string "email", null: false
-    t.string "crypted_password"
-    t.string "salt"
     t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.string "crypted_password"
+    t.string "email", null: false
+    t.string "salt"
     t.string "secret_id"
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["secret_id"], name: "index_users_on_secret_id", unique: true
   end
 
   create_table "watchings", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
+    t.datetime "created_at", precision: nil, null: false
     t.integer "film_id"
-    t.date "start"
     t.date "finish"
     t.string "rate"
-    t.datetime "created_at", precision: nil, null: false
+    t.date "start"
     t.datetime "updated_at", precision: nil, null: false
+    t.integer "user_id"
     t.index ["film_id"], name: "index_watchings_on_film_id"
     t.index ["user_id"], name: "index_watchings_on_user_id"
   end
