@@ -106,7 +106,6 @@ group :development do
   gem "annotate", require: false # + => lib/tasks/auto_annotate...
   gem "flay", require: false
   gem "reek", "~> 6.1.0", require: false
-  gem "brakeman", require: false
   gem "bundler-audit", require: false
   # gem "lefthook", require: false
   # gem "database_consistency", require: false
