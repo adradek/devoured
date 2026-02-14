@@ -84,10 +84,10 @@ group :development, :test do
   gem "debug", platforms: %i[mri mswin], require: "debug/prelude"
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
-  # gem "pry"
-  # gem "pry-byebug"
-  # gem "pry-rails"
-  # gem "pry-remote"
+  gem "pry"
+  gem "pry-byebug"
+  gem "pry-rails"
+  gem "pry-remote"
   # gem "memory_profiler"
   # gem "rspec-rails"
   # gem "factory_bot_rails"
@@ -103,10 +103,10 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "rails-erd"
   # gem "railroady"
-  # gem "annotate", require: false + => lib/tasks/auto_annotate...
-  # gem "flay", require: false
-  # gem "reek", "~> 6.1.0", require: false
-  # gem "brakeman", require: false
+  gem "annotate", require: false # + => lib/tasks/auto_annotate...
+  gem "flay", require: false
+  gem "reek", "~> 6.1.0", require: false
+  gem "brakeman", require: false
   gem "bundler-audit", require: false
   # gem "lefthook", require: false
   # gem "database_consistency", require: false

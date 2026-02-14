@@ -8,9 +8,8 @@ RUN apt-get update -yqq && apt-get install -yqq --no-install-recommends \
   nano \
   nodejs \
   apt-transport-https \
+  git \
   && rm -rf /var/lib/apt/lists/*
-
-RUN apt-get remove -yqq --purge git
 
 RUN curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg \
   | gpg --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg \
