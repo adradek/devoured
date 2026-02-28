@@ -87,7 +87,8 @@ group :development, :test do
   gem "pry"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "pry-remote"
+  # pry-remote — старый и давно не поддерживаемый гем (последняя версия 0.1.8). В Ruby 3.3+ readline был удалён из стандартной библиотеки и заменён на reline.
+  # gem "pry-remote"
   # gem "memory_profiler"
   # gem "rspec-rails"
   # gem "factory_bot_rails"
