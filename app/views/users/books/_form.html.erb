@@ -6,7 +6,7 @@
 
   <% if type == :consumed %>
     <%= date_field_tag :start %>
-    <%= button_tag '<->', id: 'swap' %>
+    <%= button_tag '<->', id: 'swap', type: 'button' %>
     <%= date_field_tag :finish, Time.zone.today %>
     <%= check_box_tag :professional %> Professional
     <%= check_box_tag :significant %> Significant
