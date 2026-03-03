@@ -21,14 +21,14 @@
               <% if policy(@user).update? %>
                 <%= link_to user_book_path(id: reading.id), method: :delete, title: 'Удалить',
                       class: 'btn btn-iconic btn-danger float-right',data: { confirm: "You sure?" } do %>
-                  <i class="fa fa-trash"></i>
+                  <i class="fa-solid fa-trash"></i>
                 <% end %>
                 <%= link_to edit_user_book_path(id: reading.id), title: 'Изменить', class: 'btn btn-iconic btn-outline-dark float-right' do %>
-                  <i class="fa fa-edit"></i>
+                  <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
                 <% unless reading.compilation %>
                   <%= link_to '#add_to_compilation_form_modal', class: 'btn btn-iconic btn-outline-dark float-right add-to-compilation-modal-launcher', title: 'oo', data: { toggle: "modal", reading_id: "#{reading.id}", title: "#{reading.book.caption}" } do %>
-                    <i class="fa fa-truck"></i>
+                    <i class="fa-solid fa-truck"></i>
                   <% end %>
                 <% end %>
               <% end %>
