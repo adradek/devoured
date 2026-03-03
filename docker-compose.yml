@@ -18,6 +18,7 @@ services:
     stdin_open: true
     # command: /bin/bash -c "next bundle exec rails s -b 0.0.0.0"
     # command: /bin/bash -c 'bundle exec puma -C config/puma.rb'
+    command: /usr/src/app/bin/dev
 
   database:
     image: postgres:17.6
