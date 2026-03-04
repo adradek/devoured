@@ -17,7 +17,7 @@
             <td title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>"><%= intent.intended.name %></td>
             <td>
               <% if policy(@user).update? %>
-                <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), method: :delete, data: { confirm: "  You sure?" } %>
+                <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), data: { method: :delete, confirm: "You sure?" } %>
               <% end %>
             </td>
           </tr>
@@ -54,7 +54,7 @@
             <td>
               <% if policy(@user).update? %>
                 <%= link_to "X", user_film_path(id: presenter.id),
-                      method: :delete, data: { confirm: "You sure?" }%> |
+                      data: { method: :delete, confirm: "You sure?" } %> |
                 <%= link_to 'Edit', edit_user_film_path(id: presenter.id) %>
               <% end %>
             </td>
