@@ -11,6 +11,7 @@
   <%= f.check_box :seria %> Seria
 
   <% if type == :consumed %>
+    <%= check_box_tag :professional %> Professional
     <%= text_field_tag :rate, '', placeholder: 'My rate' %>
     <%= date_field_tag :start %>
     <%= button_tag '<->', id: 'swap', type: 'button' %>

@@ -20,6 +20,13 @@ class WatchingPresenter
     "<#{short_date(start)} - #{smart_date(finish)}>"
   end
 
+  def html_classes
+    result = []
+    result << "profy" if watching.professional
+    result << 'watched' if finish
+    result
+  end
+
   private
 
   def method_missing(name, ...)

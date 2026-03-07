@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_24_204458) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_07_074350) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -76,6 +76,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_24_204458) do
     t.datetime "created_at", precision: nil, null: false
     t.integer "film_id"
     t.date "finish"
+    t.boolean "professional", default: false, null: false
     t.string "rate"
     t.date "start"
     t.datetime "updated_at", precision: nil, null: false

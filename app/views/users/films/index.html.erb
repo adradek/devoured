@@ -43,7 +43,7 @@
       <tbody>
         <% @watchings.each do |presenter| %>
           <tr title="<%= presenter.hint %>">
-            <td class='<%= 'watched' if presenter.finish %>'>
+            <td class='<%= presenter.html_classes.join(" ") %>'>
               <%= presenter.film.name %>
             </td>
             <td class='<%= 'watched' if presenter.finish %>'>

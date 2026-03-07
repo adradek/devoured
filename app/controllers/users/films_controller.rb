@@ -65,7 +65,7 @@ module Users
     end
 
     def watching_params
-      params.permit(:rate, :start, :finish)
+      params.permit(:rate, :start, :finish, :professional)
     end
   end
 end
