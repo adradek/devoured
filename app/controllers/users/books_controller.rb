@@ -55,11 +55,12 @@ module Users
     def destroy_intents
       authorize @user, :update?
 
-      Intent
-        .find_by!(user_id: @user.id, intended_type: "Book", id: params[:id])
-        .destroy!
+      @intent = Intent.find_by!(user_id: @user.id, intended_type: "Book", id: params[:id]).destroy!
 
-      redirect_to user_books_url(params[:user_secret_id])
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to user_books_url(params[:user_secret_id]) }
+      end
     end
 
     private

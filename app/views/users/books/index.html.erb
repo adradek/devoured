@@ -71,13 +71,21 @@
 
     <div class="mt-5">
       <% @user.intents.includes(:intended).where(intended_type: "Book").each do |reading_goal| %>
-        <div class="card mb-1">
-          <div class="card-body">
-            <turbo-frame id="item_1">
-              <p class="card-text"><%= reading_goal.intended.caption %></p>
-            </turbo-frame>
+        <%= turbo_frame_tag(dom_id(reading_goal)) do %>
+          <div class="card mb-1">
+            <div class="card-body d-flex align-items-center gap-2">
+              <span class="card-text text-truncate flex-grow-1">
+                <%= reading_goal.intended.caption %>
+              </span>
+              <%= button_to destroy_intents_user_book_path(id: reading_goal.id), method: :delete,
+                  class: "btn btn-outline-danger btn-iconic flex-shrink-0",
+                  data: { confirm: "You sure?" } do %>
+                <%# <i class="fa-solid fa-trash"></i> %>
+                X
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
 
