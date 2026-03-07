@@ -6,24 +6,39 @@
       <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
     <% end %>
 
-    <table class="table">
-      <thead>
-        <th></th>
-        <th></th>
-      </thead>
-      <tbody>
-        <% @intentions.each do |intent| %>
-          <tr>
-            <td title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>"><%= intent.intended.name %></td>
-            <td>
-              <% if policy(@user).update? %>
-                <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), data: { method: :delete, confirm: "You sure?" } %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <% if false %>
+      <table class="table">
+        <thead>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @intentions.each do |intent| %>
+            <tr>
+              <td title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>"><%= intent.intended.name %></td>
+              <td>
+                <% if policy(@user).update? %>
+                  <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), data: { method: :delete, confirm: "You sure?" } %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+
+    <div class="mt-5">
+      <% @intentions.each do |intent| %>
+        <div class="card mb-1" title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>">
+          <div class="card-body">
+            <turbo-frame id="item_1">
+              <p class="card-text"><%= intent.intended.name %></p>
+            </turbo-frame>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
   </div>
   <div class="col-lg-6 col-lg-offset-1">
     <h2>Посмотрел</h2>
