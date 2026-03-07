@@ -6,36 +6,22 @@
       <%= render partial: 'form', locals: { film: @film, type: :to_watch } %>
     <% end %>
 
-    <% if false %>
-      <table class="table">
-        <thead>
-          <th></th>
-          <th></th>
-        </thead>
-        <tbody>
-          <% @intentions.each do |intent| %>
-            <tr>
-              <td title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>"><%= intent.intended.name %></td>
-              <td>
-                <% if policy(@user).update? %>
-                  <%= link_to 'X', destroy_intents_user_film_path(id: intent.intended_id), data: { method: :delete, confirm: "You sure?" } %>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-
     <div class="mt-5">
       <% @intentions.each do |intent| %>
-        <div class="card mb-1" title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>">
-          <div class="card-body">
-            <turbo-frame id="item_1">
-              <p class="card-text"><%= intent.intended.name %></p>
-            </turbo-frame>
+        <%= turbo_frame_tag(dom_id(intent)) do %>
+          <div class="card mb-1" title="Добавлено <%= intent.created_at.strftime('%d.%m.%y') %>">
+            <div class="card-body d-flex align-items-center gap-2">
+              <span class="card-text text-truncate flex-grow-1">
+                <%= intent.intended.name %>
+              </span>
+              <% if policy(@user).update? %>
+                <%= button_to "X", destroy_intents_user_film_path(id: intent.intended_id), method: :delete,
+                    class: "btn btn-outline-secondary btn-iconic flex-shrink-0",
+                    data: { confirm: "You sure?" } %>
+              <% end %>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
     </div>
 

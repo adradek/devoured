@@ -47,11 +47,16 @@ module Users
       redirect_to user_films_url(params[:user_secret_id])
     end
 
+    # TODO: move this action to the corresponding controller Users::IntentsController
     def destroy_intents
       authorize @user, :update?
 
-      @user.intents.where(intended_type: "Film", intended_id: params[:id]).destroy_all
-      redirect_to user_films_url(params[:user_secret_id])
+      @intent = @user.intents.find_by!(intended_type: "Film", intended_id: params[:id]).destroy!
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to user_films_url(params[:user_secret_id]) }
+      end
     end
 
     private
