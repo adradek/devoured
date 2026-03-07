@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class WatchingPresenter
+class WatchingDecorator
   include DatesHelper
 
   attr_reader :watching

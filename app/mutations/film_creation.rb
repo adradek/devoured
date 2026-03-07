@@ -2,6 +2,7 @@
 
 # Business logic from FilmsController
 class FilmCreation
+
   # TODO: find rates by some global param, maybe IMDB id or Kinopoisk id
   def self.run(user, type, film_params, watching_params)
     film = Film.create!(film_params)

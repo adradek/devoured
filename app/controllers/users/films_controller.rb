@@ -6,7 +6,7 @@ module Users
 
     def index
       @watchings = # Rails.cache.fetch("#{@user.my_cache_key}--film_watchings", expires_in: 1.hour) do
-        @user.watchings.includes(:film).map { |w| WatchingPresenter.new(w) }
+        @user.watchings.includes(:film).map { |w| WatchingDecorator.new(w) }
       # end
 
       @intentions = # Rails.cache.fetch("#{@user.my_cache_key}--film_intents", expires_in: 1.hour) do
