@@ -1,0 +1,5 @@
+<%= turbo_frame_tag('watchings_list') do %>
+  <div class="mt-5">
+    <%= render partial: "watching", collection: @watchings, as: :watch_object %>
+  </div>
+<% end %>

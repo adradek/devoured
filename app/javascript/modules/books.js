@@ -1,4 +1,4 @@
-$(function(){
+$(document).on('turbo:load', function(){
   $('button#swap').click(function(){
     let $start  = $('input#start')
     let $finish = $('input#finish')

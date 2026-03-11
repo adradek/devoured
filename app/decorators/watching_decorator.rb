@@ -21,6 +21,10 @@ class WatchingDecorator
   end
 
   def html_classes
+    labels.join(' ')
+  end
+
+  def labels
     result = []
     result << "profy" if watching.professional
     result << 'watched' if finish

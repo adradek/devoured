@@ -31,8 +31,9 @@ module Users
       authorize @user, :update?
       @watching = @user.watchings.find(params[:id])
       film = @watching.film
+
       if @watching.update(watching_params) && film.update(film_params)
-        redirect_to user_films_url
+        render partial: "watching", locals: { watch_object: WatchingDecorator.new(@watching) }
       else
         render :edit
       end

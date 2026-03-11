@@ -32,37 +32,10 @@
       <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
     <% end %>
 
-    <% cache @user do %>
-    <table class="table">
-      <thead>
-        <th>Film</th>
-        <th></th>
-        <th>Critics</th>
-        <th>User Rate</th>
-        <th></th>
-      </thead>
-      <tbody>
-        <% @watchings.each do |watch_object| %>
-          <tr title="<%= watch_object.hint %>">
-            <td class='<%= watch_object.html_classes.join(" ") %>'>
-              <%= watch_object.film.name %>
-            </td>
-            <td class='<%= 'watched' if watch_object.finish %>'>
-              <%= watch_object.dates %>
-            </td>
-            <td><%= critics(watch_object.film) %></td>
-            <td><%= user_rate(watch_object.rate) %></td>
-            <td>
-              <% if policy(@user).update? %>
-                <%= link_to "X", user_film_path(id: watch_object.id),
-                      data: { method: :delete, confirm: "You sure?" } %> |
-                <%= link_to 'Edit', edit_user_film_path(id: watch_object.id) %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <% end %>
+    <%# cache @user do %>
+
+      <%= render partial: "watchings_list" %>
+
+    <%# end %>
   </div>
 </div>
