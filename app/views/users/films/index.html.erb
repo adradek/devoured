@@ -32,10 +32,8 @@
       <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
     <% end %>
 
-    <%# cache @user do %>
-
+    <% cache @user.watchings.cache_key_with_version do %>
       <%= render partial: "watchings_list" %>
-
-    <%# end %>
+    <% end %>
   </div>
 </div>

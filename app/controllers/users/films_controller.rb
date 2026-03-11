@@ -33,6 +33,7 @@ module Users
       film = @watching.film
 
       if @watching.update(watching_params) && film.update(film_params)
+        @watching.touch unless @watching.saved_changes?
         render partial: "watching", locals: { watch_object: WatchingDecorator.new(@watching) }
       else
         render :edit
@@ -41,11 +42,17 @@ module Users
 
     def destroy
       authorize @user, :update?
-      watching = Watching.find(params[:id])
-      film = watching.film
-      watching.destroy
+
+      @watching = Watching.find(params[:id])
+      film = @watching.film
+
+      @watching.destroy
       film.destroy if film.watchings.empty? && film.intents.empty?
-      redirect_to user_films_url(params[:user_secret_id])
+
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to user_films_url(params[:user_secret_id]) }
+      end
     end
 
     # TODO: move this action to the corresponding controller Users::IntentsController
