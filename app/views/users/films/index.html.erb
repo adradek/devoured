@@ -29,7 +29,9 @@
   <div class="col-lg-6 col-lg-offset-1">
     <h2>Посмотрел</h2>
     <% if policy(@user).update? %>
-      <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
+      <%= turbo_frame_tag("watching_form") do %>
+        <%= render partial: 'form', locals: { film: @film, type: :consumed } %>
+      <% end %>
     <% end %>
 
     <% cache @user.watchings.cache_key_with_version do %>

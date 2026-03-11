@@ -3,12 +3,9 @@
 module Users
   class FilmsController < ApplicationController
     before_action :set_user
+    before_action :get_watchings, only: %i[index]
 
     def index
-      @watchings = # Rails.cache.fetch("#{@user.my_cache_key}--film_watchings", expires_in: 1.hour) do
-        @user.watchings.includes(:film).map { |w| WatchingDecorator.new(w) }
-      # end
-
       @intentions = # Rails.cache.fetch("#{@user.my_cache_key}--film_intents", expires_in: 1.hour) do
         @user.intents.includes(:intended).where(intended_type: "Film").to_a
       # end
@@ -18,8 +15,13 @@ module Users
 
     def create
       authorize @user, :update?
+
       ::FilmCreation.run(@user, params[:film_type], film_params, watching_params)
-      redirect_to user_films_url(@user)
+
+      respond_to do |format|
+        format.turbo_stream { get_watchings }
+        format.html { redirect_to user_films_url(@user) }
+      end
     end
 
     def edit
@@ -68,6 +70,12 @@ module Users
     end
 
     private
+
+    def get_watchings
+      @watchings = # Rails.cache.fetch("#{@user.my_cache_key}--film_watchings", expires_in: 1.hour) do
+        @user.watchings.includes(:film).map { |w| WatchingDecorator.new(w) }
+      # end
+    end
 
     def set_user
       @user = User.find_by(secret_id: params[:user_secret_id])

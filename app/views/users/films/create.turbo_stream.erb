@@ -1,0 +1,9 @@
+<%= turbo_stream.update("watchings_list") do %>
+  <div class="mt-5">
+    <%= render partial: "watching", collection: @watchings, as: :watch_object %>
+  </div>
+<% end %>
+
+<%= turbo_stream.update("watching_form") do %>
+  <%= render partial: 'form', locals: { film: Film.new, type: :consumed } %>
+<% end %>
