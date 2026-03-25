@@ -18,8 +18,9 @@
             </div>
             <div class="col-2 text-end">
               <% if policy(@user).update? %>
-                <%= link_to "X", user_film_path(id: watch_object.id),
-                      data: { method: :delete, confirm: "You sure?" } %> |
+                <%= button_to "X", user_film_path(id: watch_object.id), method: :delete,
+                    form_class: "link-style",
+                    data: { confirm: "You sure?" } %> |
                 <%= link_to 'Edit', edit_user_film_path(id: watch_object.id) %>
               <% end %>
             </div>

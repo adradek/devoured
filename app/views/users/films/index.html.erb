@@ -16,7 +16,7 @@
               </span>
               <% if policy(@user).update? %>
                 <%= button_to "X", destroy_intents_user_film_path(id: intent.intended_id), method: :delete,
-                    class: "btn btn-outline-secondary btn-iconic flex-shrink-0",
+                    form_class: "link-style",
                     data: { confirm: "You sure?" } %>
               <% end %>
             </div>

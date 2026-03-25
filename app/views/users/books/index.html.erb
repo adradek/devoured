@@ -55,7 +55,7 @@
               </span>
               <% if policy(@user).update? %>
                 <%= button_to "X", destroy_intents_user_book_path(id: reading_goal.id), method: :delete,
-                    class: "btn btn-outline-secondary btn-iconic flex-shrink-0",
+                    form_class: "link-style",
                     data: { confirm: "You sure?" } %>
               <% end %>
             </div>
