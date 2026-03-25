@@ -2,17 +2,15 @@
 
 module Users
   class BooksController < ApplicationController
-    before_action :set_user
+    include BookParams
 
-    caches_action :index, expires_in: 3.days, cache_path: -> do
-      lrt = Reading.where(user_id: current_user.id).order(updated_at: :desc).first.updated_at.to_i
-      user_books_url(current_user, lrt: lrt)
-    end
+    before_action :set_user
 
     def index
       @user = User.find_by(secret_id: params[:user_secret_id])
       @readings = ReadingDecorator
         .collection(UserReadingHistoryDecorator.new(@user).readings)
+      @intentions = @user.intents.includes(:intended).where(intended_type: "Book")
       @book = Book.new
     end
 
@@ -51,26 +49,10 @@ module Users
       redirect_to user_books_url(params[:user_secret_id])
     end
 
-    # TODO: move this action to the corresponding controller Users::IntentsController
-    def destroy_intents
-      authorize @user, :update?
-
-      @intent = Intent.find_by!(user_id: @user.id, intended_type: "Book", id: params[:id]).destroy!
-
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to user_books_url(params[:user_secret_id]) }
-      end
-    end
-
     private
 
     def set_user
       @user = User.find_by(secret_id: params[:user_secret_id])
-    end
-
-    def book_params
-      params.require(:book).permit(:title, :author, :short, :compilation)
     end
 
     def reading_params

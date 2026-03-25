@@ -1,0 +1,8 @@
+<%= turbo_stream.append('reading_goals') do %>
+  <%= render partial: 'users/books/intention', locals: { reading_goal: @intention } %>
+<% end %>
+
+
+<%= turbo_stream.update("reading_intention_form") do %>
+  <%= render partial: 'users/books/form', locals: { book: Book.new, type: :to_read } %>
+<% end %>

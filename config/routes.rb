@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     resources :books, module: :users do
       delete "destroy_intents", on: :member
     end
+
+    resources :reading_intents, module: :users, only: [:create, :destroy]
   end
 
   resources :compilation_inclusions, only: [:create]

@@ -1,4 +1,5 @@
-<%= form_for book, url: user_books_path, html: { class: "form snuffy" } do |f| %>
+<%= form_for book, url: type == :consumed ? user_books_path : user_reading_intents_path,
+             html: { class: "form snuffy" } do |f| %>
   <%= hidden_field_tag :book_type, type %>
   <%= f.text_field :title, placeholder: 'Title' %>
   <%= f.text_field :author, placeholder: 'Author' %>

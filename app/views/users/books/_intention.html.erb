@@ -1,0 +1,14 @@
+<%= turbo_frame_tag(dom_id(reading_goal)) do %>
+  <div class="card mb-1">
+    <div class="card-body d-flex align-items-center gap-2">
+      <span class="card-text text-truncate flex-grow-1 <%= "short" if reading_goal.intended.short %>">
+        <%= reading_goal.intended.caption %>
+      </span>
+      <% if policy(@user).update? %>
+        <%= button_to "X", user_reading_intent_path(id: reading_goal.id), method: :delete,
+            form_class: "link-style",
+            data: { confirm: "You sure?" } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
