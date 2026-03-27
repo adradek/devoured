@@ -1,14 +1,20 @@
-$(document).on('turbolinks:load', function() {
+// $(document).on('turbo:load', function() {
+//   $("tr.compilation").on('click', function(){
+//     var $components = $("tr[data-part-of='" + $(this).attr('data-compilation-id') + "']");
+
+//     if ($components.hasClass("show")) {
+//       // $components.addClass("in");
+//       $components.removeClass("show");
+//     } else {
+//       $components.addClass("show");
+//       // $components.removeClass("in");
+//     };
+
+//   });
+// });
+
+$(document).on('turbo:load', function() {
   $("tr.compilation").on('click', function(){
-    var $components = $("tr[data-part-of='" + $(this).attr('data-compilation-id') + "']");
-
-    if ($components.hasClass("show")) {
-      // $components.addClass("in");
-      $components.removeClass("show");
-    } else {
-      $components.addClass("show");
-      // $components.removeClass("in");
-    };
-
+    $("tr[data-part-of='" + $(this).attr('data-compilation-id') + "']").fadeToggle(500);
   });
 });

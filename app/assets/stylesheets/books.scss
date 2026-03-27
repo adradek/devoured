@@ -31,8 +31,7 @@ tr.compilation {
   }
 }
 
-tr.component {
-  // @extend .table-warning !optional;
+tr.component td {
   background-color: #f5f5f5;
 }
 
