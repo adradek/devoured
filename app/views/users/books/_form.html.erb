@@ -1,4 +1,5 @@
 <%= form_for book, url: type == :consumed ? user_books_path : user_reading_intents_path,
+             data: { controller: 'swap' },
              html: { class: "form snuffy" } do |f| %>
   <%= hidden_field_tag :book_type, type %>
   <%= f.text_field :title, placeholder: 'Title' %>
@@ -6,9 +7,9 @@
   <%= f.check_box :short %> Short
 
   <% if type == :consumed %>
-    <%= date_field_tag :start %>
-    <%= button_tag '<->', id: 'swap', type: 'button' %>
-    <%= date_field_tag :finish, Time.zone.today %>
+    <%= date_field_tag :start, nil, 'data-swap-target' => 'left' %>
+    <%= button_tag '<->', type: 'button', 'data-action' => 'click->swap#execute' %>
+    <%= date_field_tag :finish, Time.zone.today, 'data-swap-target' => 'right' %>
     <%= check_box_tag :professional %> Professional
     <%= check_box_tag :significant %> Significant
     <%= check_box_tag 'book[compilation]' %> Compilation

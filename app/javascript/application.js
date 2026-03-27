@@ -7,10 +7,9 @@ Rails.confirm = function(message, element) {
 }
 
 import "@hotwired/turbo-rails"
+import "./controllers"
 
 import "bootstrap"
 import "./jquery-global"
-import "./modules/books"
 // import "./packs/modals"
 // import "./packs/compilation_collapse"
-

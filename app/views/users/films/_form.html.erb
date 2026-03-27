@@ -13,9 +13,11 @@
   <% if type == :consumed %>
     <%= check_box_tag :professional %> Professional
     <%= text_field_tag :rate, '', placeholder: 'My rate' %>
-    <%= date_field_tag :start %>
-    <%= button_tag '<->', id: 'swap', type: 'button' %>
-    <%= date_field_tag :finish, Time.zone.today %>
+    <span data-controller="swap">
+      <%= date_field_tag :start, nil, 'data-swap-target': 'left' %>
+      <%= button_tag '<->', type: 'button', 'data-action': 'click->swap#execute' %>
+      <%= date_field_tag :finish, Time.zone.today, 'data-swap-target': 'right' %>
+    </span>
   <% end %>
 
   <%= f.submit %>
