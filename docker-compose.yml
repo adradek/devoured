@@ -1,5 +1,4 @@
 services:
-
   web:
     build: .
     ports:
@@ -26,17 +25,16 @@ services:
       - .envdir/development/database
     volumes:
       - postgres17:/var/lib/postgresql/data
-      # - ./tmp/postgres:/var/lib/postgresql/data
       - .:/tmptmptmp
-    ports:
-      - 5432:5432
+    # ports:
+      # - 5432:5432
 
   redis:
     image: redis:8.2
     volumes:
       - redis:/data
-    ports:
-      - 6379
+    # ports:
+    #   - 6379
     healthcheck:
       test: redis-cli ping
       interval: 1s
