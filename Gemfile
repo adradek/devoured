@@ -10,8 +10,8 @@ gem "psych", "~> 3.3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem "rails", "~> 8.1.0"
 
-gem 'jsbundling-rails'
-gem 'cssbundling-rails'
+gem "jsbundling-rails"
+gem "cssbundling-rails"
 
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
@@ -91,9 +91,9 @@ group :development, :test do
   # pry-remote — старый и давно не поддерживаемый гем (последняя версия 0.1.8). В Ruby 3.3+ readline был удалён из стандартной библиотеки и заменён на reline.
   # gem "pry-remote"
   # gem "memory_profiler"
-  # gem "rspec-rails"
-  # gem "factory_bot_rails"
-  # gem "faker"
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "faker"
   # gem "bullet" + in development.rb
   gem "next_rails"
 end
