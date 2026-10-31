@@ -2,12 +2,14 @@
 
 module Readings
   class CompilationsQuery
+    attr_reader :relation
+
     def initialize(relation = ::Reading.all)
       @relation = relation
     end
 
     def call
-      @relation.joins(:book).where(books: { compilation: true })
+      relation.joins(:book).where(books: { compilation: true })
     end
   end
 end

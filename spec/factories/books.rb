@@ -38,5 +38,12 @@ FactoryBot.define do
       short  { false }
       compilation { true }
     end
+
+    trait :mirgorod do
+      title  { "Миргород" }
+      author { "Гоголь" }
+      short  { false }
+      compilation { true }
+    end
   end
 end

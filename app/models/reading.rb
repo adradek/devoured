@@ -24,7 +24,7 @@
 
 class Reading < ApplicationRecord
   scope :in_reverse, -> { order(finish: :desc, id: :desc) }
-  scope :compilations, Readings::CompilationsQuery.new
+  scope :compilations, -> { Readings::CompilationsQuery.new(all).call }
 
   has_many :components, class_name: "Reading", foreign_key: "compilation_reading_id", dependent: :nullify
   belongs_to :compilation_reading, class_name: "Reading", optional: true
