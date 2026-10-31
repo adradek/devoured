@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: readings
@@ -33,18 +34,18 @@ RSpec.describe Reading do
   describe "compilations scope" do
     before do
       described_class.create!(user: user, book: moby_dick)
-      described_class.create!(user: user, book: evil_13)
-      described_class.create!(user: user, book: vechera)
+      described_class.create!(user: user, book: evil_13)    # is compilation
+      described_class.create!(user: user, book: vechera)    # is compilation
     end
 
-    let(:readings) { user.readings.compilations }
+    let(:compilation_readings) { user.readings.compilations }
 
     it "returns all compilations" do
-      expect(readings.map { _1.book.title }).to match_array([evil_13, vechera].map(&:title))
+      expect(compilation_readings.map { it.book.title }).to match_array([evil_13, vechera].map(&:title))
     end
 
     it "ignores other books" do
-      expect(readings.map { _1.book.title }).not_to include(moby_dick.title)
+      expect(compilation_readings.map { it.book.title }).not_to include(moby_dick.title)
     end
   end
 end
