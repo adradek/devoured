@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_07_074350) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_01_120100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -46,7 +46,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_07_074350) do
     t.index ["user_id"], name: "index_intents_on_user_id"
   end
 
+  create_table "reading_progresses", force: :cascade do |t|
+    t.integer "attempt", null: false
+    t.datetime "created_at", null: false
+    t.date "date", null: false
+    t.integer "from_page", null: false
+    t.text "note"
+    t.integer "reading_id", null: false
+    t.integer "to_page", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reading_id", "attempt", "date"], name: "index_reading_progresses_on_reading_id_and_attempt_and_date"
+  end
+
   create_table "readings", id: :serial, force: :cascade do |t|
+    t.integer "attempt", default: 1, null: false
     t.integer "book_id"
     t.integer "compilation_reading_id"
     t.datetime "created_at", precision: nil, null: false
@@ -54,6 +67,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_07_074350) do
     t.boolean "professional", default: false, null: false
     t.boolean "significant", default: false
     t.date "start"
+    t.integer "total_pages"
     t.datetime "updated_at", precision: nil, null: false
     t.integer "user_id"
     t.index ["book_id"], name: "index_readings_on_book_id"
@@ -86,6 +100,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_07_074350) do
   end
 
   add_foreign_key "intents", "users"
+  add_foreign_key "reading_progresses", "readings"
   add_foreign_key "readings", "books"
   add_foreign_key "readings", "users"
   add_foreign_key "watchings", "films"

@@ -19,6 +19,8 @@
 
 FactoryBot.define do
   factory :book do
+    sequence(:title) { |n| "Книга #{n}" }
+
     trait :moby_dick do
       title  { "Моби дик" }
       author { "Джек Лондон" }

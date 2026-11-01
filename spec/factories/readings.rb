@@ -14,6 +14,8 @@
 #  professional           :boolean          default(FALSE), not null
 #  significant            :boolean          default(FALSE)
 #  compilation_reading_id :integer
+#  total_pages            :integer
+#  attempt                :integer          default(1), not null
 #
 # Indexes
 #
@@ -24,5 +26,7 @@
 
 FactoryBot.define do
   factory :reading do
+    user
+    book
   end
 end

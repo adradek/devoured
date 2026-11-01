@@ -14,6 +14,8 @@
 #  professional           :boolean          default(FALSE), not null
 #  significant            :boolean          default(FALSE)
 #  compilation_reading_id :integer
+#  total_pages            :integer
+#  attempt                :integer          default(1), not null
 #
 # Indexes
 #
@@ -31,6 +33,32 @@ RSpec.describe Reading do
   let(:evil_13) { create :book, :evil_13 }
   let(:vechera) { create :book, :vechera }
   let(:mirgorod) { create :book, :mirgorod }
+
+  describe "validations" do
+    subject(:reading) { build :reading }
+
+    it "starts with the first attempt" do
+      expect(reading.attempt).to eq 1
+    end
+
+    it "allows the number of pages to be unknown" do
+      reading.total_pages = nil
+
+      expect(reading).to be_valid
+    end
+
+    it "requires a positive number of pages" do
+      reading.total_pages = 0
+
+      expect(reading).not_to be_valid
+    end
+
+    it "requires a positive attempt" do
+      reading.attempt = 0
+
+      expect(reading).not_to be_valid
+    end
+  end
 
   describe "compilations scope" do
     let(:other_user) { create :user }

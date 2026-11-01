@@ -14,6 +14,8 @@
 #  professional           :boolean          default(FALSE), not null
 #  significant            :boolean          default(FALSE)
 #  compilation_reading_id :integer
+#  total_pages            :integer
+#  attempt                :integer          default(1), not null
 #
 # Indexes
 #
@@ -30,6 +32,10 @@ class Reading < ApplicationRecord
   belongs_to :compilation_reading, class_name: "Reading", optional: true
   belongs_to :user, touch: true
   belongs_to :book
+  has_many :progresses, class_name: "ReadingProgress", dependent: :delete_all
+
+  validates :total_pages, numericality: { only_integer: true, greater_than: 0 }, allow_nil: true
+  validates :attempt, numericality: { only_integer: true, greater_than: 0 }
 
   delegate :compilation, :compilation?, to: :book
 

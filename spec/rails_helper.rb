@@ -34,6 +34,7 @@ end
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include ActiveSupport::Testing::TimeHelpers
   config.include Sorcery::TestHelpers::Rails::Controller, type: :request
   config.include Sorcery::TestHelpers::Rails::Request, type: :request
   # config.include Sorcery::TestHelpers::Rails::Integration, type: :request
