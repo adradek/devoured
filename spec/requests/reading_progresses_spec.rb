@@ -109,10 +109,10 @@ RSpec.describe "/users/:user_secret_id/readings/:reading_id/progresses", type: :
       )
     end
 
-    it "brings the reading card back into the frame", :aggregate_failures do
+    it "brings the reading back into the frame, now with progress bars", :aggregate_failures do
       send_request
 
-      expect(frame.at_css(".card.reading")).to be_present
+      expect(frame.at_css(".accordion-item.reading .progress-map")).to be_present
       expect(frame.at_css(%(form[action="#{user_reading_progresses_path(user, reading)}"]))).to be_nil
     end
 

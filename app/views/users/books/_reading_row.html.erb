@@ -1,0 +1,44 @@
+<%# The main row of a reading: caption, finish date, actions.
+    With collapse_id (a reading with progress, shown as an accordion), the caption toggles the progress bars %>
+<% collapse_id = local_assigns[:collapse_id] %>
+<%= tag.div class: "row align-items-center gx-2", title: reading.hint do %>
+  <% if collapse_id %>
+    <div class="col reading-caption-col">
+      <%= tag.button type: "button", class: "accordion-button collapsed",
+            data: { bs_toggle: "collapse", bs_target: "##{collapse_id}" },
+            aria: { expanded: false, controls: collapse_id } do %>
+        <span class="text-truncate reading-data reading-caption"><%= reading.book.caption %></span>
+      <% end %>
+    </div>
+  <% else %>
+    <%= tag.div reading.book.caption, class: "col text-truncate reading-data reading-caption",
+          data: ({ action: "click->compilation#toggle" } if reading.compilation) %>
+  <% end %>
+  <div class="col-2 text-center reading-data">
+    <%= reading.finish_date %>
+  </div>
+  <% if policy(@user).update? %>
+    <div class="col-auto reading-actions">
+      <% unless reading.compilation %>
+        <%= link_to new_compilation_inclusion_path(reading_id: reading.id), title: "Внести в сборник",
+              class: "btn btn-iconic btn-outline-dark" do %>
+          <i class="fa-solid fa-truck"></i>
+        <% end %>
+      <% end %>
+      <% if reading.progress_trackable? %>
+        <%= link_to new_user_reading_progress_path(@user, reading.id), title: "Отметить прогресс",
+              class: "btn btn-iconic btn-outline-dark progress-button" do %>
+          <i class="fa-solid fa-bookmark"></i>
+        <% end %>
+      <% end %>
+      <%= link_to edit_user_book_path(@user, reading.id), title: "Изменить", class: "btn btn-iconic btn-outline-dark" do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+      <%= button_to user_book_path(@user, reading.id), method: :delete, title: "Удалить",
+            class: "btn btn-iconic btn-danger", form_class: "d-inline",
+            data: { confirm: "You sure?" } do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

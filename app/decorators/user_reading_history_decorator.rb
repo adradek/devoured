@@ -31,7 +31,7 @@ class UserReadingHistoryDecorator
   def fetch_main_readings
     @user
       .readings
-      .includes(:book)
+      .includes(:book, :progresses)
       .where(compilation_reading_id: nil)
       .in_reverse
   end
@@ -39,7 +39,7 @@ class UserReadingHistoryDecorator
   def fetch_components(reading)
     reading
       .components
-      .includes(:book, :compilation_reading)
+      .includes(:book, :compilation_reading, :progresses)
       .in_reverse
   end
 end

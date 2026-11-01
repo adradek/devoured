@@ -36,6 +36,15 @@ class ReadingDecorator
     reading.finish.nil? && !reading.compilation
   end
 
+  # Readings with progress entries are shown as an accordion with progress bars
+  def progress_bars?
+    !reading.compilation && reading.progresses.any?
+  end
+
+  def progress_map
+    @progress_map ||= ReadingProgressMap.new(reading)
+  end
+
   def finish_date
     reading.finish&.strftime("%d.%m.%y")
   end

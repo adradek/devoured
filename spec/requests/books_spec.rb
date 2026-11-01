@@ -78,6 +78,42 @@ RSpec.describe "/books", type: :request do
         expect(progress_button(unfinished_compilation)).to be_nil
       end
     end
+
+    describe "progress bars" do
+      let!(:in_progress) { create(:reading, user: user, finish: nil, total_pages: 397) }
+      let!(:without_pages) { create(:reading, user: user, finish: nil) }
+
+      before do
+        create(:reading_progress, reading: in_progress, from_page: 0, to_page: 40)
+        create(:reading_progress, reading: without_pages, from_page: 0, to_page: 40)
+      end
+
+      def accordion(reading)
+        html_body.at_css("turbo-frame#reading_#{reading.id} .accordion-item.reading")
+      end
+
+      it "turn a reading with progress into an accordion with collapsed bars", :aggregate_failures do
+        send_request
+
+        target = "progress_reading_#{in_progress.id}"
+        expect(accordion(in_progress).at_css(".accordion-button")["data-bs-target"]).to eq "##{target}"
+        expect(accordion(in_progress).at_css("##{target}.collapse .progress-map-segment")).to be_present
+      end
+
+      it "show what has been read" do
+        send_request
+
+        expect(accordion(in_progress).at_css(".progress-summary").text).to eq "прочитано 40 из 397 стр. (10%)"
+      end
+
+      it "ask for the number of pages when it is unknown", :aggregate_failures do
+        send_request
+
+        expect(accordion(without_pages).at_css(".progress-map")).to be_nil
+        expect(accordion(without_pages).at_css(".total-pages-hint a")["href"])
+          .to eq edit_user_book_path(user, without_pages)
+      end
+    end
   end
 
   describe "POST /create" do

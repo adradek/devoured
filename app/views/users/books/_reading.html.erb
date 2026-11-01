@@ -1,37 +1,24 @@
 <%= turbo_frame_tag(dom_id(reading)) do %>
-  <%= tag.div class: ["card mb-1 reading", *reading.labels] do %>
-    <div class="card-body">
-      <%= tag.div class: "row align-items-center gx-2", title: reading.hint do %>
-        <%= tag.div reading.book.caption, class: "col text-truncate reading-data reading-caption",
-              data: ({ action: "click->compilation#toggle" } if reading.compilation) %>
-        <div class="col-2 text-center reading-data">
-          <%= reading.finish_date %>
+  <% if reading.progress_bars? %>
+    <%# A reading with progress: Bootstrap accordion, the progress bars are in the collapsible part %>
+    <% collapse_id = "progress_#{dom_id(reading)}" %>
+    <div class="accordion mb-1 reading-accordion">
+      <%= tag.div class: ["accordion-item reading", *reading.labels] do %>
+        <div class="accordion-header">
+          <%= render "users/books/reading_row", reading: reading, collapse_id: collapse_id %>
         </div>
-        <% if policy(@user).update? %>
-          <div class="col-auto reading-actions">
-            <% unless reading.compilation %>
-              <%= link_to new_compilation_inclusion_path(reading_id: reading.id), title: "Внести в сборник",
-                    class: "btn btn-iconic btn-outline-dark" do %>
-                <i class="fa-solid fa-truck"></i>
-              <% end %>
-            <% end %>
-            <% if reading.progress_trackable? %>
-              <%= link_to new_user_reading_progress_path(@user, reading.id), title: "Отметить прогресс",
-                    class: "btn btn-iconic btn-outline-dark progress-button" do %>
-                <i class="fa-solid fa-bookmark"></i>
-              <% end %>
-            <% end %>
-            <%= link_to edit_user_book_path(@user, reading.id), title: "Изменить", class: "btn btn-iconic btn-outline-dark" do %>
-              <i class="fa-solid fa-pen-to-square"></i>
-            <% end %>
-            <%= button_to user_book_path(@user, reading.id), method: :delete, title: "Удалить",
-                  class: "btn btn-iconic btn-danger", form_class: "d-inline",
-                  data: { confirm: "You sure?" } do %>
-              <i class="fa-solid fa-trash"></i>
-            <% end %>
+        <%= tag.div id: collapse_id, class: "accordion-collapse collapse" do %>
+          <div class="accordion-body">
+            <%= render "users/books/reading_progress", reading: reading %>
           </div>
         <% end %>
       <% end %>
     </div>
+  <% else %>
+    <%= tag.div class: ["card mb-1 reading", *reading.labels] do %>
+      <div class="card-body">
+        <%= render "users/books/reading_row", reading: reading %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>

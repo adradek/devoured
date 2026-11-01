@@ -35,14 +35,18 @@ span.short {
 
   &.component {
     --bs-card-bg: #f5f5f5;
+    --bs-accordion-bg: #f5f5f5;
     margin-left: 1.5rem;
   }
 }
 
+// Fixed width keeps the date column aligned across cards; flex keeps the buttons at the right edge
+// (no whitespace between them, and on overflow they would go left, not over the card's edge)
 .reading-actions {
-  width: 120px;
-  text-align: end;
-  white-space: nowrap;
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+  width: 130px;
 }
 
 // Reading progress panel (users/readings/progresses)
@@ -53,4 +57,63 @@ span.short {
 
 .progress-note {
   white-space: pre-line;
+}
+
+// A reading with progress is a Bootstrap accordion that looks like a reading card:
+// the caption is the accordion button, the progress bars are in the collapsible part
+
+.reading-accordion {
+  --bs-accordion-btn-icon-width: 1rem;
+  --bs-accordion-body-padding-x: 1rem;
+  --bs-accordion-body-padding-y: .75rem;
+
+  .accordion-header {
+    padding: 1rem; // as .card-body
+  }
+
+  .accordion-button,
+  .accordion-button:not(.collapsed) {
+    gap: .5rem;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.reading-caption-col {
+  min-width: 0; // lets the caption truncate
+}
+
+// Progress bars (ReadingProgressMap): segments are placed by bookmark pages
+
+.reading-attempt + .reading-attempt {
+  margin-top: .75rem;
+}
+
+.reading-attempt-past {
+  opacity: .5;
+}
+
+.progress-map {
+  --bs-progress-height: .75rem;
+  position: relative;
+}
+
+.progress-map-segment {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 2px;
+  opacity: .6; // re-read pages are covered twice and look darker
+}
+
+// ReadingProgressMap::PALETTE_SIZE must match the number of colors
+$progress-day-colors: $blue, $green, $orange, $purple, $pink;
+
+@each $color in $progress-day-colors {
+  .progress-color-#{index($progress-day-colors, $color) - 1} {
+    background-color: $color;
+  }
 }
