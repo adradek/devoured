@@ -15,7 +15,9 @@ inherit_mode:
     - Exclude
 
 require:
-  - standard
+  - standard # not a RuboCop plugin, so it stays in `require`
+
+plugins:
   - standard-custom
   - standard-performance
   - rubocop-rails
