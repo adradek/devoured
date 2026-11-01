@@ -40,7 +40,17 @@ span.short {
 }
 
 .reading-actions {
-  width: 90px;
+  width: 120px;
   text-align: end;
   white-space: nowrap;
+}
+
+// Reading progress panel (users/readings/progresses)
+
+.page-input {
+  width: 6rem;
+}
+
+.progress-note {
+  white-space: pre-line;
 }

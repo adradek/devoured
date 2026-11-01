@@ -23,6 +23,8 @@
 class ReadingProgress < ApplicationRecord
   belongs_to :reading, touch: true
 
+  scope :latest_first, -> { order(date: :desc, updated_at: :desc, id: :desc) }
+
   attribute :date, default: -> { Time.zone.today }
 
   normalizes :note, with: ->(note) { note.strip.presence }

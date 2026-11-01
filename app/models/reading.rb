@@ -39,6 +39,12 @@ class Reading < ApplicationRecord
 
   delegate :compilation, :compilation?, to: :book
 
+  # The latest entry of the current attempt: the reader goes on from its `to_page`.
+  # Merged entries keep their `created_at`, so the latest is chosen by `updated_at`.
+  def last_progress
+    progresses.where(attempt: attempt).latest_first.first
+  end
+
   def reading_days
     ((finish || Time.zone.today) - start).to_i if start
   end

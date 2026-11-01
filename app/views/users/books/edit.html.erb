@@ -18,6 +18,16 @@
           </div>
         </div>
 
+        <div class="row g-2 mb-3 align-items-center">
+          <div class="col-auto">
+            <%= label_tag "total_pages_#{@reading.id}", "Страниц в книге", class: "col-form-label" %>
+          </div>
+          <div class="col-auto">
+            <%= number_field_tag :total_pages, @reading.total_pages, id: "total_pages_#{@reading.id}",
+                  min: 1, class: "form-control page-input" %>
+          </div>
+        </div>
+
         <div class="row g-3 mb-3">
           <div class="col-auto form-check">
             <%= hidden_field_tag :professional, "0", id: nil %>

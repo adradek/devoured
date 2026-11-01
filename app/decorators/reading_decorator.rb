@@ -31,6 +31,11 @@ class ReadingDecorator
     reading.compilation && reading.finish.present?
   end
 
+  # Progress is entered only while the book is being read; compilations have no pages of their own
+  def progress_trackable?
+    reading.finish.nil? && !reading.compilation
+  end
+
   def finish_date
     reading.finish&.strftime("%d.%m.%y")
   end

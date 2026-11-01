@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     end
 
     resources :reading_intents, module: :users, only: [:create, :destroy]
+
+    resources :readings, only: [], module: :users do
+      resources :progresses, only: [:new, :create], module: :readings
+    end
   end
 
   resources :compilation_inclusions, only: [:new, :create]

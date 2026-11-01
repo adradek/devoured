@@ -1,0 +1,67 @@
+<%= turbo_frame_tag(dom_id(@reading)) do %>
+  <div class="card mb-1 reading-progress-panel">
+    <div class="card-body">
+      <div class="mb-1 text-truncate fw-semibold"><%= @reading.book.caption %></div>
+      <div class="mb-2 text-body-secondary total-pages">
+        Страниц в книге: <%= @reading.total_pages || "не указано" %>
+      </div>
+
+      <% if @recent_progresses.any? %>
+        <ul class="list-unstyled mb-3 recent-progresses">
+          <% @recent_progresses.each do |progress| %>
+            <li class="recent-progress mb-1">
+              <span class="text-nowrap"><%= progress.date.strftime("%d.%m.%y") %></span>
+              <span class="text-nowrap">· с <%= progress.from_page %> по <%= progress.to_page %></span>
+              <% if @reading.attempt > 1 %>
+                <span class="text-nowrap text-body-secondary">· заход <%= progress.attempt %></span>
+              <% end %>
+              <% if progress.note %>
+                <div class="progress-note text-body-secondary"><%= progress.note %></div>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+
+      <%= form_with model: @progress, url: user_reading_progresses_path(@user, @reading),
+            namespace: dom_id(@reading) do |f| %>
+        <% if @progress.errors.any? %>
+          <ul class="text-danger mb-2 progress-errors">
+            <% @progress.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <div class="row g-2 mb-2 align-items-center">
+          <div class="col-auto">
+            <%= f.date_field :date, class: "form-control", required: true %>
+          </div>
+          <div class="col-auto">с</div>
+          <div class="col-auto">
+            <%= f.number_field :from_page, class: "form-control page-input", min: 0, required: true %>
+          </div>
+          <div class="col-auto">по</div>
+          <div class="col-auto">
+            <%= f.number_field :to_page, class: "form-control page-input", min: 0, required: true %>
+          </div>
+        </div>
+
+        <div class="mb-2">
+          <%= f.text_area :note, class: "form-control", rows: 2, placeholder: "Заметка: глава, тема…" %>
+        </div>
+
+        <% if @can_start_over %>
+          <div class="form-check mb-2">
+            <%= check_box_tag :start_over, "1", false, id: "start_over_#{@reading.id}", class: "form-check-input" %>
+            <%= label_tag "start_over_#{@reading.id}", "Начать заново", class: "form-check-label" %>
+          </div>
+        <% end %>
+
+        <%= f.submit "Сохранить", class: "btn btn-primary" %>
+        <%# Loads the reading card back into this frame %>
+        <%= link_to "Закрыть", user_book_path(@user, @reading), class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

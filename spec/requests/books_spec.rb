@@ -51,6 +51,33 @@ RSpec.describe "/books", type: :request do
         expect(html_body.at_css("[data-compilation-target='components']")["hidden"]).to be_nil
       end
     end
+
+    describe "progress button" do
+      let!(:unfinished) { create(:reading, user: user, finish: nil) }
+      let!(:unfinished_compilation) { create_reading(:vechera, finish: nil) }
+
+      def progress_button(reading)
+        html_body.at_css("turbo-frame#reading_#{reading.id} a.progress-button")
+      end
+
+      it "is shown for an unfinished reading" do
+        send_request
+
+        expect(progress_button(unfinished)["href"]).to eq new_user_reading_progress_path(user, unfinished)
+      end
+
+      it "is not shown for a finished reading" do
+        send_request
+
+        expect(progress_button(standalone)).to be_nil
+      end
+
+      it "is not shown for a compilation" do
+        send_request
+
+        expect(progress_button(unfinished_compilation)).to be_nil
+      end
+    end
   end
 
   describe "POST /create" do
@@ -123,6 +150,16 @@ RSpec.describe "/books", type: :request do
       send_request
 
       expect(reading.reload).to have_attributes(significant: true, finish: Date.new(2026, 10, 1))
+    end
+
+    context "with the number of pages" do
+      subject(:send_request) { patch user_book_path(user, reading), params: { total_pages: "397" } }
+
+      it "saves it" do
+        send_request
+
+        expect(reading.reload.total_pages).to eq 397
+      end
     end
 
     it "renders the updated card inside the reading frame" do
