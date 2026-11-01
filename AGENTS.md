@@ -30,7 +30,7 @@
 - Интерфейс на русском.
 - Строки в Ruby — в двойных кавычках (так требует Standard). В проекте Bootstrap, а не Tailwind. Правила в `.cursor/rules` в этих двух пунктах устарели.
 - Префиксы коммитов: `feature:`, `fix:`, `refactoring:`, `chore:`.
-- `db:migrate` в development запускает annotate, и у него две проблемы. Он вставляет схему **выше** `# frozen_string_literal: true` — магический комментарий нужно вернуть наверх. И он падает на некоторых моделях с `uninitialized constant Fixnum` (старый гем, Ruby 4) — тогда схему в комментариях модели, фабрики и spec-а обновляй вручную. `annotate --routes` падает тоже, а карта маршрутов в конце `config/routes.rb` устарела — смотри `bin/rails routes`.
+- Схемы таблиц в комментариях моделей, фабрик и specs, а также карту маршрутов в конце `config/routes.rb` ведёт annotaterb (настройки — `.annotaterb.yml`). В development он запускается сам после `db:migrate`; вручную — `bundle exec annotaterb models` и `bundle exec annotaterb routes`. Если у нового класса уже есть комментарий-описание, при первой аннотации схема встанет между описанием и `class` — перенеси её выше описания.
 
 ## Текущая фича: прогресс чтения
 

@@ -105,7 +105,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "rails-erd"
   # gem "railroady"
-  gem "annotate", require: false # + => lib/tasks/auto_annotate...
+  gem "annotaterb", require: false # successor of "annotate"; config: .annotaterb.yml
   gem "flay", require: false
   gem "reek", "~> 6.1.0", require: false
   gem "bundler-audit", require: false

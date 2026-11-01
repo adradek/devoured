@@ -23,6 +23,11 @@
 #  index_readings_on_compilation_reading_id  (compilation_reading_id)
 #  index_readings_on_user_id                 (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (book_id => books.id)
+#  fk_rails_...  (user_id => users.id)
+#
 
 require "rails_helper"
 
