@@ -17,25 +17,25 @@ class ReadingDecorator
   end
 
   def labels
-    result = []
-    result << "short" if reading.book.short
-    result << "profy" if reading.professional
-    result << "significant" if reading.significant
-    result << "unfinished" unless reading.finish
-    add_compilation_labels(result)
-    result
+    @labels ||= [].tap do |arr|
+      arr << "short" if reading.book.short
+      arr << "profy" if reading.professional
+      arr << "significant" if reading.significant
+      arr << "unfinished" unless reading.finish
+      arr << "compilation" if reading.compilation
+      arr << "component" if reading.compilation_reading_id
+    end
+  end
+
+  def components_collapsed?
+    reading.compilation && reading.finish.present?
+  end
+
+  def finish_date
+    reading.finish&.strftime("%d.%m.%y")
   end
 
   private
-
-  def add_compilation_labels(result)
-    if reading.compilation
-      result << "compilation"
-    elsif reading.compilation_reading_id
-      result << "component collapse"
-      result << "show" unless reading.compilation_reading.finish
-    end
-  end
 
   def method_missing(name, *attr, &block)
     return reading.public_send(name, *attr, &block) if respond_to_missing?(name)

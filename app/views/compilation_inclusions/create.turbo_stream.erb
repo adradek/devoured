@@ -1,0 +1,2 @@
+<%# TODO: отрефакторить, чтобы перерендеривался не весь лист, а только компиляция + удалялся reading из общего списка %>
+<%= turbo_stream.replace("readings_list", partial: "users/books/readings_list", locals: { readings: @readings }) %>

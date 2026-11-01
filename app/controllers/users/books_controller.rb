@@ -7,19 +7,28 @@ module Users
     before_action :set_user
 
     def index
-      @user = User.find_by(secret_id: params[:user_secret_id])
-      @readings = ReadingDecorator
-        .collection(UserReadingHistoryDecorator.new(@user).readings)
+      @readings = decorated_readings
       @intentions = @user.intents.includes(:intended).where(intended_type: "Book")
       @book = Book.new
+    end
+
+    def show
+      @reading = @user.readings.includes(:book).find(params[:id])
+      render partial: "reading", locals: { reading: ReadingDecorator.new(@reading) }
     end
 
     def create
       authorize @user, :update?
 
       book = Book.find_by(book_params.slice(:title, :author)) || Book.create!(book_params)
-      ReadingCreation.run(@user, book, params[:book_type], reading_params)
-      redirect_to user_books_url(@user)
+
+      # TODO: вообще, это создает баг. При создании reading_intent мы попадаем сюда же
+      reading = ReadingCreation.run(@user, book, params[:book_type], reading_params)
+
+      respond_to do |format|
+        format.turbo_stream { @reading = ReadingDecorator.new(reading) }
+        format.html { redirect_to user_books_url(@user) }
+      end
     end
 
     # You can edit your readings, not intents
@@ -33,23 +42,35 @@ module Users
     def update
       authorize @user, :update?
       @reading = @user.readings.find(params[:id])
+
       if @reading.update(reading_params)
-        redirect_to user_books_url
+        render partial: "reading", locals: { reading: ReadingDecorator.new(@reading) }
       else
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 
     def destroy
       authorize @user, :update?
-      reading = Reading.find(params[:id])
-      book    = reading.book
-      reading.destroy
+
+      @reading = @user.readings.find(params[:id])
+      book = @reading.book
+
+      @reading.destroy
       book.destroy if book.readings.empty? && book.intents.empty?
-      redirect_to user_books_url(params[:user_secret_id])
+
+      respond_to do |format|
+        # Components of a destroyed compilation become standalone readings, so the whole list is re-rendered
+        format.turbo_stream { @readings = decorated_readings if @reading.compilation? }
+        format.html { redirect_to user_books_url(@user) }
+      end
     end
 
     private
+
+    def decorated_readings
+      ReadingDecorator.collection(UserReadingHistoryDecorator.new(@user).readings)
+    end
 
     def set_user
       @user = User.find_by(secret_id: params[:user_secret_id])

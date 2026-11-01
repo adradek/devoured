@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import CompilationController from "./compilation_controller"
+application.register("compilation", CompilationController)
+
 import SwapController from "./swap_controller"
 application.register("swap", SwapController)

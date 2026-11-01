@@ -6,39 +6,41 @@ span.short {
   color: #189e27;
 }
 
-tr.short {
-  td.data {
+// Reading cards; modifiers come from ReadingDecorator#labels
+
+.reading {
+  &.short .reading-data {
     color: #189e27;
   }
-}
 
-tr.profy {
-  td.data {
+  &.profy .reading-data {
     color: #9e188f;
   }
-}
 
-tr.significant {
-  td.data {
-    font-weight: 700;
+  &.significant {
+    .reading-caption {
+      font-weight: 700;
+    }
+  }
+
+  &.compilation {
+    .reading-data {
+      color: #000099;
+    }
+
+    .reading-caption {
+      cursor: pointer;
+    }
+  }
+
+  &.component {
+    --bs-card-bg: #f5f5f5;
+    margin-left: 1.5rem;
   }
 }
 
-tr.compilation {
-  td.data {
-    color: #000099;
-    cursor: pointer;
-  }
-}
-
-tr.component td {
-  background-color: #f5f5f5;
-}
-
-// tr.unfinished {
-//   @extend .active;
-// }
-
-td.start_date {
-  font-size: 13px;
+.reading-actions {
+  width: 90px;
+  text-align: end;
+  white-space: nowrap;
 }

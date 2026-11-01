@@ -1,10 +1,13 @@
 <%= form_for book, url: type == :consumed ? user_books_path : user_reading_intents_path,
              data: { controller: 'swap' },
              html: { class: "form snuffy" } do |f| %>
+
+  <% disabled = type == :to_read %>
+
   <%= hidden_field_tag :book_type, type %>
-  <%= f.text_field :title, placeholder: 'Title' %>
-  <%= f.text_field :author, placeholder: 'Author' %>
-  <%= f.check_box :short %> Short
+  <%= f.text_field :title, placeholder: 'Title', disabled: %>
+  <%= f.text_field :author, placeholder: 'Author', disabled: %>
+  <%= f.check_box :short, disabled: %> Short
 
   <% if type == :consumed %>
     <%= date_field_tag :start, nil, 'data-swap-target' => 'left' %>
@@ -15,5 +18,5 @@
     <%= check_box_tag 'book[compilation]' %> Compilation
   <% end %>
 
-  <%= f.submit %>
+  <%= f.submit disabled: %>
 <% end %>

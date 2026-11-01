@@ -1,0 +1,9 @@
+<%= tag.div id: "readings_list", class: "mt-5" do %>
+  <% readings.slice_before { |reading| reading.compilation_reading_id.nil? }.each do |reading, *components| %>
+    <% if reading.compilation %>
+      <%= render "users/books/compilation", compilation: reading, components: components %>
+    <% else %>
+      <%= render "users/books/reading", reading: reading %>
+    <% end %>
+  <% end %>
+<% end %>

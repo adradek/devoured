@@ -1,0 +1,31 @@
+<%= turbo_frame_tag(dom_id(reading)) do %>
+  <%= tag.div class: ["card mb-1 reading", *reading.labels] do %>
+    <div class="card-body">
+      <%= tag.div class: "row align-items-center gx-2", title: reading.hint do %>
+        <%= tag.div reading.book.caption, class: "col text-truncate reading-data reading-caption",
+              data: ({ action: "click->compilation#toggle" } if reading.compilation) %>
+        <div class="col-2 text-center reading-data">
+          <%= reading.finish_date %>
+        </div>
+        <% if policy(@user).update? %>
+          <div class="col-auto reading-actions">
+            <% unless reading.compilation %>
+              <%= link_to new_compilation_inclusion_path(reading_id: reading.id), title: "Внести в сборник",
+                    class: "btn btn-iconic btn-outline-dark" do %>
+                <i class="fa-solid fa-truck"></i>
+              <% end %>
+            <% end %>
+            <%= link_to edit_user_book_path(@user, reading.id), title: "Изменить", class: "btn btn-iconic btn-outline-dark" do %>
+              <i class="fa-solid fa-pen-to-square"></i>
+            <% end %>
+            <%= button_to user_book_path(@user, reading.id), method: :delete, title: "Удалить",
+                  class: "btn btn-iconic btn-danger", form_class: "d-inline",
+                  data: { confirm: "You sure?" } do %>
+              <i class="fa-solid fa-trash"></i>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,24 @@
+<%= turbo_frame_tag(dom_id(@reading)) do %>
+  <div class="card mb-1">
+    <div class="card-body">
+      <%= form_with scope: :compilation_inclusion, url: compilation_inclusions_path do |f| %>
+        <%= f.hidden_field :reading_id, value: @reading.id %>
+
+        <div class="mb-2 text-truncate">
+          Внести в сборник: <span class="fw-semibold"><%= @reading.book.caption %></span>
+        </div>
+
+        <div class="row g-2 align-items-center">
+          <div class="col">
+            <%= f.select :id, options_for_select(@compilations.map { |r| [r.book.caption, r.id] }),
+                  { include_blank: "[ Сборник не выбран ]" }, class: "form-select", required: true %>
+          </div>
+          <div class="col-auto">
+            <%= f.submit "Прикрепить", class: "btn btn-primary" %>
+            <%= link_to "Отмена", user_book_path(@user, @reading), class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,6 @@
+<% if @reading.compilation? %>
+  <%# TODO: отрефакторить, чтобы компоненты перерендерились, а сборник удалился %>
+  <%= turbo_stream.replace("readings_list", partial: "readings_list", locals: { readings: @readings }) %>
+<% else %>
+  <%= turbo_stream.remove(dom_id(@reading)) %>
+<% end %>

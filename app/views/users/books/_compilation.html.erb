@@ -1,0 +1,6 @@
+<%= tag.div data: { controller: "compilation" } do %>
+  <%= render "users/books/reading", reading: compilation %>
+  <%= tag.div hidden: compilation.components_collapsed?, data: { compilation_target: "components" } do %>
+    <%= render partial: "users/books/reading", collection: components, as: :reading %>
+  <% end %>
+<% end %>

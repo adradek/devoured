@@ -3,44 +3,17 @@
   <div class="col-lg-5 offset-lg-2">
     <h2>Прочитано</h2>
     <% if policy(@user).update? %>
-      <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
+      <%= turbo_frame_tag("reading_form") do %>
+        <%= render partial: 'form', locals: { book: @book, type: :consumed } %>
+      <% end %>
     <% end %>
 
-    <table class="table">
-      <thead>
-        <th>Book</th>
-        <th>Finish</th>
-        <th style="width: 120px;"></th>
-      </thead>
-      <tbody>
-        <% @readings.each do |reading| %>
-          <tr class="<%= reading.labels.join(" ") %>" title="<%= reading.hint %>" data-part-of="<%= reading.compilation_reading_id %>" data-compilation-id="<%= reading.id if reading.compilation %>">
-            <td class="data"><%= reading.book.caption %></td>
-            <td class="data"><%= reading.finish&.strftime('%d.%m.%y') %></td>
-            <td>
-              <% if policy(@user).update? %>
-                <%= link_to user_book_path(id: reading.id), method: :delete, title: 'Удалить',
-                      class: 'btn btn-iconic btn-danger float-right',data: { confirm: "You sure?" } do %>
-                  <i class="fa-solid fa-trash"></i>
-                <% end %>
-                <%= link_to edit_user_book_path(id: reading.id), title: 'Изменить', class: 'btn btn-iconic btn-outline-dark float-right' do %>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                <% end %>
-                <% unless reading.compilation %>
-                  <%= link_to '#add_to_compilation_form_modal', class: 'btn btn-iconic btn-outline-dark float-right add-to-compilation-modal-launcher', title: 'oo', data: { toggle: "modal", reading_id: "#{reading.id}", title: "#{reading.book.caption}" } do %>
-                    <i class="fa-solid fa-truck"></i>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render partial: "readings_list", locals: { readings: @readings } %>
   </div>
 
   <div class="col-3">
-    <h2>Прочитать</h2>
+    <h2>Прочитать [fixme]</h2>
+    <%# FIXME: пофиксить обработку создания книги в контроллере %>
     <% if policy(@user).update? %>
       <%= turbo_frame_tag('reading_intention_form') do %>
         <%= render partial: 'form', locals: { book: @book, type: :to_read } %>
@@ -50,35 +23,6 @@
     <div class="mt-5">
       <%= turbo_frame_tag('reading_goals') do %>
         <%= render partial: "intention", collection: @intentions, as: :reading_goal %>
-      <% end %>
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="add_to_compilation_form_modal" tabindex="-1" role="dialog" aria-labelledby="add-to-compilation-formLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <%= form_for :compilation_inclusion, url: compilation_inclusions_path do |f| %>
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="add-to-compilation-formLabel">Внести в сборник</h4>
-        </div>
-        <div class="modal-body">
-          <%= f.hidden_field :reading_id %>
-          <div class="form-group">
-            <%= f.label :title, "Название" %>
-            <%= f.text_field :title, class: 'form-control', disabled: true %>
-          </div>
-          <div class="form-group">
-            <%= f.label :id, "Выберите сборник" %>
-            <%= f.select :id, options_for_select(Reading.compilations.order(id: :desc).map { |r| [r.book.caption, r.id, {}] }), { include_blank: "[ Сборник не выбран ]" }, class: 'form-control', style: 'margin-bottom: 0;' %>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Отмена</button>
-          <button class='btn btn-primary btn-inline' data-process_on_submit='true'>Прикрепить</button>
-        </div>
       <% end %>
     </div>
   </div>

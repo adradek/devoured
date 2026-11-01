@@ -37,6 +37,7 @@ RSpec.configure do |config|
   config.include Sorcery::TestHelpers::Rails::Controller, type: :request
   config.include Sorcery::TestHelpers::Rails::Request, type: :request
   # config.include Sorcery::TestHelpers::Rails::Integration, type: :request
+  config.include TurboStreamHelpers, type: :request
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [Rails.root.join("spec/fixtures")]

@@ -1,18 +1,40 @@
-<h1>Edit your reading</h1>
+<%= turbo_frame_tag(dom_id(@reading)) do %>
+  <div class="card mb-1">
+    <div class="card-body">
+      <%= form_with url: user_book_path(@user, @reading), method: :put do %>
+        <div class="mb-3 text-truncate fw-semibold"><%= @reading.book.caption %></div>
 
-<%= form_for @reading.book, url: user_book_path, method: :put do |f| %>
-  <%= f.text_field :title, disabled: true %>
-  <%= f.text_field :author, disabled: true %>
+        <div class="row g-2 mb-3 align-items-center" data-controller="swap">
+          <div class="col-auto">
+            <%= date_field_tag :start, @reading.start, id: "start_#{@reading.id}",
+                  class: "form-control", data: { swap_target: "left" } %>
+          </div>
+          <div class="col-auto">
+            <%= button_tag "<->", type: "button", class: "btn btn-outline-secondary", data: { action: "swap#execute" } %>
+          </div>
+          <div class="col-auto">
+            <%= date_field_tag :finish, @reading.finish, id: "finish_#{@reading.id}",
+                  class: "form-control", data: { swap_target: "right" } %>
+          </div>
+        </div>
 
-  <%= date_field_tag :start, @reading.start %>
-  <%= button_tag '<->', id: 'swap' %>
-  <%= date_field_tag :finish, @reading.finish %>
-  <%= hidden_field_tag :professional, "0" %>
-  <%= check_box_tag :professional, "1", @reading.professional %> Professional
-  <%= hidden_field_tag :significant, "0" %>
-  <%= check_box_tag :significant, "1", @reading.significant %> Significant
-  <%= hidden_field_tag :compilation, "0" %>
-  <%= check_box_tag :compilation, "1", @reading.compilation %> Compilation
+        <div class="row g-3 mb-3">
+          <div class="col-auto form-check">
+            <%= hidden_field_tag :professional, "0", id: nil %>
+            <%= check_box_tag :professional, "1", @reading.professional, id: "professional_#{@reading.id}", class: "form-check-input" %>
+            <%= label_tag "professional_#{@reading.id}", "Professional", class: "form-check-label" %>
+          </div>
+          <div class="col-auto form-check">
+            <%= hidden_field_tag :significant, "0", id: nil %>
+            <%= check_box_tag :significant, "1", @reading.significant, id: "significant_#{@reading.id}", class: "form-check-input" %>
+            <%= label_tag "significant_#{@reading.id}", "Significant", class: "form-check-label" %>
+          </div>
+        </div>
 
-  <%= f.submit %>
+        <%= submit_tag "Сохранить", class: "btn btn-primary" %>
+        <%# Loads the books page into this frame, which brings the reading card back %>
+        <%= link_to "Отмена", user_book_path(@user, @reading), class: "btn btn-outline-secondary" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

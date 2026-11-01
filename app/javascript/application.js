@@ -11,5 +11,3 @@ import "./controllers"
 
 import "bootstrap"
 import "./jquery-global"
-// import "./packs/modals"
-import "./modules/compilation_collapse"

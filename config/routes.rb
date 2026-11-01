@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :reading_intents, module: :users, only: [:create, :destroy]
   end
 
-  resources :compilation_inclusions, only: [:create]
+  resources :compilation_inclusions, only: [:new, :create]
   resources :sessions, only: %i[new create destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -70,6 +70,7 @@ end
 #                                       PUT    /users/:secret_id(.:format)                                                              users#update
 #                                       DELETE /users/:secret_id(.:format)                                                              users#destroy
 #                compilation_inclusions POST   /compilation_inclusions(.:format)                                                        compilation_inclusions#create
+#             new_compilation_inclusion GET    /compilation_inclusions/new(.:format)                                                    compilation_inclusions#new
 #                              sessions POST   /sessions(.:format)                                                                      sessions#create
 #                           new_session GET    /sessions/new(.:format)                                                                  sessions#new
 #                               session DELETE /sessions/:id(.:format)                                                                  sessions#destroy

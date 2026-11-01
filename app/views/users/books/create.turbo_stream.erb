@@ -1,0 +1,3 @@
+<%= turbo_stream.prepend("readings_list", partial: "reading", locals: { reading: @reading }) %>
+
+<%= turbo_stream.update("reading_form", partial: "form", locals: { book: Book.new, type: :consumed }) %>
