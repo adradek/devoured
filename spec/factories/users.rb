@@ -3,8 +3,8 @@
 # Table name: users
 #
 #  id               :integer          not null, primary key
-#  crypted_password :string
 #  email            :string           not null
+#  crypted_password :string
 #  salt             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null

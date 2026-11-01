@@ -19,6 +19,11 @@
 #  index_watchings_on_film_id  (film_id)
 #  index_watchings_on_user_id  (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (film_id => films.id)
+#  fk_rails_...  (user_id => users.id)
+#
 
 class Watching < ApplicationRecord
   belongs_to :user, touch: true

@@ -16,6 +16,10 @@
 #  index_intents_on_intended_type_and_intended_id  (intended_type,intended_id)
 #  index_intents_on_user_id                        (user_id)
 #
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
+#
 
 class Intent < ApplicationRecord
   belongs_to :user, touch: true

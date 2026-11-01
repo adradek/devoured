@@ -1,0 +1,25 @@
+<%# Progress bars of a reading: one per attempt, the current attempt is the last %>
+<% map = reading.progress_map %>
+<% map.bars.each do |bar| %>
+  <%= tag.div class: ["reading-attempt", { "reading-attempt-past" => !bar.current }] do %>
+    <div class="small text-body-secondary mb-1 attempt-dates">
+      <% if map.multiple_attempts? %>Заход <%= bar.attempt %> ·<% end %>
+      <%= bar.dates %>
+    </div>
+    <% if bar.total_pages %>
+      <%= tag.div class: "progress progress-map", role: "img", aria: { label: bar.summary } do %>
+        <% bar.segments.each do |segment| %>
+          <%= tag.div class: "progress-map-segment progress-color-#{segment.color}",
+                style: "left: #{segment.left}%; width: #{segment.width}%", title: segment.hint %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <div class="small mt-1 progress-summary"><%= bar.summary %></div>
+  <% end %>
+<% end %>
+
+<% if reading.total_pages.nil? && policy(@user).update? %>
+  <div class="small text-body-secondary mt-2 total-pages-hint">
+    <%= link_to "Укажите число страниц в книге", edit_user_book_path(@user, reading.id) %>, чтобы увидеть полосу
+  </div>
+<% end %>

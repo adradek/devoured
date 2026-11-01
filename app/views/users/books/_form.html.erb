@@ -13,6 +13,7 @@
     <%= date_field_tag :start, nil, 'data-swap-target' => 'left' %>
     <%= button_tag '<->', type: 'button', 'data-action' => 'click->swap#execute' %>
     <%= date_field_tag :finish, Time.zone.today, 'data-swap-target' => 'right' %>
+    <%= number_field_tag :total_pages, nil, min: 1, placeholder: 'Pages' %>
     <%= check_box_tag :professional %> Professional
     <%= check_box_tag :significant %> Significant
     <%= check_box_tag 'book[compilation]' %> Compilation

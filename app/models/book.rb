@@ -5,12 +5,12 @@
 # Table name: books
 #
 #  id          :integer          not null, primary key
-#  author      :string
-#  compilation :boolean          default(FALSE)
-#  short       :boolean          default(FALSE), not null
 #  title       :string           not null
+#  author      :string
+#  short       :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  compilation :boolean          default(FALSE)
 #
 # Indexes
 #

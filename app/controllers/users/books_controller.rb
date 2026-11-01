@@ -77,7 +77,7 @@ module Users
     end
 
     def reading_params
-      params.permit(:start, :finish, :professional, :significant)
+      params.permit(:start, :finish, :professional, :significant, :total_pages)
     end
   end
 end

@@ -5,12 +5,12 @@
 # Table name: books
 #
 #  id          :integer          not null, primary key
-#  author      :string
-#  compilation :boolean          default(FALSE)
-#  short       :boolean          default(FALSE), not null
 #  title       :string           not null
+#  author      :string
+#  short       :boolean          default(FALSE), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  compilation :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -19,6 +19,8 @@
 
 FactoryBot.define do
   factory :book do
+    sequence(:title) { |n| "Книга #{n}" }
+
     trait :moby_dick do
       title  { "Моби дик" }
       author { "Джек Лондон" }

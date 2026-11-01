@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     end
 
     resources :reading_intents, module: :users, only: [:create, :destroy]
+
+    resources :readings, only: [], module: :users do
+      resources :progresses, only: [:new, :create], module: :readings
+    end
   end
 
   resources :compilation_inclusions, only: [:new, :create]
@@ -36,61 +40,72 @@ end
 
 # == Route Map
 #
-#                                Prefix Verb   URI Pattern                                                                              Controller#Action
-#                                  root GET    /                                                                                        users#dashboard
-#                                       GET    /                                                                                        sessions#new
-#                                 login GET    /login(.:format)                                                                         sessions#new
-#                                logout DELETE /logout(.:format)                                                                        sessions#destroy
-#                                signup GET    /signup(.:format)                                                                        users#new
-#                       dashboard_users GET    /users/dashboard(.:format)                                                               users#dashboard
-#             destroy_intents_user_film DELETE /users/:user_secret_id/films/:id/destroy_intents(.:format)                               users/films#destroy_intents
-#                            user_films GET    /users/:user_secret_id/films(.:format)                                                   users/films#index
-#                                       POST   /users/:user_secret_id/films(.:format)                                                   users/films#create
-#                         new_user_film GET    /users/:user_secret_id/films/new(.:format)                                               users/films#new
-#                        edit_user_film GET    /users/:user_secret_id/films/:id/edit(.:format)                                          users/films#edit
-#                             user_film GET    /users/:user_secret_id/films/:id(.:format)                                               users/films#show
-#                                       PATCH  /users/:user_secret_id/films/:id(.:format)                                               users/films#update
-#                                       PUT    /users/:user_secret_id/films/:id(.:format)                                               users/films#update
-#                                       DELETE /users/:user_secret_id/films/:id(.:format)                                               users/films#destroy
-#             destroy_intents_user_book DELETE /users/:user_secret_id/books/:id/destroy_intents(.:format)                               users/books#destroy_intents
-#                            user_books GET    /users/:user_secret_id/books(.:format)                                                   users/books#index
-#                                       POST   /users/:user_secret_id/books(.:format)                                                   users/books#create
-#                         new_user_book GET    /users/:user_secret_id/books/new(.:format)                                               users/books#new
-#                        edit_user_book GET    /users/:user_secret_id/books/:id/edit(.:format)                                          users/books#edit
-#                             user_book GET    /users/:user_secret_id/books/:id(.:format)                                               users/books#show
-#                                       PATCH  /users/:user_secret_id/books/:id(.:format)                                               users/books#update
-#                                       PUT    /users/:user_secret_id/books/:id(.:format)                                               users/books#update
-#                                       DELETE /users/:user_secret_id/books/:id(.:format)                                               users/books#destroy
-#                                 users GET    /users(.:format)                                                                         users#index
-#                                       POST   /users(.:format)                                                                         users#create
-#                              new_user GET    /users/new(.:format)                                                                     users#new
-#                             edit_user GET    /users/:secret_id/edit(.:format)                                                         users#edit
-#                                  user GET    /users/:secret_id(.:format)                                                              users#show
-#                                       PATCH  /users/:secret_id(.:format)                                                              users#update
-#                                       PUT    /users/:secret_id(.:format)                                                              users#update
-#                                       DELETE /users/:secret_id(.:format)                                                              users#destroy
-#                compilation_inclusions POST   /compilation_inclusions(.:format)                                                        compilation_inclusions#create
-#             new_compilation_inclusion GET    /compilation_inclusions/new(.:format)                                                    compilation_inclusions#new
-#                              sessions POST   /sessions(.:format)                                                                      sessions#create
-#                           new_session GET    /sessions/new(.:format)                                                                  sessions#new
-#                               session DELETE /sessions/:id(.:format)                                                                  sessions#destroy
-#         rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                  action_mailbox/ingresses/postmark/inbound_emails#create
-#            rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                     action_mailbox/ingresses/relay/inbound_emails#create
-#         rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                  action_mailbox/ingresses/sendgrid/inbound_emails#create
-#   rails_mandrill_inbound_health_check GET    /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#health_check
-#         rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                  action_mailbox/ingresses/mandrill/inbound_emails#create
-#          rails_mailgun_inbound_emails POST   /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)                              action_mailbox/ingresses/mailgun/inbound_emails#create
-#        rails_conductor_inbound_emails GET    /rails/conductor/action_mailbox/inbound_emails(.:format)                                 rails/conductor/action_mailbox/inbound_emails#index
-#                                       POST   /rails/conductor/action_mailbox/inbound_emails(.:format)                                 rails/conductor/action_mailbox/inbound_emails#create
-#     new_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/new(.:format)                             rails/conductor/action_mailbox/inbound_emails#new
-#    edit_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id/edit(.:format)                        rails/conductor/action_mailbox/inbound_emails#edit
-#         rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#show
-#                                       PATCH  /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#update
-#                                       PUT    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#update
-#                                       DELETE /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                             rails/conductor/action_mailbox/inbound_emails#destroy
-# rails_conductor_inbound_email_reroute POST   /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)                      rails/conductor/action_mailbox/reroutes#create
-#                    rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
-#             rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
-#                    rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                              active_storage/disk#show
-#             update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                      active_storage/disk#update
-#                  rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                           active_storage/direct_uploads#create
+#                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
+#                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show
+#                                     root GET    /                                                                                                 users#dashboard
+#                                          GET    /                                                                                                 sessions#new
+#                                    login GET    /login(.:format)                                                                                  sessions#new
+#                                   logout DELETE /logout(.:format)                                                                                 sessions#destroy
+#                                   signup GET    /signup(.:format)                                                                                 users#new
+#                          dashboard_users GET    /users/dashboard(.:format)                                                                        users#dashboard
+#                destroy_intents_user_film DELETE /users/:user_secret_id/films/:id/destroy_intents(.:format)                                        users/films#destroy_intents
+#                               user_films GET    /users/:user_secret_id/films(.:format)                                                            users/films#index
+#                                          POST   /users/:user_secret_id/films(.:format)                                                            users/films#create
+#                            new_user_film GET    /users/:user_secret_id/films/new(.:format)                                                        users/films#new
+#                           edit_user_film GET    /users/:user_secret_id/films/:id/edit(.:format)                                                   users/films#edit
+#                                user_film GET    /users/:user_secret_id/films/:id(.:format)                                                        users/films#show
+#                                          PATCH  /users/:user_secret_id/films/:id(.:format)                                                        users/films#update
+#                                          PUT    /users/:user_secret_id/films/:id(.:format)                                                        users/films#update
+#                                          DELETE /users/:user_secret_id/films/:id(.:format)                                                        users/films#destroy
+#                destroy_intents_user_book DELETE /users/:user_secret_id/books/:id/destroy_intents(.:format)                                        users/books#destroy_intents
+#                               user_books GET    /users/:user_secret_id/books(.:format)                                                            users/books#index
+#                                          POST   /users/:user_secret_id/books(.:format)                                                            users/books#create
+#                            new_user_book GET    /users/:user_secret_id/books/new(.:format)                                                        users/books#new
+#                           edit_user_book GET    /users/:user_secret_id/books/:id/edit(.:format)                                                   users/books#edit
+#                                user_book GET    /users/:user_secret_id/books/:id(.:format)                                                        users/books#show
+#                                          PATCH  /users/:user_secret_id/books/:id(.:format)                                                        users/books#update
+#                                          PUT    /users/:user_secret_id/books/:id(.:format)                                                        users/books#update
+#                                          DELETE /users/:user_secret_id/books/:id(.:format)                                                        users/books#destroy
+#                     user_reading_intents POST   /users/:user_secret_id/reading_intents(.:format)                                                  users/reading_intents#create
+#                      user_reading_intent DELETE /users/:user_secret_id/reading_intents/:id(.:format)                                              users/reading_intents#destroy
+#                  user_reading_progresses POST   /users/:user_secret_id/readings/:reading_id/progresses(.:format)                                  users/readings/progresses#create
+#                new_user_reading_progress GET    /users/:user_secret_id/readings/:reading_id/progresses/new(.:format)                              users/readings/progresses#new
+#                                    users GET    /users(.:format)                                                                                  users#index
+#                                          POST   /users(.:format)                                                                                  users#create
+#                                 new_user GET    /users/new(.:format)                                                                              users#new
+#                                edit_user GET    /users/:secret_id/edit(.:format)                                                                  users#edit
+#                                     user GET    /users/:secret_id(.:format)                                                                       users#show
+#                                          PATCH  /users/:secret_id(.:format)                                                                       users#update
+#                                          PUT    /users/:secret_id(.:format)                                                                       users#update
+#                                          DELETE /users/:secret_id(.:format)                                                                       users#destroy
+#                   compilation_inclusions POST   /compilation_inclusions(.:format)                                                                 compilation_inclusions#create
+#                new_compilation_inclusion GET    /compilation_inclusions/new(.:format)                                                             compilation_inclusions#new
+#                                 sessions POST   /sessions(.:format)                                                                               sessions#create
+#                              new_session GET    /sessions/new(.:format)                                                                           sessions#new
+#                                  session DELETE /sessions/:id(.:format)                                                                           sessions#destroy
+#         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
+#         turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume
+#        turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh
+#            rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
+#               rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create
+#            rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                           action_mailbox/ingresses/sendgrid/inbound_emails#create
+#      rails_mandrill_inbound_health_check GET    /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#health_check
+#            rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#create
+#             rails_mailgun_inbound_emails POST   /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)                                       action_mailbox/ingresses/mailgun/inbound_emails#create
+#           rails_conductor_inbound_emails GET    /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#index
+#                                          POST   /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#create
+#        new_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/new(.:format)                                      rails/conductor/action_mailbox/inbound_emails#new
+#            rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#show
+# new_rails_conductor_inbound_email_source GET    /rails/conductor/action_mailbox/inbound_emails/sources/new(.:format)                              rails/conductor/action_mailbox/inbound_emails/sources#new
+#    rails_conductor_inbound_email_sources POST   /rails/conductor/action_mailbox/inbound_emails/sources(.:format)                                  rails/conductor/action_mailbox/inbound_emails/sources#create
+#    rails_conductor_inbound_email_reroute POST   /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)                               rails/conductor/action_mailbox/reroutes#create
+# rails_conductor_inbound_email_incinerate POST   /rails/conductor/action_mailbox/:inbound_email_id/incinerate(.:format)                            rails/conductor/action_mailbox/incinerates#create
+#                       rails_service_blob GET    /rails/active_storage/blobs/redirect/:signed_id/*filename(.:format)                               active_storage/blobs/redirect#show
+#                 rails_service_blob_proxy GET    /rails/active_storage/blobs/proxy/:signed_id/*filename(.:format)                                  active_storage/blobs/proxy#show
+#                                          GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                                        active_storage/blobs/redirect#show
+#                rails_blob_representation GET    /rails/active_storage/representations/redirect/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations/redirect#show
+#          rails_blob_representation_proxy GET    /rails/active_storage/representations/proxy/:signed_blob_id/:variation_key/*filename(.:format)    active_storage/representations/proxy#show
+#                                          GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format)          active_storage/representations/redirect#show
+#                       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/disk#show
+#                update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
+#                     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
